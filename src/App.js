@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
+import GoalField from './containers/GoalField';
 
 
 class App extends Component {
@@ -7,7 +8,7 @@ class App extends Component {
         return (
             <div>
                 <Layout>
-                    <p>my new goals app</p>
+                    <GoalField />
                 </Layout>
             </div>
         );
