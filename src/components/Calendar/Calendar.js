@@ -13,11 +13,11 @@ const calendar = (props) => {
         return (
                 <Day 
                     key={element}
-                    value={element}
+                    value={element.toUpperCase()}
                 />
             ); 
     });
-    const fillColendar = () => {
+    const fillCalendar = () => {
         for (let i = 0; i < 35; i++) {
             days.push(
                 <Day
@@ -29,29 +29,19 @@ const calendar = (props) => {
         return days;
     };
     
-    fillColendar();
+   
     
-    // let currentYear = 0;
-    
-    // const getCurrentYear = () => {
-    //     currentYear = new Date().getFullYear();
-    //     return currentYear;
-    // };
-    // getCurrentYear();
-    // console.log(currentYear);
-    
+
     return (
         <Auxiliary>
             <p>{props.title}</p>
             <div className={cssObject.Calendar}>
-                <div>
-                    <p className={cssObject.CalendarNav}>{new Date().getFullYear()}</p>
+                <div className={cssObject.NavField}>
+                    <button>{new Date().getMonth() + ' ' + new Date().getFullYear()}</button>
                 </div>
-                <div className={cssObject.Weekdays}>
-                    {weekdays}
-                </div>
-                <div className={cssObject.Daysfield}>
-                    {days}
+                <div className={cssObject.CalendarField}>
+                    <div className={cssObject.WeekDays}>{weekdays}</div>
+                    <div className={cssObject.DaysField}>{fillCalendar()}</div>
                 </div>
             </div>
         </Auxiliary>
