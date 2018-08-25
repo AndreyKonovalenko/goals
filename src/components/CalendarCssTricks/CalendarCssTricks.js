@@ -1,38 +1,37 @@
 import React, {Component} from 'react';
+import dateFns from 'date-fns';
 
 import cssObject from './CalendarCssTricks.css';
 
 class CalendarCssTricks extends Component {
+    state = {
+        currentMonth: new Date(),
+        selectedDate: new Date(),
+    };
+    
+    renderDays() {   
+        const days = [];
+        const dateFormat = "ddd"
+        let startDate = dateFns.startOfWeek(this.state.currentMonth, {weekStartsOn:1});
+
+        for (let i = 0; i < 7; i++) {
+            days.push(
+                <li className={cssObject.center} key={i}>
+                    {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+                </li>
+            );
+        }
+    
+        return <ul className={cssObject.Weekdays}>{days}</ul>;
+      }
+
     render() {
         return (
             <div className={cssObject.Calendar}>
                 <header>
                     <h1>November 2017</h1>
-                </header>
-            
-                <ul className={cssObject.Weekdays}>
-                    <li>
-                        <abbr title="S">Sunday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="M">Monday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="T">Tuesday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="W">Wednesday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="T">Thursday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="F">Friday</abbr>
-                    </li>
-                    <li>
-                        <abbr title="S">Saturday</abbr>
-                    </li>
-                </ul>
+                </header>           
+                {this.renderDays()}
                 
                 <ul className={cssObject.DayGrid}>
                     <li className="month=prev">29</li>

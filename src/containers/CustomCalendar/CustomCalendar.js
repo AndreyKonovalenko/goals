@@ -11,6 +11,8 @@ class CustomCalendar extends Component  {
         selectedDate: new Date()
     };
 
+    
+
     renderHeader() {
         const dateFormat = "MMMM YYYY";
         return (

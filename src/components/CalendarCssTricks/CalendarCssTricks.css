@@ -85,8 +85,7 @@ abbr[title] {
         font-size: 0;
     }
     
-    .Weekdays > li abbr:after {
-        content: attr(title);
+    .Weekdays > li {
         font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
         text-align: center;
     }
