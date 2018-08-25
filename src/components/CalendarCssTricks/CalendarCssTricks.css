@@ -9,73 +9,85 @@ header {
     color: #fff;
     min-height: 10vh;
     text-align: center;
-  }
+}
   
-  ul {
+ul {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 1em;
     margin: 0 auto;
     max-width: 64em;
     padding: 0;
-  }
+}
   
-  li {
+li {
     display: flex;
     align-items: center;
     justify-content: center;
     list-style: none;
     margin-left: 0;
     font-size: calc(16px + (21 - 16) * ((100vw - 300px) / (1600 - 300)));
-  }
+}
   
-  ul.weekdays {
+
+.Calendar {
+    padding: 20%;
+    margin: auto;
+} 
+
+.Weekdays {
     margin-bottom: 1em;
-  }
+}
+
+/* ul.weekdays {
+    margin-bottom: 1em;
+} */
   
-  ul.weekdays li {
+.Weekdays li {
     height: 4vw;
-  }
+}
   
-  ul.day-grid li {
+
+.DayGrid li {
     background-color: #eaeaea;
     border: 1px solid #eaeaea;
     height: 12vw;
     max-height: 125px;
-  }
+}
   
-  ul.weekdays abbr[title] {
+abbr[title] {
     border: none;
     font-weight: 800;
     text-decoration: none;
-  }
-  
-  ul.day-grid li:nth-child(1),
-  ul.day-grid li:nth-child(2),
-  ul.day-grid li:nth-child(3),
-  ul.day-grid li:nth-child(34),
-  ul.day-grid li:nth-child(35) {
+}
+
+.DayGrid li:nth-child(1),
+.DayGrid li:nth-child(2),
+.DayGrid li:nth-child(3),
+.DayGrid li:nth-child(34),
+.DayGrid li:nth-child(35) {
     background-color: #fff;
-  }
+}
   
-  .Calendar {
-    padding: 100px;
-    margin: auto;
-  }
-  
-  
-  @media all and (max-width: 800px) {
+@media all and (max-width: 800px) {
+
+
     ul {
-      grid-gap: .25em;
+        grid-gap: .25em;
+    }
+
+    Calendar {
+        padding: 20%;
+        margin: auto;
+    } 
+    
+    .Weekdays li {
+        font-size: 0;
     }
     
-    ul.weekdays li {
-      font-size: 0;
-    }
-    
-    ul.weekdays > li abbr:after {
+    .Weekdays > li abbr:after {
         content: attr(title);
         font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
-      text-align: center;
-      }
-  }
+        text-align: center;
+    }
+}

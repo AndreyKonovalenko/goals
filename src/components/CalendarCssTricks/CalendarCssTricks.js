@@ -6,11 +6,11 @@ class CalendarCssTricks extends Component {
     render() {
         return (
             <div className={cssObject.Calendar}>
-                    <header>
-                        <h1>November 2017</h1>
-                    </header>
+                <header>
+                    <h1>November 2017</h1>
+                </header>
             
-                    <ul className="weekdays">
+                <ul className={cssObject.Weekdays}>
                     <li>
                         <abbr title="S">Sunday</abbr>
                     </li>
@@ -32,9 +32,9 @@ class CalendarCssTricks extends Component {
                     <li>
                         <abbr title="S">Saturday</abbr>
                     </li>
-                    </ul>
+                </ul>
                 
-                    <ul className="day-grid">
+                <ul className={cssObject.DayGrid}>
                     <li className="month=prev">29</li>
                     <li className="month=prev">30</li>
                     <li className="month=prev">31</li>
