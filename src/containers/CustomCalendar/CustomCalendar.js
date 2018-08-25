@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import dateFns from 'date-fns';
 
+import cssObject from './CustomCalendar.css'
+
 
 
 class CustomCalendar extends Component  {
@@ -9,21 +11,20 @@ class CustomCalendar extends Component  {
         selectedDate: new Date()
     };
 
-
     renderHeader() {
         const dateFormat = "MMMM YYYY";
         return (
-            <div className="header row flex-middle">
-                <div className="col col-start">
-                    <div className="icon" onClick={this.prevMonth}>
+            <div className={cssObject.middle}>
+                <div className={cssObject.start}>
+                    <div className={cssObject.icon} onClick={this.prevMonth}>
                         chevron_left
                     </div>
                 </div>
-                <div className="col col-center">
+                <div className={cssObject.center}>
                     <span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
                 </div>
-                <div className="col col-end" onClick={this.nextMonth}>
-                    <div className="icon">chevron_right</div>
+                <div className={cssObject.end} onClick={this.nextMonth}>
+                    <div className={cssObject.icon}>chevron_right</div>
                 </div>
             </div>
         );
@@ -37,13 +38,13 @@ class CustomCalendar extends Component  {
     
         for (let i = 0; i < 7; i++) {
             days.push(
-                <div className="col col-center" key={i}>
+                <div className={cssObject.center} key={i}>
                     {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
                 </div>
             );
         }
     
-        return <div className="days row">{days}</div>;
+        return <div className={cssObject.days}>{days}</div>;
       }
     
     renderCells() {
@@ -81,13 +82,14 @@ class CustomCalendar extends Component  {
                 day = dateFns.addDays(day, 1);
             }
             rows.push(
-                <div className="row" key={day}>
+                <div className={cssObject.rows} key={day}>
                     {days}
                 </div>
             );
             days = [];
         }
-            return <div className="body">{rows}</div>;
+            console.log(rows);
+            return <div className={cssObject.rows}>{rows}</div>;
         }
     
         onDateClick = day => {
@@ -108,10 +110,11 @@ class CustomCalendar extends Component  {
             });
         };
 
-
+    
     render () {
+
         return (
-            <div className="calendar">
+            <div className={cssObject.calendar}>
                 {this.renderHeader()}
                 {this.renderDays()}
                 {this.renderCells()}

@@ -36,11 +36,9 @@
 
 /* GENERAL */
 
-* {
-  box-sizing: border-box;
-}
 
-body {
+.Body {
+    box-sizing: border-box;
     font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 1em;
     font-weight: 300;
@@ -50,15 +48,18 @@ body {
     position: relative;
 }
 
-header {
+.Header {
+  box-sizing: border-box;
   display: block;
   width: 100%;
   padding: 1.75em 0;
   border-bottom: 1px solid var(--border-color);
   background: var(--neutral-color);
+  flex-direction: row;
+  justify-content: center;
 }
 
-header #logo {
+/* header #logo {
   font-size: 175%;
   text-align: center;
   color: var(--main-color);
@@ -67,9 +68,10 @@ header #logo {
 
 header #logo .icon {
   padding-right: .25em;
-}
+} */
 
-main {
+.Main {
+  box-sizing: border-box;
   display: block;
   margin: 0 auto;
   margin-top: 5em;
@@ -88,7 +90,8 @@ main {
   width: 100%;
 }
 
-.row-middle {
+.middle {
+  composes: row;
   align-items: center;
 }
 
@@ -98,17 +101,20 @@ main {
   max-width: 100%;
 }
 
-.col-start {
+.start {
+  composes: col;
   justify-content: flex-start;
   text-align: left;
 }
 
-.col-center {
+.center {
+  conposes: col;
   justify-content: center;
   text-align: center;
 }
 
-.col-end {
+.end {
+  composes: col;
   justify-content: flex-end;
   text-align: right;
 }
@@ -124,7 +130,8 @@ main {
   border: 1px solid var(--border-color);
 }
 
-.calendar .header {
+ .header {
+  composes: calendar;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 115%;
@@ -151,7 +158,10 @@ main {
   margin-right: 1em;
 }
 
-.calendar .days {
+ .days {
+  
+  composes: calendar;
+  composes: row;
   text-transform: uppercase;
   font-weight: 400;
   color: var(--text-color-light);
