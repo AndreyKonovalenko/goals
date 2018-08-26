@@ -99,9 +99,8 @@ class CalendarCssTricks extends Component {
                 </header>           
                 {this.renderDays(this.state.screenSize)}
                 
-                <ul className={cssObject.DayGrid}>
-                    
-                    {/* <li className="month=prev">30</li>
+                <ul className={cssObject.DayGrid}>                   
+                    <li className="month=prev">30</li>
                     <li className="month=prev">31</li>
                     <li>1</li>
                     <li>2</li>
@@ -135,7 +134,7 @@ class CalendarCssTricks extends Component {
                     <li>30</li>
                     <li className="month-next">1</li>
                     <li className="month-next">2</li>
-                    <li className="month-next">3</li> */}
+                    <li className="month-next">3</li>
                 </ul>
               
             </div>        
