@@ -7,12 +7,32 @@ class CalendarCssTricks extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
+        screenSize: true
     };
     
-    renderDays() {   
+ 
+
+    componentDidMount () {
+        window.addEventListener("resize", this.matchQueryHandler);       
+    }
+    
+    matchQueryHandler = () => {
+        const sizeMatched = window.matchMedia('(max-width: 800px)').matches;
+        console.log(sizeMatched);
+        this.setState({screenSize: sizeMatched});
+        
+    }
+
+    renderDays = (screenSize) => {   
         const days = [];
-        const dateFormat = "ddd"
+        let dateFormat = "dd";
         let startDate = dateFns.startOfWeek(this.state.currentMonth, {weekStartsOn:1});
+
+        if(!screenSize) {
+            dateFormat = "ddd";
+        } else {
+            dateFormat = "dd";
+        }
 
         for (let i = 0; i < 7; i++) {
             days.push(
@@ -26,15 +46,15 @@ class CalendarCssTricks extends Component {
       }
 
     render() {
+
         return (
             <div className={cssObject.Calendar}>
                 <header>
                     <h1>November 2017</h1>
                 </header>           
-                {this.renderDays()}
+                {this.renderDays(this.state.screenSize)}
                 
                 <ul className={cssObject.DayGrid}>
-                    <li className="month=prev">29</li>
                     <li className="month=prev">30</li>
                     <li className="month=prev">31</li>
                     <li>1</li>
@@ -69,6 +89,7 @@ class CalendarCssTricks extends Component {
                     <li>30</li>
                     <li className="month-next">1</li>
                     <li className="month-next">2</li>
+                    <li className="month-next">3</li>
                 </ul>
               
             </div>        
