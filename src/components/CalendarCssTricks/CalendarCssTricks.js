@@ -7,31 +7,29 @@ class CalendarCssTricks extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
-        screenSize: true
+        screenSize: window.matchMedia('(max-width: 800px)').matches
     };
     
- 
-
     componentDidMount () {
-        window.addEventListener("resize", this.matchQueryHandler);       
+        window.addEventListener("resize", this.screenSizeChandgeHandler);       
     }
     
-    matchQueryHandler = () => {
+    screenSizeChandgeHandler = () => {
         const sizeMatched = window.matchMedia('(max-width: 800px)').matches;
         console.log(sizeMatched);
         this.setState({screenSize: sizeMatched});
         
     }
 
-    renderDays = (screenSize) => {   
+    renderDays(screenSize) {   
         const days = [];
         let dateFormat = "dd";
         let startDate = dateFns.startOfWeek(this.state.currentMonth, {weekStartsOn:1});
 
-        if(!screenSize) {
-            dateFormat = "ddd";
-        } else {
+        if(screenSize) {
             dateFormat = "dd";
+        } else {
+            dateFormat = "ddd";
         }
 
         for (let i = 0; i < 7; i++) {
@@ -43,10 +41,57 @@ class CalendarCssTricks extends Component {
         }
     
         return <ul className={cssObject.Weekdays}>{days}</ul>;
-      }
+    }
+   
+    renderCells() {
+        const { currentMonth, selectedDate } = this.state;
+        const monthStart = dateFns.startOfMonth(currentMonth);
+        const monthEnd = dateFns.endOfMonth(monthStart);
+        const startDate = dateFns.startOfWeek(monthStart);
+        const endDate = dateFns.endOfWeek(monthEnd);
+    
+        const dateFormat = "D";
+        const rows = [];
+    
+        let days = [];
+        let day = startDate;
+        let formattedDate = "";
+    
+        while (day <= endDate) {
+            for (let i = 0; i < 7; i++) {
+                formattedDate = dateFns.format(day, dateFormat);
+                const cloneDay = day;
+                days.push(
+                    <div
+                        className={`col cell ${
+                        !dateFns.isSameMonth(day, monthStart)
+                        ? "disabled"
+                        : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                        }`}
+                        key={day}
+                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                    >
+                        <span className="number">{formattedDate}</span>
+                        <span className="bg">{formattedDate}</span>
+                    </div>
+                );
+                day = dateFns.addDays(day, 1);
+            }
+            rows.push(
+                <div className={cssObject.rows} key={day}>
+                    {days}
+                </div>
+            );
+            days = [];
+        }
+            console.log(rows);
+            //return <div className={cssObject.rows}>{rows}</div>;
+    }  
+    
+    
 
     render() {
-
+        this.renderCells();
         return (
             <div className={cssObject.Calendar}>
                 <header>
@@ -55,7 +100,8 @@ class CalendarCssTricks extends Component {
                 {this.renderDays(this.state.screenSize)}
                 
                 <ul className={cssObject.DayGrid}>
-                    <li className="month=prev">30</li>
+                    
+                    {/* <li className="month=prev">30</li>
                     <li className="month=prev">31</li>
                     <li>1</li>
                     <li>2</li>
@@ -89,7 +135,7 @@ class CalendarCssTricks extends Component {
                     <li>30</li>
                     <li className="month-next">1</li>
                     <li className="month-next">2</li>
-                    <li className="month-next">3</li>
+                    <li className="month-next">3</li> */}
                 </ul>
               
             </div>        
