@@ -21,7 +21,7 @@ class CalendarCssTricks extends Component {
         
     }
 
-    renderDays(screenSize) {   
+    renderWeekDays(screenSize) {   
         const days = [];
         let dateFormat = "dd";
         let startDate = dateFns.startOfWeek(this.state.currentMonth, {weekStartsOn:1});
@@ -43,100 +43,36 @@ class CalendarCssTricks extends Component {
         return <ul className={cssObject.Weekdays}>{days}</ul>;
     }
    
-    renderCells() {
-        const { currentMonth, selectedDate } = this.state;
-        const monthStart = dateFns.startOfMonth(currentMonth);
+    renderMonthDays() {
+        const monthStart = dateFns.startOfMonth(this.state.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
-        const startDate = dateFns.startOfWeek(monthStart);
-        const endDate = dateFns.endOfWeek(monthEnd);
-    
-        const dateFormat = "D";
-        const rows = [];
-    
-        let days = [];
-        let day = startDate;
-        let formattedDate = "";
-    
-        while (day <= endDate) {
-            for (let i = 0; i < 7; i++) {
-                formattedDate = dateFns.format(day, dateFormat);
-                const cloneDay = day;
-                days.push(
-                    <div
-                        className={`col cell ${
-                        !dateFns.isSameMonth(day, monthStart)
-                        ? "disabled"
-                        : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                        }`}
-                        key={day}
-                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-                    >
-                        <span className="number">{formattedDate}</span>
-                        <span className="bg">{formattedDate}</span>
-                    </div>
+        const startDate = dateFns.startOfWeek(monthStart, {weekStartsOn:1});
+        const endDate = dateFns.endOfWeek(monthEnd,{weekStartsOn:1});
+        const days = [];
+        const daysRange = dateFns.differenceInDays(endDate, startDate);
+        for (let i = 0 ; i <= daysRange; i++) {
+            let currentDay = dateFns.addDays(startDate, i);
+            days.push(
+                <li key={currentDay}>{dateFns.format(currentDay, "D")}</li>
                 );
-                day = dateFns.addDays(day, 1);
-            }
-            rows.push(
-                <div className={cssObject.rows} key={day}>
-                    {days}
-                </div>
-            );
-            days = [];
         }
-            console.log(rows);
-            //return <div className={cssObject.rows}>{rows}</div>;
+        
+        return (
+            <ul className={cssObject.DayGrid}>  
+                {days}
+            </ul>
+        );
     }  
-    
     
 
     render() {
-        this.renderCells();
         return (
             <div className={cssObject.Calendar}>
                 <header>
                     <h1>November 2017</h1>
                 </header>           
-                {this.renderDays(this.state.screenSize)}
-                
-                <ul className={cssObject.DayGrid}>                   
-                    <li className="month=prev">30</li>
-                    <li className="month=prev">31</li>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
-                    <li>10</li>
-                    <li>11</li>
-                    <li>12</li>
-                    <li>13</li>
-                    <li>14</li>
-                    <li>15</li>
-                    <li>16</li>
-                    <li>17</li>
-                    <li>18</li>
-                    <li>19</li>
-                    <li>20</li>
-                    <li>21</li>
-                    <li>22</li>
-                    <li>23</li>
-                    <li>24</li>
-                    <li>25</li>
-                    <li>26</li>
-                    <li>27</li>
-                    <li>28</li>
-                    <li>29</li>
-                    <li>30</li>
-                    <li className="month-next">1</li>
-                    <li className="month-next">2</li>
-                    <li className="month-next">3</li>
-                </ul>
-              
+                {this.renderWeekDays(this.state.screenSize)}
+                {this.renderMonthDays()}
             </div>        
             
         );
