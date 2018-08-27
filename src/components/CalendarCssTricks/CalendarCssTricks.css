@@ -5,7 +5,7 @@
     font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
     justify-content: space-around;
     margin-bottom: 1em;
-    background: rgb(197, 183, 183);
+    background: rgba(113, 111, 111, 0.879);
     color: #fff;
     min-height: 10vh;
     text-align: center;
@@ -93,14 +93,6 @@ abbr[title] {
     text-decoration: none;
 }
 
-.DayGrid li:nth-child(1),
-.DayGrid li:nth-child(2),
-.DayGrid li:nth-child(3),
-.DayGrid li:nth-child(34),
-.DayGrid li:nth-child(35) {
-    background-color: #fff;
-}
-  
 @media all and (max-width: 800px) {
 
 

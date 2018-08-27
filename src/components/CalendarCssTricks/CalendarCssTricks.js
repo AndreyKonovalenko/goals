@@ -78,10 +78,18 @@ class CalendarCssTricks extends Component {
         const endDate = dateFns.endOfWeek(monthEnd,{weekStartsOn:1});
         const days = [];
         const daysRange = dateFns.differenceInDays(endDate, startDate);
+        
+        // Add specialstile for not this month dayas
+        // by usling inlinestile
+
         for (let i = 0 ; i <= daysRange; i++) {
             let currentDay = dateFns.addDays(startDate, i);
+            let offMonthDayStyle = {};          
+            if (currentDay < monthStart || currentDay > monthEnd) {
+                offMonthDayStyle = {...offMonthDayStyle = { backgroundColor: '#fff' }};
+            }
             days.push(
-                <li key={currentDay}>{dateFns.format(currentDay, "D")}</li>
+                <li key={currentDay} style={offMonthDayStyle}>{dateFns.format(currentDay, "D")}</li>
                 );
         }
         
