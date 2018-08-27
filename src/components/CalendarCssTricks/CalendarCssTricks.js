@@ -16,10 +16,38 @@ class CalendarCssTricks extends Component {
     
     screenSizeChandgeHandler = () => {
         const sizeMatched = window.matchMedia('(max-width: 800px)').matches;
-        console.log(sizeMatched);
+    //    console.log(sizeMatched);
         this.setState({screenSize: sizeMatched});
         
     }
+
+    nextMonth = () => {
+        this.setState({
+          currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
+        });
+      };
+    
+      prevMonth = () => {
+        this.setState({
+          currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
+        });
+      };
+    
+    renderHeader() {
+        const dateFormat = "MMMM YYYY";
+        return (
+            <div className={cssObject.Header}>
+                <div className={cssObject.ChevronLeft} onClick={this.prevMonth}></div>
+                <div className={cssObject.HeadarTitle}>
+                    <span>
+                        {dateFns.format(this.state.currentMonth, dateFormat)}
+                    </span>
+                </div>
+                <div className={cssObject.ChevronRight} onClick={this.nextMonth}></div>
+          </div>
+        );
+      }
+
 
     renderWeekDays(screenSize) {   
         const days = [];
@@ -68,9 +96,7 @@ class CalendarCssTricks extends Component {
     render() {
         return (
             <div className={cssObject.Calendar}>
-                <header>
-                    <h1>November 2017</h1>
-                </header>           
+                {this.renderHeader()}          
                 {this.renderWeekDays(this.state.screenSize)}
                 {this.renderMonthDays()}
             </div>        

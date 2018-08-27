@@ -1,16 +1,48 @@
 
-header {
+.Header {
     display: flex;
     align-items: center;
     font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
-    justify-content: center;
-    margin-bottom: 2em;
-    background: #000;
+    justify-content: space-around;
+    margin-bottom: 1em;
+    background: rgb(197, 183, 183);
     color: #fff;
     min-height: 10vh;
     text-align: center;
+    cursor: pointer;
 }
   
+.HeaderTitle {
+    flex-grow: 1;
+}
+
+.ChevronLeft::before, .ChevronRight:before {
+    border-style: solid;
+	border-width: 0.25em 0.25em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.45em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	transform: rotate(-45deg);
+	vertical-align: top;
+	width: 0.45em;  
+}
+
+.ChevronLeft:before {
+    flex-grow: 3;  
+    left: 0.25em;
+    transform: rotate(-135deg);
+
+}
+.ChevronRight:before {
+    flex-grow: 3;
+    left: 0;
+	transform: rotate(45deg);
+}
+
+ 
 ul {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
