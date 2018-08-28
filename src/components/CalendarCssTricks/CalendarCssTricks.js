@@ -6,11 +6,11 @@ import cssObject from './CalendarCssTricks.css';
 class CalendarCssTricks extends Component {
     state = {
         currentMonth: new Date(),
-        selectedDate: new Date(),
         screenSize: window.matchMedia('(max-width: 800px)').matches,
         goalConfig: {
             title: "budget 50%",
-            limitation: 10
+            limitation: 10,
+            start: new Date(2018, 7, 25)
         }
     };
     
@@ -67,8 +67,8 @@ class CalendarCssTricks extends Component {
         return (
             <div className={cssObject.GoalStatus}>
                 <h2>{title}</h2>
-                <p>all periond is {limitation} days</p>
-                <p>days left and days complete </p>
+                <p>all period is: {limitation} days</p>
+                <p>days left: dyas complete: </p>
             </div>
         );
     }
@@ -171,7 +171,10 @@ class CalendarCssTricks extends Component {
     render() {
         return (
             <div className={cssObject.Calendar}>
-                {this.renderGoalStatus(this.state.goalConfig.title, this.state.goalConfig.limitation)}
+                {this.renderGoalStatus(
+                    this.state.goalConfig.title, 
+                    this.state.goalConfig.limitation)
+                }
                 {this.renderHeader()}       
                 {this.renderWeekDays(this.state.screenSize)}
                 {this.renderMonthDays()}
