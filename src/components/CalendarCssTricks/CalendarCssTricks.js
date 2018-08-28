@@ -21,6 +21,30 @@ class CalendarCssTricks extends Component {
         this.setState({screenSize: sizeMatched});
         
     }
+    
+    
+    
+       
+        
+    // filldaysArray = (satart, limitation) => {
+    //         let days =[];
+    //         days.push()
+    //         return days;
+    //     }
+        
+    
+    // goalCunstructor = (start, limitation, title) => {
+     
+    //     let  goalConfig = {
+    //             title: title,
+    //             start: start,
+    //             limitation: limitation,
+    //             daysArray: []
+    //     };
+    //     return goalConfig;
+    // }
+    
+    
 
     nextMonth = () => {
         this.setState({
