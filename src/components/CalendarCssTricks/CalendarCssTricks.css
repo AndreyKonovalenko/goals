@@ -12,7 +12,6 @@
     color: #fff;
     min-height: 10vh;
     text-align: center;
-    cursor: pointer;
 }
   
 .HeaderTitle {
@@ -31,7 +30,8 @@
 	top: 0.15em;
 	transform: rotate(-45deg);
 	vertical-align: top;
-	width: 0.45em;  
+	width: 0.45em; 
+	cursor: pointer;
 }
 
 .ChevronLeft:before {
@@ -85,6 +85,7 @@ li {
   
 
 .DayGrid li {
+    cursor: pointer;
     background-color: #eaeaea;
     border: 1px solid #eaeaea;
     height: 5vw;
