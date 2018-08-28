@@ -8,7 +8,10 @@ class CalendarCssTricks extends Component {
         currentMonth: new Date(),
         selectedDate: new Date(),
         screenSize: window.matchMedia('(max-width: 800px)').matches,
-        // daySuccess: null
+        goalConfig: {
+            title: "budget 50%",
+            limitation: 10
+        }
     };
     
     componentDidMount () {
@@ -57,8 +60,20 @@ class CalendarCssTricks extends Component {
           currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
       };
+
+
+
+    renderGoalStatus = (title,limitation) => {
+        return (
+            <div className={cssObject.GoalStatus}>
+                <h2>{title}</h2>
+                <p>all periond is {limitation} days</p>
+                <p>days left and days complete </p>
+            </div>
+        );
+    }
     
-    renderHeader() {
+    renderHeader = () => {
         const dateFormat = "MMMM YYYY";
         return (
             <div className={cssObject.Header}>
@@ -74,7 +89,7 @@ class CalendarCssTricks extends Component {
       }
 
 
-    renderWeekDays(screenSize) {   
+    renderWeekDays = (screenSize) => {   
         const days = [];
         let dateFormat = "dd";
         let startDate = dateFns.startOfWeek(this.state.currentMonth, {weekStartsOn:1});
@@ -156,7 +171,8 @@ class CalendarCssTricks extends Component {
     render() {
         return (
             <div className={cssObject.Calendar}>
-                {this.renderHeader()}          
+                {this.renderGoalStatus(this.state.goalConfig.title, this.state.goalConfig.limitation)}
+                {this.renderHeader()}       
                 {this.renderWeekDays(this.state.screenSize)}
                 {this.renderMonthDays()}
             </div>        
