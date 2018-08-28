@@ -16,7 +16,8 @@
     flex-grow: 1;
 }
 
-.ChevronLeft::before, .ChevronRight:before {
+.ChevronLeft:before, .ChevronRight:before {
+    margin: 20%;
     border-style: solid;
 	border-width: 0.25em 0.25em 0 0;
 	content: '';
@@ -83,16 +84,10 @@ li {
 .DayGrid li {
     background-color: #eaeaea;
     border: 1px solid #eaeaea;
-    height: 12vw;
+    height: 5vw;
     max-height: 125px;
 }
   
-abbr[title] {
-    border: none;
-    font-weight: 800;
-    text-decoration: none;
-}
-
 @media all and (max-width: 800px) {
 
 
@@ -100,7 +95,7 @@ abbr[title] {
         grid-gap: .25em;
     }
 
-    Calendar {
+    .Calendar {
         padding: 20%;
         margin: auto;
     } 

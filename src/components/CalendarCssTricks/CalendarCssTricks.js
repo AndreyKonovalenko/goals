@@ -7,7 +7,8 @@ class CalendarCssTricks extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
-        screenSize: window.matchMedia('(max-width: 800px)').matches
+        screenSize: window.matchMedia('(max-width: 800px)').matches,
+        // daySuccess: null
     };
     
     componentDidMount () {
@@ -71,6 +72,15 @@ class CalendarCssTricks extends Component {
         return <ul className={cssObject.Weekdays}>{days}</ul>;
     }
    
+   
+//   checkDayHandler = (daySuccessState) => {
+//       if (daySuccessState === null) {
+//           this.setState({daySuccess: true});
+//       } else {
+//           this.setState({daySuccess: !daySuccessState});
+//       }
+//   }
+   
     renderMonthDays() {
         const monthStart = dateFns.startOfMonth(this.state.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
@@ -84,15 +94,34 @@ class CalendarCssTricks extends Component {
 
         for (let i = 0 ; i <= daysRange; i++) {
             let currentDay = dateFns.addDays(startDate, i);
-            let offMonthDayStyle = {};          
+            let offMonthDayStyle = {};
+            
             if (currentDay < monthStart || currentDay > monthEnd) {
                 offMonthDayStyle = {...offMonthDayStyle = { backgroundColor: '#fff' }};
             }
+            
+            if (dateFns.isToday(currentDay)) {
+                offMonthDayStyle = {...offMonthDayStyle = { fontWeight: 'bold', border: "1px solid #2b2929"}};
+            }
+            
+            // if (this.daySuccess!== null && this.daySuccess === true) {
+            //     offMonthDayStyle = {...offMonthDayStyle = { backgroundColor: 'geen'}};
+            // }
+            
+            // if (this.daySuccess!== null && this.daySuccess === false) {
+            //     offMonthDayStyle = {...offMonthDayStyle = { backgroundColor: 'salmon'}};
+            // }
+            
+            
             days.push(
-                <li key={currentDay} style={offMonthDayStyle}>{dateFns.format(currentDay, "D")}</li>
-                );
+                <li 
+                    key={currentDay} 
+                    style={offMonthDayStyle}
+                >
+                    {dateFns.format(currentDay, "D")}
+                </li> 
+            );
         }
-        
         return (
             <ul className={cssObject.DayGrid}>  
                 {days}
