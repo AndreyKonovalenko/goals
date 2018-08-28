@@ -1,4 +1,7 @@
 
+.Green {
+    color: green;
+}
 .Header {
     display: flex;
     align-items: center;

@@ -73,15 +73,13 @@ class CalendarCssTricks extends Component {
     }
    
    
-//   checkDayHandler = (daySuccessState) => {
-//       if (daySuccessState === null) {
-//           this.setState({daySuccess: true});
-//       } else {
-//           this.setState({daySuccess: !daySuccessState});
-//       }
-//   }
+  checkDayHandler = (event) => {
+    // event.target.className.add("cssObject.Green");
+    event.target.setAttribute("style", "background-color: green")
+    console.log("clicked", event.target.className, event.target.classList);
+  }
    
-    renderMonthDays() {
+    renderMonthDays = () => {
         const monthStart = dateFns.startOfMonth(this.state.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
         const startDate = dateFns.startOfWeek(monthStart, {weekStartsOn:1});
@@ -117,6 +115,7 @@ class CalendarCssTricks extends Component {
                 <li 
                     key={currentDay} 
                     style={offMonthDayStyle}
+                    onClick={this.checkDayHandler}
                 >
                     {dateFns.format(currentDay, "D")}
                 </li> 
