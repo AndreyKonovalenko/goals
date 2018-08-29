@@ -13,7 +13,7 @@ h2, p {
     background: rgba(113, 111, 111, 0.879);
     font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
     min-height: 5vh;
-    text-align: center;
+    text-align: left;
 }
 
 .Header {

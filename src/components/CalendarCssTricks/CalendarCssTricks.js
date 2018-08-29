@@ -10,25 +10,34 @@ class CalendarCssTricks extends Component {
         goalConfig: {
             title: "budget 50%",
             limitation: 10,
-            start: new Date(2018, 7, 25)
+            start: new Date(2018, 7, 25),
+            daysArray: this.daysArrayInit(this.state.goalConfig.start, this.state.goalConfig.limitation)
         }
     };
     
     componentDidMount () {
-        window.addEventListener("resize", this.screenSizeChandgeHandler);       
+        window.addEventListener("resize", this.screenSizeChandgeHandler);
+        console.log((this.state.goalConfig.daysArray));
+
     }
     
     screenSizeChandgeHandler = () => {
         const sizeMatched = window.matchMedia('(max-width: 800px)').matches;
-    //    console.log(sizeMatched);
         this.setState({screenSize: sizeMatched});
-        
     }
     
+    daysArrayInit = (start, limitation) => {
+        let days = [];
+        for (let i = 0; i < limitation; i ++) {
+            days.push({
+                id: dateFns.addDays(start, i),
+                success: false,
+                touched: false
+            });   
+        }
+        return days;
+    }
     
-    
-       
-        
     // filldaysArray = (satart, limitation) => {
     //         let days =[];
     //         days.push()
@@ -63,12 +72,16 @@ class CalendarCssTricks extends Component {
 
 
 
-    renderGoalStatus = (title,limitation) => {
+    renderGoalStatus = (title, limitation, start) => {
+        const now = new Date();
+        const lastDay = dateFns.addDays(start, limitation);
+        const daysLeft = dateFns.differenceInDays(lastDay, now)
+
         return (
             <div className={cssObject.GoalStatus}>
                 <h2>{title}</h2>
                 <p>all period is: {limitation} days</p>
-                <p>days left: dyas complete: </p>
+                <p>days left: {daysLeft} dyas complete: </p>
             </div>
         );
     }
@@ -113,12 +126,12 @@ class CalendarCssTricks extends Component {
    
    
   checkDayHandler = (event) => {
-    // event.target.className.add("cssObject.Green");
     event.target.setAttribute("style", "background-color: green")
     console.log("clicked", event.target.className, event.target.classList);
   }
    
     renderMonthDays = () => {
+        
         const monthStart = dateFns.startOfMonth(this.state.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
         const startDate = dateFns.startOfWeek(monthStart, {weekStartsOn:1});
@@ -173,7 +186,8 @@ class CalendarCssTricks extends Component {
             <div className={cssObject.Calendar}>
                 {this.renderGoalStatus(
                     this.state.goalConfig.title, 
-                    this.state.goalConfig.limitation)
+                    this.state.goalConfig.limitation,
+                    this.state.goalConfig.start)
                 }
                 {this.renderHeader()}       
                 {this.renderWeekDays(this.state.screenSize)}
