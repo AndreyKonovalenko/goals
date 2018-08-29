@@ -11,13 +11,14 @@ class CalendarCssTricks extends Component {
             title: "budget 50%",
             limitation: 10,
             start: new Date(2018, 7, 25),
-            daysArray: this.daysArrayInit(this.state.goalConfig.start, this.state.goalConfig.limitation)
+      //      daysArray: this.daysArrayInit(this.start, this.limitation)
         }
     };
     
     componentDidMount () {
         window.addEventListener("resize", this.screenSizeChandgeHandler);
-        console.log((this.state.goalConfig.daysArray));
+        console.log(this.state.goalConfig.daysArray);
+
 
     }
     
@@ -37,6 +38,14 @@ class CalendarCssTricks extends Component {
         }
         return days;
     }
+    
+    // daysArrayStateInit = () => {
+    //     const initArray = this.daysArrayInit(this.state.goalConfig.start, this.state.goalConfig.limitation);
+    //     if (this.state.goalConfig.daysArray.length === 0) {
+    //         this.setState({daysArray: [...initArray]});
+    //     }
+        
+    // }
     
     // filldaysArray = (satart, limitation) => {
     //         let days =[];
@@ -193,7 +202,7 @@ class CalendarCssTricks extends Component {
                 {this.renderWeekDays(this.state.screenSize)}
                 {this.renderMonthDays()}
             </div>        
-            
+           
         );
 
     }
