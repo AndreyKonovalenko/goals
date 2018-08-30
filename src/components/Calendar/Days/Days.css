@@ -1,0 +1,8 @@
+.DayGrid li {
+    cursor: pointer;
+    background-color: #eaeaea;
+    border: 1px solid #eaeaea;
+    height: 5vw;
+    max-height: 125px;
+}
+  

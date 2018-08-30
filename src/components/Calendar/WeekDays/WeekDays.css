@@ -1,0 +1,24 @@
+.Weekdays {
+    margin-bottom: 0.3em;
+}
+
+/* ul.weekdays {
+    margin-bottom: 1em;
+} */
+  
+.Weekdays li {
+    height: 4vw;
+}
+  
+  
+@media all and (max-width: 800px) {
+
+    .Weekdays li {
+        font-size: 0;
+    }
+    
+    .Weekdays > li {
+        font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
+        text-align: center;
+    }
+}

@@ -18,8 +18,6 @@ class CalendarCssTricks extends Component {
     componentDidMount () {
         window.addEventListener("resize", this.screenSizeChandgeHandler);
         console.log(this.state.goalConfig.daysArray);
-
-
     }
     
     screenSizeChandgeHandler = () => {
@@ -27,17 +25,19 @@ class CalendarCssTricks extends Component {
         this.setState({screenSize: sizeMatched});
     }
     
-    daysArrayInit = (start, limitation) => {
-        let days = [];
-        for (let i = 0; i < limitation; i ++) {
-            days.push({
-                id: dateFns.addDays(start, i),
-                success: false,
-                touched: false
-            });   
-        }
-        return days;
-    }
+    
+    ///this is function will be used in GoalsList container!!!!!!!!!!!!!!!!!!!!!!
+    // daysArrayInit = (start, limitation) => {
+    //     let days = [];
+    //     for (let i = 0; i < limitation; i ++) {
+    //         days.push({
+    //             id: dateFns.addDays(start, i),
+    //             success: false,
+    //             touched: false
+    //         });   
+    //     }
+    //     return days;
+    // }
     
     // daysArrayStateInit = () => {
     //     const initArray = this.daysArrayInit(this.state.goalConfig.start, this.state.goalConfig.limitation);
@@ -67,17 +67,6 @@ class CalendarCssTricks extends Component {
     
     
 
-    nextMonth = () => {
-        this.setState({
-          currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
-        });
-      };
-    
-      prevMonth = () => {
-        this.setState({
-          currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
-        });
-      };
 
 
 

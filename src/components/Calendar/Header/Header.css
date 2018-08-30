@@ -1,0 +1,43 @@
+.Header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3em;
+    font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
+    justify-content: space-around;
+    background: rgba(172, 170, 170, 0.879);
+    color: #fff;
+    min-height: 5vh;
+    text-align: center;
+}
+  
+.HeaderTitle {
+    flex-grow: 1;
+}
+
+.ChevronLeft:before, .ChevronRight:before {
+    margin: 20%;
+    border-style: solid;
+	border-width: 0.25em 0.25em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.45em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	transform: rotate(-45deg);
+	vertical-align: top;
+	width: 0.45em; 
+	cursor: pointer;
+}
+
+.ChevronLeft:before {
+    flex-grow: 3;  
+    left: 0.25em;
+    transform: rotate(-135deg);
+
+}
+.ChevronRight:before {
+    flex-grow: 3;
+    left: 0;
+	transform: rotate(45deg);
+}
