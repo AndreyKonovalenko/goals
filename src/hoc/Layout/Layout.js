@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Auxiliary from '../Auxiliary/Auxiliary';
 import cssObject from './Layout.css';
-//import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 
 class Layout extends Component {
     // state = { 
@@ -22,6 +22,7 @@ class Layout extends Component {
     render () {
         return(
             <Auxiliary>
+                <Toolbar/>
                 <main className={cssObject.Content}>
                     {this.props.children}
                 </main>
