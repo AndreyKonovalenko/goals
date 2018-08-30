@@ -10,6 +10,8 @@ ul {
     margin: 0 auto;
     max-width: 64em;
     padding: 0;
+    grid-gap: .25em;
+
 }
   
 li {
@@ -22,20 +24,17 @@ li {
 }
 
 .Calendar {
-    padding: 20%;
+    width: 80%;
     margin: auto;
+    margin-top: 10%;
 } 
 
-@media all and (max-width: 800px) {
+@media (min-width: 1025px) {
 
-
-    ul {
-        grid-gap: .25em;
-    }
-
-    .Calendar {
-        padding: 20%;
+	.Calendar {
+		width: 80%;
+        max-width: 1025px;
         margin: auto;
-    } 
-
+        margin-top: 10%;
+	}
 }
