@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+import NavItems from '../NavItems/NavItems';
 import cssObject from './Toolbar.css';
 
 
@@ -8,11 +10,8 @@ const toolbar = (props) => (
         <div className={cssObject.Logo}>
            Logo 
         </div>
-        <nav className={null}>
-            <ul>
-                <li>Add New</li>
-                <li>My Goals</li>
-            </ul>
+        <nav>
+            <NavItems />
         </nav>
     </header>
 );
