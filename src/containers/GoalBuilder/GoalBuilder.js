@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 
-import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
-import Colendar from '../../componet/Colendar/Colendar';
+import Calendar from '../../components/Calendar/Calendar';
 import cssObject from './GoalBuilder.css';
 
 
@@ -68,14 +67,10 @@ class GoalBuilder extends Component {
             </div>
         );
         return (
-            <Auxiliary>
-                <div className={cssObject.GoalBuilder}>
+            <div className={cssObject.GoalBuilder}>
                     {form}
-                </div>
-                <div className={cssObject.GoalBuilder}>
-                    <Colendar/>
-                </div>
-            </Auxiliary> 
+                    <Calendar/>
+            </div>
         );
     }
 }
