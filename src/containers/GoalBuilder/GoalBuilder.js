@@ -61,7 +61,13 @@ class GoalBuilder extends Component {
     //     }
     // }
     
+    checkDayHandler = (event) => {
+        event.target.setAttribute("style", "background-color: green");
+        console.log("clicked", event.target.className, event.target.classList); 
+    }
+    
     render() {
+        console.log(this.state);
         let form = (
             <div>
             </div>
@@ -69,7 +75,7 @@ class GoalBuilder extends Component {
         return (
             <div className={cssObject.GoalBuilder}>
                     {form}
-                    <Calendar/>
+                    <Calendar onDayClick={this.checkDayHandler}/>
             </div>
         );
     }

@@ -14,6 +14,11 @@ class GoalField extends Component {
         }
     }
     
+    checkDayHandler = (event) => {
+        event.target.setAttribute("style", "background-color: green");
+       console.log("clicked", event.target.className, event.target.classList); 
+    }
+    
     render () {
         return (
     //       <Editor/>
@@ -23,7 +28,8 @@ class GoalField extends Component {
                     limitation={this.state.goalConfig.limitation}
                     start={this.state.goalConfig.start}
                 />
-                <Calendar />
+                <Calendar 
+                    onDayClick={this.checkDayHandler}/>
             </Auxiliary>
         );
     }

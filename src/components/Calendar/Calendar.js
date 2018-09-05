@@ -7,7 +7,6 @@ import Days from './Days/Days';
 
 import cssObject from './Calendar.css';
 
-
 class Calendar extends Component {
     
     state = {
@@ -17,7 +16,6 @@ class Calendar extends Component {
     
     componentDidMount () {
         window.addEventListener("resize", this.screenSizeChandgeHandler);
-        console.log("screenSize", this.state);
     }
     
     // componentWillUnmount () {
@@ -42,11 +40,6 @@ class Calendar extends Component {
         });
     };
     
-    checkDayHandler = (event) => {
-        event.target.setAttribute("style", "background-color: green");
-       // console.log("clicked", event.target.className, event.target.classList); 
-    }
-    
     render() {
         return (
             <div className={cssObject.Calendar}>
@@ -60,7 +53,7 @@ class Calendar extends Component {
                 />
                 <Days
                     currentMonth={this.state.currentMonth}
-                    checkDayHandler={this.checkDayHandler}
+                    checkDayHandler={this.props.onDayClick}
                 />
             </div>
         );
