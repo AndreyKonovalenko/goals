@@ -43,7 +43,6 @@ const input = (props) => {
                 value = {props.value}
                 onChange = {props.changed}/>
     }
-    console.log(props, inputElement);
     return (
         <div className={cssObject.Input}>
             <label className={cssObject.Label}>{props.label}</label>

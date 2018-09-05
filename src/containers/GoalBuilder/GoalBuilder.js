@@ -41,7 +41,7 @@ class GoalBuilder extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'DD-MM-YYYY'
+                    placeholder: 'DD-MM-YYYY',
                 },
                 value: '',
                 validation: {
@@ -85,7 +85,19 @@ class GoalBuilder extends Component {
     
     checkDayHandler = (event) => {
         event.target.setAttribute("style", "background-color: red");
-        console.log("clicked", event.target.className, event.target.classList); 
+        console.log(event.target.getAttribute("aria-label"));
+    //    console.log("clicked", event.target.className, event.target.classList);
+        const updatedFormElement = updateObject(this.state.goalForm.start, {
+            value: event.target.getAttribute("aria-label"),
+            valid: true,
+            touched: true
+        }); 
+        
+        const updatedGoalForm = updateObject(this.state.goalForm, {
+            start: updatedFormElement
+        });
+        
+        this.setState({goalForm: updatedGoalForm});
     }
     
     render() {
@@ -96,7 +108,7 @@ class GoalBuilder extends Component {
                 config: this.state.goalForm[key] 
             });
         }
-        console.log(formElementArray)
+//        console.log(this.state.goalForm.start);
 
         let form = (
                 <form>
