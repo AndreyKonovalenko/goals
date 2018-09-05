@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 
 import Calendar from '../../components/Calendar/Calendar';
+import Input from '../../components/UI/Input/Input';
 import cssObject from './GoalBuilder.css';
+import {updateObject, checkValidity} from '../../shared/utility'; 
 
 
 
@@ -10,8 +12,8 @@ class GoalBuilder extends Component {
     state = {
         goalForm: {
             title: {
-                elemenetType: 'input',
-                elemenetConfig: {
+                elementType: 'input',
+                elementConfig: {
                     type: "text",
                     placeholder: "Goal title"
                 },
@@ -23,8 +25,8 @@ class GoalBuilder extends Component {
                 touched: false
             },
             limitation: {
-                elemenetType: 'input',
-                elemenetConfig: {
+                elementType: 'input',
+                elementConfig: {
                     type: 'text',
                     placeholder: 'Enter limitation in days'
                 },
@@ -36,10 +38,10 @@ class GoalBuilder extends Component {
                 touched: false
             },
             start: {
-                elemenetType: 'input',
-                elemenetConfig: {
+                elementType: 'input',
+                elementConfig: {
                     type: 'text',
-                    placeholder: 'Pick start date on the calendar'
+                    placeholder: 'DD-MM-YYYY'
                 },
                 value: '',
                 validation: {
@@ -61,19 +63,59 @@ class GoalBuilder extends Component {
     //     }
     // }
     
+    inputChangedHandler = (event, inputIdentifier) => {
+        //immutable way to copy complex objects with nested objects
+        //using spread operator "..."
+        const updatedFormElement = updateObject(this.state.goalForm[inputIdentifier], {
+            value: event.target.value,
+            valid: checkValidity(event.target.value, this.state.goalForm[inputIdentifier].validation),
+            touched: true
+        }); 
+        
+        const updatedGoalForm = updateObject(this.state.goalForm, {
+            [inputIdentifier]: updatedFormElement
+        });
+        
+        let formIsValid = true;
+        for (let inputIdentifier in updatedGoalForm) {
+            formIsValid = updatedGoalForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({goalForm: updatedGoalForm, formIsValid: formIsValid});
+    }
+    
     checkDayHandler = (event) => {
-        event.target.setAttribute("style", "background-color: green");
+        event.target.setAttribute("style", "background-color: red");
         console.log("clicked", event.target.className, event.target.classList); 
     }
     
     render() {
-        console.log(this.state);
+        const formElementArray = [];
+        for (let key in this.state.goalForm) {
+            formElementArray.push({
+                id: key,
+                config: this.state.goalForm[key] 
+            });
+        }
+        console.log(formElementArray)
+
         let form = (
-            <div>
-            </div>
+                <form>
+                    {formElementArray.map(element => (
+                    <Input
+                            key={element.id} 
+                            elementType={element.config.elementType}
+                            elementConfig={element.config.elementConfig}
+                            value={element.config.value}
+                            changed={(event) => this.inputChangedHandler(event, element.id)}
+                            invalid={!element.config.valid}
+                            shouldValidate={element.config.validation}
+                            touched={element.config.touched}/>
+                    ))}
+                </form>
         );
         return (
             <div className={cssObject.GoalBuilder}>
+                    <h3>Set up your new goal parameters!</h3>
                     {form}
                     <Calendar onDayClick={this.checkDayHandler}/>
             </div>
