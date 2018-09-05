@@ -16,7 +16,7 @@ class GoalField extends Component {
     
     checkDayHandler = (event) => {
         event.target.setAttribute("style", "background-color: green");
-       console.log("clicked", event.target.className, event.target.classList); 
+        console.log("clicked", event.target.className, event.target.classList); 
     }
     
     render () {
