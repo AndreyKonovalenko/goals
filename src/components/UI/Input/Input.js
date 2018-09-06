@@ -16,32 +16,16 @@ const input = (props) => {
                 className={inputCssClasses.join(' ')} 
                 {...props.elementConfig}
                 value = {props.value}
-                onChange = {props.changed}/>;
+                onChange = {props.changed}
+                onClick={props.unhide}/>;
             break;
-        case ('textaria'):
-            inputElement = <textaria 
-                className={inputCssClasses.join(' ')} 
-                {...props.elementConfig}
-                value = {props.value}
-                onChange = {props.changed}/>;
-            break;
-        // case ('select'):
-        //     inputElement = 
-        //         <select 
-        //             className={inputCssClasses.join(' ')} 
-        //             value = {props.value}
-        //             onChange={props.changed}>
-        //             {props.elementConfig.options.map(element => (
-        //                 <option key={element.value} value={element.value} > {element.displayValue}</option>
-        //             ))}
-        //         </select>;
-        //    break;    
         default:
             inputElement = <input 
                 className={inputCssClasses.join(' ')} 
                 {...props.elementConfig}
                 value = {props.value}
-                onChange = {props.changed}/>
+                onChange = {props.changed}
+                onClick={props.unhide}/>
     }
     return (
         <div className={cssObject.Input}>

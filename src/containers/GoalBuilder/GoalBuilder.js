@@ -48,7 +48,8 @@ class GoalBuilder extends Component {
                     required: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                showCalendar: false
             }
 
         }
@@ -82,6 +83,17 @@ class GoalBuilder extends Component {
         }
         this.setState({goalForm: updatedGoalForm, formIsValid: formIsValid});
     }
+    
+    unHideCalendarHandler = () => {
+         const updatedFormElement = updateObject(this.state.goalForm.start, {
+            showCalendar: true
+        }); 
+        const updatedGoalForm = updateObject(this.state.goalForm, {
+            start: updatedFormElement
+        });
+        this.setState({goalForm: updatedGoalForm});
+    }
+    
     
     checkDayHandler = (event) => {
         event.target.setAttribute("style", "background-color: red");
@@ -121,15 +133,30 @@ class GoalBuilder extends Component {
                             changed={(event) => this.inputChangedHandler(event, element.id)}
                             invalid={!element.config.valid}
                             shouldValidate={element.config.validation}
-                            touched={element.config.touched}/>
+                            touched={element.config.touched}
+                            unhide={(element.id === "start")? this.unHideCalendarHandler: null}/>
                     ))}
                 </form>
         );
+        
+        let calendar = (
+                <div style={{visibility:'hidden'}}>
+                    <Calendar   onDayClick={this.checkDayHandler}/>
+                </div>
+            );
+        if (this.state.goalForm.start.showCalendar) {
+                calendar = (
+                    <div style={{visibility:'visible'}}>
+                        <Calendar  onDayClick={this.checkDayHandler}/>
+                    </div>
+                );
+        }
+        console.log(this.state.goalForm.start.touched);
         return (
             <div className={cssObject.GoalBuilder}>
                     <h3>Set up your new goal parameters!</h3>
                     {form}
-                    <Calendar onDayClick={this.checkDayHandler}/>
+                    {calendar}
             </div>
         );
     }
