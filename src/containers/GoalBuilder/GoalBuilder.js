@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import Calendar from '../../components/Calendar/Calendar';
 import Input from '../../components/UI/Input/Input';
+import Button from '../../components/UI/Button/Button';
 import cssObject from './GoalBuilder.css';
 import {updateObject, checkValidity} from '../../shared/utility'; 
 
@@ -136,6 +137,9 @@ class GoalBuilder extends Component {
                             touched={element.config.touched}
                             unhide={(element.id === "start")? this.unHideCalendarHandler: null}/>
                     ))}
+                    <Button buttonType="Success">SAVE</Button>
+                    <Button buttonType="Danger">CANCEL</Button>
+                    
                 </form>
         );
         

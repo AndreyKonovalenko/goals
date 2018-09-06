@@ -26,7 +26,6 @@ li {
 .Calendar {
     width: 80%;
     margin: auto;
-    margin-top: 10%;
 } 
 
 @media (min-width: 1025px) {
