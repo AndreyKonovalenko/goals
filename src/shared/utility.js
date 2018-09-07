@@ -1,3 +1,5 @@
+import dateFns from 'date-fns';
+
 export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,
@@ -36,4 +38,28 @@ export const  checkValidity = (value, rules) => {
     }
         
     return isValid;
+};
+
+
+const startDayFormatParser = (startDate) => {
+    console.log(startDate);
+    const startDateArray = startDate.split('-');
+    const parseredDay = new Date(+startDateArray[2], +startDateArray[1] - 1, +startDateArray[0]);
+    return parseredDay;
+}
+
+export const daysArrayBuilder = (startDate, limitation) => {
+    const daysArrey = [];
+    let resultArray = [];
+    const start = startDayFormatParser(startDate);
+    const lastDay = dateFns.addDays(start, limitation - 1);  
+    daysArrey.push(dateFns.eachDay(start, lastDay));
+    for(let i = 0; i < daysArrey.length; i++) {
+       let data  = {};
+       data = {...{id: daysArrey[i], success: null, touched: false}};
+       console.log(data);
+       resultArray.push(data);
+    }
+    console.log(resultArray);
+    return resultArray;
 };

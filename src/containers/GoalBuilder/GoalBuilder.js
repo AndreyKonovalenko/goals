@@ -5,7 +5,7 @@ import Calendar from '../../components/Calendar/Calendar';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import cssObject from './GoalBuilder.css';
-import {updateObject, checkValidity} from '../../shared/utility'; 
+import {updateObject, checkValidity, daysArrayBuilder} from '../../shared/utility'; 
 
 
 
@@ -56,6 +56,8 @@ class GoalBuilder extends Component {
         }
     }
     
+    
+    
     // orderHandler = (event) => {
     //     event.preventDefault();
 
@@ -64,6 +66,16 @@ class GoalBuilder extends Component {
     //         goalForm[key] = this.state.goalForm[key].value;
     //     }
     // }
+    
+    saveHandler = (event) => {
+        event.preventDefault();
+        const goalInitConfig = {
+            title: this.state.goalForm.title.value,
+            daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
+        };
+     
+        console.log(goalInitConfig);   
+    }
     
     inputChangedHandler = (event, inputIdentifier) => {
         //immutable way to copy complex objects with nested objects
@@ -137,7 +149,7 @@ class GoalBuilder extends Component {
                             touched={element.config.touched}
                             unhide={(element.id === "start")? this.unHideCalendarHandler: null}/>
                     ))}
-                    <Button buttonType="Success">SAVE</Button>
+                    <Button buttonType="Success" clicked={this.saveHandler}>SAVE</Button>
                     <Button buttonType="Danger">CANCEL</Button>
                     
                 </form>
