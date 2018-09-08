@@ -42,7 +42,7 @@ class GoalBuilder extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'DD-MM-YYYY',
+                    placeholder: 'DD.MM.YYYY',
                 },
                 value: '',
                 validation: {

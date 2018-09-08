@@ -28,7 +28,7 @@ const days = (props) => {
                 key={currentDay} 
                 style={offMonthDayStyle}
                 onClick={props.checkDayHandler}
-                aria-label={dateFns.format(currentDay, "DD-MM-YYYY")}
+                aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
             >
                 {dateFns.format(currentDay, "D")}
             </li> 

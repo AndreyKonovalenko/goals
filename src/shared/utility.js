@@ -49,17 +49,9 @@ const startDayFormatParser = (startDate) => {
 }
 
 export const daysArrayBuilder = (startDate, limitation) => {
-    const daysArrey = [];
-    let resultArray = [];
     const start = startDayFormatParser(startDate);
     const lastDay = dateFns.addDays(start, limitation - 1);  
-    daysArrey.push(dateFns.eachDay(start, lastDay));
-    for(let i = 0; i < daysArrey.length; i++) {
-       let data  = {};
-       data = {...{id: daysArrey[i], success: null, touched: false}};
-       console.log(data);
-       resultArray.push(data);
-    }
-    console.log(resultArray);
-    return resultArray;
+    let daysArray = dateFns.eachDay(start, lastDay);
+    daysArray = daysArray.map(element => ({"id": dateFns.format(element, 'DD.MM.YYYY'), "success": null, "touched": false})); 
+    return daysArray;
 };
