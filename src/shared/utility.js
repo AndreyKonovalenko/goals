@@ -40,10 +40,9 @@ export const  checkValidity = (value, rules) => {
     return isValid;
 };
 
-
 const startDayFormatParser = (startDate) => {
     console.log(startDate);
-    const startDateArray = startDate.split('-');
+    const startDateArray = startDate.split('.');
     const parseredDay = new Date(+startDateArray[2], +startDateArray[1] - 1, +startDateArray[0]);
     return parseredDay;
 }
@@ -54,4 +53,4 @@ export const daysArrayBuilder = (startDate, limitation) => {
     let daysArray = dateFns.eachDay(start, lastDay);
     daysArray = daysArray.map(element => ({"id": dateFns.format(element, 'DD.MM.YYYY'), "success": null, "touched": false})); 
     return daysArray;
-};
+}; 
