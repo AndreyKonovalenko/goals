@@ -54,3 +54,15 @@ export const daysArrayBuilder = (startDate, limitation) => {
     daysArray = daysArray.map(element => ({"id": dateFns.format(element, 'DD.MM.YYYY'), "success": null, "touched": false})); 
     return daysArray;
 }; 
+
+export const checkDaysArrayForUpdate = (daysArray, pickedDay) => {
+    let result = null;
+    daysArray.forEach(element => {
+        if (element.id === pickedDay){
+            console.log(daysArray.indexOf(element));
+            result =  daysArray.indexOf(element);
+        }
+    });
+    return result;
+
+}

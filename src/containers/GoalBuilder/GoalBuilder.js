@@ -55,22 +55,13 @@ class GoalBuilder extends Component {
 
         }
     }
-    
-    
-    
-    // orderHandler = (event) => {
-    //     event.preventDefault();
-
-    //     const goalForm = {};
-    //     for(let key in this.state.goalForm) {
-    //         goalForm[key] = this.state.goalForm[key].value;
-    //     }
-    // }
-    
+         
     saveHandler = (event) => {
         event.preventDefault();
         const goalInitConfig = {
             title: this.state.goalForm.title.value,
+            startDay: this.state.goalForm.start.value,
+            limitation:this.state.goalForm.limitation.value,
             daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
         };
      
