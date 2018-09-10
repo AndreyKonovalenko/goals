@@ -1,0 +1,1 @@
+export const MARK_DAY = 'MARK_DAY';

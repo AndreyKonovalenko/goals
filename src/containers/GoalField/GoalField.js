@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import StatusBoard from '../../components/StatusBoard/StatusBoard';
@@ -8,54 +9,54 @@ import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 
 
 class GoalField extends Component {
-    state = {
-        goalConfig: {
-            title: "budget 50%",
-            startDay: "09.09.2018",
-            limitation: 4,
-            daysArray: [
-                {id: "09.09.2018", success: false, touched: false},
-                {id: "10.09.2018", success: false, touched: false},
-                {id: "11.09.2018", success: false, touched: false},
-                {id: "12.09.2018", success: false, touched: false}
-            ]
-        }
-    }
+    // state = {
+    //     goalConfig: {
+    //         title: "budget 50%",
+    //         startDay: "09.09.2018",
+    //         limitation: 4,
+    //         daysArray: [
+    //             {id: "09.09.2018", success: false, touched: false},
+    //             {id: "10.09.2018", success: false, touched: false},
+    //             {id: "11.09.2018", success: false, touched: false},
+    //             {id: "12.09.2018", success: false, touched: false}
+    //         ]
+    //     }
+    // }
 
     checkDayHandler = (event) => {
          event.target.setAttribute("style", "background-color: green");
         const dayForUpdate = event.target.getAttribute("aria-label");
-        const position = checkDaysArrayForUpdate(this.state.goalConfig.daysArray, dayForUpdate);
+        const position = checkDaysArrayForUpdate(this.props.goalConfig.daysArray, dayForUpdate);
         
         
-        const updatedElement = updateObject(this.state.goalConfig.daysArray[position], {
-            success: !this.state.goalConfig.daysArray[position].success,
+        const updatedElement = updateObject(this.props.goalConfig.daysArray[position], {
+            success: !this.props.goalConfig.daysArray[position].success,
             touched: true
         }); 
-        const updatedDaysArray = this.state.goalConfig.daysArray.map(element => {
+        const updatedDaysArray = this.props.goalConfig.daysArray.map(element => {
             let newElement = null;
-            if (this.state.goalConfig.daysArray.indexOf(element) === position){
+            if (this.props.goalConfig.daysArray.indexOf(element) === position){
                 newElement = updatedElement;
             } else {
                 newElement = element;
             }
             return newElement;
         });
-        const updatedGoalConfig = updateObject(this.state.goalConfig, {
+        const updatedGoalConfig = updateObject(this.props.goalConfig, {
             daysArray: updatedDaysArray
         });
         this.setState({goalConfig: updatedGoalConfig});
     }
     
     render () {
-        console.log(this.state.goalConfig);
+        console.log(this.props.goalConfig);
         return (
     //       <Editor/>
             <Auxiliary>
                 <StatusBoard
-                    title={this.state.goalConfig.title}
-                    limitation={this.state.goalConfig.limitation}
-                    start={this.state.goalConfig.startDay}
+                    title={this.props.goalConfig.title}
+                    limitation={this.props.goalConfig.limitation}
+                    start={this.props.goalConfig.startDay}
                 />
                 <Calendar 
                     onDayClick={this.checkDayHandler} 
@@ -65,4 +66,10 @@ class GoalField extends Component {
     }
 }
 
-export default GoalField;
+const mapStateToProps = state => {
+    return {
+        goalConfig: state.goalField.goalConfig
+    }
+}
+
+export default connect(mapStateToProps)(GoalField);
