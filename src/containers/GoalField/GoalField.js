@@ -14,25 +14,22 @@ class GoalField extends Component {
             startDay: "09.09.2018",
             limitation: 4,
             daysArray: [
-                {id: "09.09.2018", success: null, touched: false},
-                {id: "10.09.2018", success: null, touched: false},
-                {id: "11.09.2018", success: null, touched: false},
-                {id: "12.09.2018", success: null, touched: false}
+                {id: "09.09.2018", success: false, touched: false},
+                {id: "10.09.2018", success: false, touched: false},
+                {id: "11.09.2018", success: false, touched: false},
+                {id: "12.09.2018", success: false, touched: false}
             ]
         }
     }
 
-
-    
     checkDayHandler = (event) => {
-        event.target.setAttribute("style", "background-color: green");
-    //     console.log("clicked", event.target.className, event.target.classList); 
+         event.target.setAttribute("style", "background-color: green");
         const dayForUpdate = event.target.getAttribute("aria-label");
-     //   console.log(dayForUpdate); 
         const position = checkDaysArrayForUpdate(this.state.goalConfig.daysArray, dayForUpdate);
-    //    console.log(this.state.goalConfig.daysArray[position]);
+        
+        
         const updatedElement = updateObject(this.state.goalConfig.daysArray[position], {
-            success: true,
+            success: !this.state.goalConfig.daysArray[position].success,
             touched: true
         }); 
         const updatedDaysArray = this.state.goalConfig.daysArray.map(element => {
@@ -47,12 +44,11 @@ class GoalField extends Component {
         const updatedGoalConfig = updateObject(this.state.goalConfig, {
             daysArray: updatedDaysArray
         });
-        console.log(updatedGoalConfig);
         this.setState({goalConfig: updatedGoalConfig});
-        console.log("newState", this.state.goalConfig);
     }
     
     render () {
+        console.log(this.state.goalConfig);
         return (
     //       <Editor/>
             <Auxiliary>
@@ -62,7 +58,8 @@ class GoalField extends Component {
                     start={this.state.goalConfig.startDay}
                 />
                 <Calendar 
-                    onDayClick={this.checkDayHandler}/>
+                    onDayClick={this.checkDayHandler} 
+                />
             </Auxiliary>
         );
     }
