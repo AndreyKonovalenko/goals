@@ -65,4 +65,14 @@ export const checkDaysArrayForUpdate = (daysArray, pickedDay) => {
     });
     return result;
 
+};
+
+export const isDayInDayArray = ( currentDay, daysArray ) => {
+    let result = null;
+    daysArray.forEach(element => {
+        if( element.id === currentDay) {
+            result = element;
+        }
+    });
+    return result;
 }
