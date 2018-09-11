@@ -16,25 +16,46 @@ class  Days extends Component  {
             
         for (let i = 0 ; i <= daysRange; i++) {
             let currentDay = dateFns.addDays(startDate, i);
-            let offMonthDayStyle = {};
-            let inGoalRange = isDayInDayArray(dateFns.format(currentDay, "DD.MM.YYYY"), this.props.goalConfig.daysArray);
+            let inLineStyle = {};
+            let isInGoalRange = isDayInDayArray(dateFns.format(currentDay, "DD.MM.YYYY"), this.props.goalConfig.daysArray);
             
-            // if (!touchTest) {
+            if (isInGoalRange === null) {
+                // offMonth day styling
                 if (currentDay < monthStart || currentDay > monthEnd) {
-                    offMonthDayStyle = {...offMonthDayStyle = { backgroundColor: '#fff' }};
+                    inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
                 }
+                //Current day styling
                 if (dateFns.isToday(currentDay)) {
-                    offMonthDayStyle = {...offMonthDayStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                    inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
                 }
-            // } else {
-            //     //red,
-            //     //green
-            // }
+            } 
+            
+            if (isInGoalRange!==null && isInGoalRange.touched === false) {
+                 if (currentDay < monthStart || currentDay > monthEnd) {
+                    inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
+                }
+                //Current day styling
+                if (dateFns.isToday(currentDay)) {
+                    inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                }
+            } 
+            
+            if (isInGoalRange !== null && isInGoalRange.touched === true) {
+                 if (isInGoalRange.success === true) {
+                    inLineStyle = {...inLineStyle = { backgroundColor: 'green' }};
+                }
+                
+                if (isInGoalRange.success === false) {
+                    inLineStyle = {...inLineStyle = { backgroundColor: 'red' }};
+                }
+            }
+            
+            
                 
             days.push(
                 <li 
                     key={currentDay} 
-                    style={offMonthDayStyle}
+                    style={inLineStyle}
                     onClick={this.props.checkDayHandler}
                     aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
                 >
