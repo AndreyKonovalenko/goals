@@ -1,0 +1,3 @@
+export {
+    checkUpGoalDay
+} from './goalField';

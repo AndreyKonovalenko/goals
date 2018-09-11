@@ -6,7 +6,7 @@ import StatusBoard from '../../components/StatusBoard/StatusBoard';
 import Calendar from '../../components/Calendar/Calendar';
 
 import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
-
+import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
     // state = {
@@ -24,7 +24,7 @@ class GoalField extends Component {
     // }
 
     checkDayHandler = (event) => {
-         event.target.setAttribute("style", "background-color: green");
+     //    event.target.setAttribute("style", "background-color: green");
         const dayForUpdate = event.target.getAttribute("aria-label");
         const position = checkDaysArrayForUpdate(this.props.goalConfig.daysArray, dayForUpdate);
         
@@ -45,11 +45,11 @@ class GoalField extends Component {
         const updatedGoalConfig = updateObject(this.props.goalConfig, {
             daysArray: updatedDaysArray
         });
-        this.setState({goalConfig: updatedGoalConfig});
+        this.props.onDayCheckUp(updatedGoalConfig);
     }
     
     render () {
-        console.log(this.props.goalConfig);
+    //    console.log(this.props.goalConfig);
         return (
     //       <Editor/>
             <Auxiliary>
@@ -72,4 +72,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(GoalField);
+const mapDispatchToProps = dispatch => {
+    return {
+        onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoalField);

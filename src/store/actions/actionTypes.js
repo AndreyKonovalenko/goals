@@ -1,1 +1,1 @@
-export const MARK_DAY = 'MARK_DAY';
+export const CHECKUP_GOAL_DAY = 'CHECKUP_GOAL_DAY';
