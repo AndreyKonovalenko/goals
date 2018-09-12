@@ -12,14 +12,60 @@ class  Days extends Component  {
         const startDate = dateFns.startOfWeek(monthStart, {weekStartsOn:1});
         const endDate = dateFns.endOfWeek(monthEnd,{weekStartsOn:1});
         const days = [];
+        
         const daysRange = dateFns.differenceInDays(endDate, startDate);
-            
-        for (let i = 0 ; i <= daysRange; i++) {
-            let currentDay = dateFns.addDays(startDate, i);
-            let inLineStyle = {};
-            let isInGoalRange = isDayInDayArray(dateFns.format(currentDay, "DD.MM.YYYY"), this.props.goalConfig.daysArray);
-            
-            if (isInGoalRange === null) {
+        
+        if (this.props.styleRules) {
+            for (let i = 0 ; i <= daysRange; i++) {
+                let currentDay = dateFns.addDays(startDate, i);
+                let inLineStyle = {};
+                let isInGoalRange = isDayInDayArray(dateFns.format(currentDay, "DD.MM.YYYY"), this.props.goalConfig.daysArray);
+                
+                if (isInGoalRange === null) {
+                    // offMonth day styling
+                    if (currentDay < monthStart || currentDay > monthEnd) {
+                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
+                    }
+                    //Current day styling
+                    if (dateFns.isToday(currentDay)) {
+                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                    }
+                } 
+                
+                if (isInGoalRange!==null && isInGoalRange.touched === false) {
+                     if (currentDay < monthStart || currentDay > monthEnd) {
+                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
+                    }
+                    //Current day styling
+                    if (dateFns.isToday(currentDay)) {
+                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                    }
+                } 
+                
+                if (isInGoalRange !== null && isInGoalRange.touched === true) {
+                     if (isInGoalRange.success === true) {
+                        inLineStyle = {...inLineStyle = { backgroundColor: 'green' }};
+                    }
+                    
+                    if (isInGoalRange.success === false) {
+                        inLineStyle = {...inLineStyle = { backgroundColor: 'red' }};
+                    }
+                }
+                days.push(
+                    <li 
+                        key={currentDay} 
+                        style={inLineStyle}
+                        onClick={(isInGoalRange !== null && currentDay <= new Date()) ? this.props.checkDayHandler: null}
+                        aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
+                    >
+                        {dateFns.format(currentDay, "D")}
+                    </li> 
+                );
+            }
+        } else {
+            for (let i = 0 ; i <= daysRange; i++) {
+                let currentDay = dateFns.addDays(startDate, i);
+                let inLineStyle = {};
                 // offMonth day styling
                 if (currentDay < monthStart || currentDay > monthEnd) {
                     inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
@@ -28,42 +74,19 @@ class  Days extends Component  {
                 if (dateFns.isToday(currentDay)) {
                     inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
                 }
-            } 
-            
-            if (isInGoalRange!==null && isInGoalRange.touched === false) {
-                 if (currentDay < monthStart || currentDay > monthEnd) {
-                    inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
-                }
-                //Current day styling
-                if (dateFns.isToday(currentDay)) {
-                    inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
-                }
-            } 
-            
-            if (isInGoalRange !== null && isInGoalRange.touched === true) {
-                 if (isInGoalRange.success === true) {
-                    inLineStyle = {...inLineStyle = { backgroundColor: 'green' }};
-                }
-                
-                if (isInGoalRange.success === false) {
-                    inLineStyle = {...inLineStyle = { backgroundColor: 'red' }};
-                }
-            }
-            
-            
-                
-            days.push(
-                <li 
-                    key={currentDay} 
-                    style={inLineStyle}
-                    onClick={(isInGoalRange !== null && currentDay <= new Date()) ? this.props.checkDayHandler: null}
-                    aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
-                >
-                    {dateFns.format(currentDay, "D")}
-                </li> 
-            );
+                days.push(
+                    <li 
+                        key={currentDay} 
+                        style={inLineStyle}
+                        onClick={this.props.checkDayHandler}
+                        aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
+                    >
+                        {dateFns.format(currentDay, "D")}
+                    </li> 
+                );
+            }            
         }
-        console.log(this.props);
+        
         return (
             <ul className={cssObject.DayGrid}>  
                 {days}

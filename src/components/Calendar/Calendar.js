@@ -54,6 +54,7 @@ class Calendar extends Component {
                 <Days
                     currentMonth={this.state.currentMonth}
                     checkDayHandler={this.props.onDayClick}
+                    styleRules={this.props.addStyleRules}
                 />
             </div>
         );

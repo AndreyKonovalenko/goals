@@ -100,7 +100,7 @@ class GoalBuilder extends Component {
     
     
     checkDayHandler = (event) => {
-        event.target.setAttribute("style", "background-color: red");
+    //    event.target.setAttribute("style", "background-color: red");
         console.log(event.target.getAttribute("aria-label"));
     //    console.log("clicked", event.target.className, event.target.classList);
         const updatedFormElement = updateObject(this.state.goalForm.start, {
@@ -148,7 +148,10 @@ class GoalBuilder extends Component {
         
         let calendar = (
                 <div style={{visibility:'hidden'}}>
-                    <Calendar   onDayClick={this.checkDayHandler}/>
+                    <Calendar   
+                        onDayClick={this.checkDayHandler}
+                        addStyleRules={false}
+                    />
                 </div>
             );
         if (this.state.goalForm.start.showCalendar) {

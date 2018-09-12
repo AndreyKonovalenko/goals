@@ -59,7 +59,8 @@ class GoalField extends Component {
                     start={this.props.goalConfig.startDay}
                 />
                 <Calendar 
-                    onDayClick={this.checkDayHandler} 
+                    onDayClick={this.checkDayHandler}
+                    addStyleRules={true}
                 />
             </Auxiliary>
         );
