@@ -56,7 +56,7 @@ class  Days extends Component  {
                 <li 
                     key={currentDay} 
                     style={inLineStyle}
-                    onClick={this.props.checkDayHandler}
+                    onClick={(isInGoalRange !== null && currentDay <= new Date()) ? this.props.checkDayHandler: null}
                     aria-label={dateFns.format(currentDay, "DD.MM.YYYY")}
                 >
                     {dateFns.format(currentDay, "D")}
