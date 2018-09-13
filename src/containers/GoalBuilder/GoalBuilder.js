@@ -5,7 +5,8 @@ import Calendar from '../../components/Calendar/Calendar';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import cssObject from './GoalBuilder.css';
-import {updateObject, checkValidity, daysArrayBuilder} from '../../shared/utility'; 
+import {updateObject, checkValidity, daysArrayBuilder} from '../../shared/utility';
+import axios from '../../axios-db';
 
 
 
@@ -65,7 +66,17 @@ class GoalBuilder extends Component {
             daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
         };
      
-        console.log(goalInitConfig);   
+        console.log(goalInitConfig);
+        
+        axios.post('/goals.json', goalInitConfig)
+            .then( response => {
+                console.log(response.data.name);
+            })
+            .catch(error => {
+                console.log(error);
+        });
+
+        
     }
     
     inputChangedHandler = (event, inputIdentifier) => {
