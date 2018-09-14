@@ -70,7 +70,7 @@ class GoalBuilder extends Component {
         
         axios.post('/goals.json', goalInitConfig)
             .then( response => {
-                console.log(response.data.name);
+                console.log(response);
             })
             .catch(error => {
                 console.log(error);
