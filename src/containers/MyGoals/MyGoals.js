@@ -1,41 +1,38 @@
 import React, { Component } from 'react';
-import GoalCard from '../../components/GoalCard/GoalCard';
+//import GoalCard from '../../components/GoalCard/GoalCard';
+import axios from '../../axios-db';
 
 
 class MyGoals extends Component {
 
 
     componentDidMount() {
-        this.props.onFetchOrders(this.props.token, this.props.userId);
+        this.fetchGoals();
     }
    
 
 
-    xport const fetchOrders = (token, userId) => {
-        return dispatch  => {
-            dispatch(fetchOrdersStart());
-            const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-            // orderBy - sintax provided by Firebase
-            axios.get('/orders.json' + queryParams)
-                .then(response => {
-                    const fetchOrders = [];
-                    for (let key in response.data){
-                        fetchOrders.push({
-                            ...response.data[key],
-                            id: key
-                        });
-                    }
-                    dispatch(fetchOrdersSuccess(fetchOrders));
-                })
-                .catch(error => {
-                    dispatch(fetchOrdersFail(error));
-                });
-        };
+    fetchGoals = () => {
+        // const queryParams = '?auth=' + '&orderBy="userId"&equalTo="' + userId + '"';
+        //     // orderBy - sintax provided by Firebase
+        axios.get('/goals.json')
+            .then(response => {
+                console.log(response.data);
+                    // const fetchOrders = [];
+                    // for (let key in response.data){
+                    //     fetchOrders.push({
+                    //         ...response.data[key],
+                    //         id: key
+                    //     });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
-
     
+
     render() {
-        let goals = <GoalCard/>
+        let goals = 'here should be list of user goals';
         return (
             <div>
                 {goals}
