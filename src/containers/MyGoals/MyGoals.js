@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 //import GoalCard from '../../components/GoalCard/GoalCard';
 import axios from '../../axios-db';
 
+import {connect} from 'react-redux';
+
 
 class MyGoals extends Component {
 
@@ -32,6 +34,7 @@ class MyGoals extends Component {
     
 
     render() {
+        console.log(this.props.userId);
         let goals = 'here should be list of user goals';
         return (
             <div>
@@ -41,4 +44,11 @@ class MyGoals extends Component {
     }
 }
 
-export default MyGoals;
+const mapStateToProps = state => {
+    return {
+        userId: state.auth.userId
+    }
+};
+
+
+export default connect(mapStateToProps)(MyGoals);
