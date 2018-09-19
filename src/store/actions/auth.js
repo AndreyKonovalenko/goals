@@ -74,7 +74,7 @@ export const createUserRepo = ( token, userId, userHasRepo) => {
             userId: userId,
             goals: []
         };
-        let url = 'https://bb-react-5d531.firebaseio.com/users.json?auth=' + token;
+        let url = 'https://goals-appforyou.firebaseio.com/users.json?auth=' + token;
         axios.post( url, userRepo )
             .then( response => {
                 dispatch( createUserRopoSuccess(userHasRepo));
