@@ -67,12 +67,14 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 
-export const createUserRepo = ( token, userId, userHasRepo) => {
+export const createUserRepo = ( token, userId, userHasRepo, email) => {
     return dispatch => {
         dispatch(createUserRepoStart());
         const userRepo = {
-            userId: userId,
-            goals: []
+            [userId] : {
+                email: email,
+                goals: []
+            }
         };
         let url = 'https://goals-appforyou.firebaseio.com/users.json?auth=' + token;
         axios.put( url, userRepo )

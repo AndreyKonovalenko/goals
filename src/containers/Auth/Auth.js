@@ -102,7 +102,7 @@ class Auth extends Component {
         if (this.props.isAuthenticated) {
             
             if(this.state.isSignup) {
-                this.props.createRepo(this.props.token, this.props.userId, this.props.userHasRepo);
+                this.props.createRepo(this.props.token, this.props.userId, this.props.userHasRepo, this.state.controls.email.value);
             }
             authRedirect = <Redirect to={this.props.authRedirectPath} />;
         }
@@ -140,7 +140,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
-        createRepo: (token, userId, userHasRepo) => dispatch(actions.createUserRepo(token, userId, userHasRepo))
+        createRepo: (token, userId, userHasRepo, email) => dispatch(actions.createUserRepo(token, userId, userHasRepo, email))
         //onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
