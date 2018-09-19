@@ -6,5 +6,6 @@ export {
     auth,
     logout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    createUserRepo
 } from './auth';

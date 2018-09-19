@@ -6,7 +6,9 @@ const initialState = {
     userId: null,
     error: null,
     loading: false, 
-    authRedirectPath: '/goals'
+    authRedirectPath: '/goals',
+    userHasRepo: false
+    
 };
 
 const setAuthRedirectPath = (state, action) => {
@@ -19,6 +21,10 @@ const authStart = (state, action) => {
     return updateObject(state, {error: null, loading: true });
 };
 
+const createUserRepoStart = (state, action) => {
+    return updateObject(state, {error: null, loading: true });
+};
+
 const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.idToken,
@@ -28,7 +34,20 @@ const authSuccess = (state, action) => {
     });
 };
 
+const createUserRopoSuccess = (state, action) => {
+    return updateObject(state, {
+        userHasRepo: true
+    });
+}
+
 const authFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error,
+        loading: false
+    });
+};
+
+const createUserRepoFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false
@@ -46,6 +65,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action);
+        case actionTypes.CREATE_USER_REPO_START: return createUserRepoStart(state, action);
+        case actionTypes.CREATE_USER_REPO_SUCCESS: return createUserRopoSuccess(state, action);
+        case actionTypes.CREATE_USER_REPO_FAIL: return createUserRepoFail(state, action);
         default: return state;
     }
 };

@@ -8,6 +8,13 @@ export const authStart = () => {
     };
 };
 
+
+export const createUserRepoStart = () => {
+    return {
+        type: actionTypes.CREATE_USER_REPO_START,
+    };
+};
+
 export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -16,12 +23,30 @@ export const authSuccess = (token, userId) => {
     };
 };
 
+export const createUserRopoSuccess = (userHasRepo) => {
+    return {
+        type: actionTypes.CREATE_USER_REPO_SUCCESS,
+        userHasRepo: userHasRepo
+    };
+};
+
+
+
 export const authFail = (error) => {
     return {
         type: actionTypes.AUTH_FAIL,
         error: error
     };
 };
+
+
+export const createUserRepoFail = (error) => {
+    return {
+        type: actionTypes.CREATE_USER_REPO_FAIL,
+        error: error
+    };
+};
+
 
 export const logout = () => {
     localStorage.removeItem('token');
@@ -42,7 +67,25 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 
-export const auth = (email, password, isSingup) => {
+export const createUserRepo = ( token, userId, userHasRepo) => {
+    return dispatch => {
+        dispatch(createUserRepoStart());
+        const userRepo = {
+            userId: userId,
+            goals: []
+        };
+        let url = 'https://bb-react-5d531.firebaseio.com/users.json?auth=' + token;
+        axios.post( url, userRepo )
+            .then( response => {
+                dispatch( createUserRopoSuccess(userHasRepo));
+            })
+            .catch(error => {
+                dispatch( createUserRepoFail(error) );
+            });
+    };
+};
+
+export const auth = (email, password, isSignup) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -52,7 +95,7 @@ export const auth = (email, password, isSingup) => {
         };
         
         let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDKeLGUQaas0KO59DL-1wCdNtYxuLLRpDE';
-        if( !isSingup ) {
+        if( !isSignup ) {
             url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDKeLGUQaas0KO59DL-1wCdNtYxuLLRpDE';
         }
         axios.post(url, authData)

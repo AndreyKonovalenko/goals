@@ -41,7 +41,7 @@ class Auth extends Component {
                 touched: false
             }  
         },
-        isSingup: true
+        isSignup: true
     };
     
     
@@ -58,12 +58,12 @@ class Auth extends Component {
     
      submitHandler = (event) => {
         event.preventDefault();  
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSingup);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
     
     switchAuthModeHandler = () => {
         this.setState(prevState => {
-            return {isSingup: !prevState.isSingup};
+            return {isSignup: !prevState.isSignup};
         });
     }
     
@@ -100,6 +100,10 @@ class Auth extends Component {
         let authRedirect = null;
         
         if (this.props.isAuthenticated) {
+            
+            if(this.state.isSignup) {
+                this.props.createRepo(this.props.token, this.props.userId, this.props.userHasRepo);
+            }
             authRedirect = <Redirect to={this.props.authRedirectPath} />;
         }
         
@@ -113,7 +117,7 @@ class Auth extends Component {
                 </form>
                 <Button
                     clicked={this.switchAuthModeHandler}
-                    buttonType="Danger">SWITCH TO {this.state.isSingup ? 'SIGNIN': 'SIGNUP'}
+                    buttonType="Danger">SWITCH TO {this.state.isSignup ? 'SIGNIN': 'SIGNUP'}
                 </Button>
             </div>    
         );
@@ -127,12 +131,16 @@ const mapStateToProps = state => {
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
         authRedirectPath: state.auth.authRedirectPath,
+        token: state.auth.token,
+        userId: state.auth.userId,
+        userHasRepo: state.auth.userHasRepo
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, isSingup) => dispatch(actions.auth(email, password, isSingup)),
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+        createRepo: (token, userId, userHasRepo) => dispatch(actions.createUserRepo(token, userId, userHasRepo))
         //onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
