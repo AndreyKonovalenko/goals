@@ -75,7 +75,7 @@ export const createUserRepo = ( token, userId, userHasRepo) => {
             goals: []
         };
         let url = 'https://goals-appforyou.firebaseio.com/users.json?auth=' + token;
-        axios.post( url, userRepo )
+        axios.put( url, userRepo )
             .then( response => {
                 dispatch( createUserRopoSuccess(userHasRepo));
             })
