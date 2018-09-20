@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Auxiliary from '../Auxiliary/Auxiliary';
 import cssObject from './Layout.css';
@@ -22,7 +24,7 @@ class Layout extends Component {
     render () {
         return(
             <Auxiliary>
-                <Toolbar/>
+                <Toolbar isAuth={this.props.isAuthenticated}/>
                 <main className={cssObject.Content}>
                     {this.props.children}
                 </main>
@@ -31,7 +33,10 @@ class Layout extends Component {
     }
 }
  
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
 
-
-
-export default Layout;
+export default withRouter(connect(mapStateToProps)(Layout));
