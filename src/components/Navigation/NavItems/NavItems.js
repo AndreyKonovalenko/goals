@@ -8,7 +8,8 @@ const navItems = (props) => (
     <ul className={cssObject.NavItems}>
         <NavItem link="/" exact>Main</NavItem>
         { props.isAuthenticated ? <NavItem link="/goals">My Goals</NavItem> : null}
-        { props.isAuthenticated ? <NavItem link="/builder">Add_Goal</NavItem>: null}     
+        { props.isAuthenticated ? <NavItem link="/builder">Add Goal</NavItem>: null}
+        { props.isAuthenticated ? <NavItem link="/logout">Logout</NavItem> : null}
     </ul>
 );
 
