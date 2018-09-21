@@ -10,12 +10,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import goalFieldReducer from './store/reducers/goalField';
 import authReducer from './store/reducers/auth';
+import goalBuilderReducer from './store/reducers/goalBuilder';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
     goalField: goalFieldReducer,
-    auth: authReducer
+    auth: authReducer,
+    goalBuilder: goalBuilderReducer
     
 });
 

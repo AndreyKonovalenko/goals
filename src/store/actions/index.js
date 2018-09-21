@@ -9,3 +9,7 @@ export {
     authCheckState,
     createUserRepo
 } from './auth';
+
+export {
+    setupGoal
+} from './goalBuilder';

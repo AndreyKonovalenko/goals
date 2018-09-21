@@ -9,12 +9,12 @@ export const setupGoalSuccess = ( goalConfig ) => {
     };
 };
 
-// export const setupGoalFail = (error) => {
-//     return {
-//         type: actionTypes.SETUP_GOAL_FAIL,
-//         error: error
-//     };
-// };
+export const setupGoalFail = (error) => {
+    return {
+        type: actionTypes.SETUP_GOAL_FAIL,
+        error: error
+    };
+};
 
 export const setupGoalStart = () => {
     return {
@@ -22,16 +22,18 @@ export const setupGoalStart = () => {
     };
 };
 
-export const setupGoal = ( goalConfig ) => {
+
+export const setupGoal = (goalConfig, token, userId ) => {
     return dispatch => {
         dispatch(setupGoalStart());
-        axios.post('/goals', goalConfig)
+        const url = 'users/' + userId +'/goals.json?auth=' + token; 
+        axios.patch(url, goalConfig)
             .then( response => {
                 console.log(response.data.name);
                 dispatch(setupGoalSuccess(goalConfig));
             })
             .catch(error => {
-                console.log(error);
+                dispatch(setupGoalFail(error));
             });
     };
 };

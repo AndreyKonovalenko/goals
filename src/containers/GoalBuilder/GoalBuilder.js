@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 
 import Calendar from '../../components/Calendar/Calendar';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import cssObject from './GoalBuilder.css';
+import * as  actions from  '../../store/actions/index';
 import {updateObject, checkValidity, daysArrayBuilder} from '../../shared/utility';
-import axios from '../../axios-db';
+//import axios from '../../axios-db';
 
 
 
@@ -65,17 +67,18 @@ class GoalBuilder extends Component {
             limitation:this.state.goalForm.limitation.value,
             daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
         };
-     
-        console.log(goalInitConfig);
+             
+        // console.log(goalInitConfig);
         
-        axios.post('/goals.json', goalInitConfig)
-            .then( response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-        });
-
+        // axios.post('/goals.json', goalInitConfig)
+        //     .then( response => {
+        //         console.log(response);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        // });
+        
+        this.props.onSetupGoal(goalInitConfig, this.props.token, this.props.userId);
         
     }
     
@@ -173,14 +176,39 @@ class GoalBuilder extends Component {
                 );
         }
         console.log(this.state.goalForm.start.touched);
+        let message = null;
+        if (this.props.error !== null) {
+            message = <h3>{this.props.error} </h3>; 
+        }
+        if (this.props.goalCreated === true){
+            message = <h3> You  have successfuly setup your new goal</h3>;
+        }
+        
         return (
             <div className={cssObject.GoalBuilder}>
                     <h3>Set up your new goal parameters!</h3>
+                    {message}
                     {form}
                     {calendar}
+                    
             </div>
         );
     }
 }
 
-export default GoalBuilder;
+const mapStateToProps = state => {
+    return {        
+        error: state.goalBuilder.error,
+        token: state.auth.token,
+        userId: state.auth.userId,
+        goalCreated: state.goalBuilder.goalCreated
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSetupGoal: (goalConfig, token, userId) => dispatch(actions.setupGoal(goalConfig, token, userId))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoalBuilder);
