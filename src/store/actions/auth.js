@@ -73,7 +73,7 @@ export const createUserRepo = ( token, userId, userHasRepo, email) => {
         const userRepo = {
             [userId] : {
                 email: email,
-                goals: [1,3]
+                goals: null
             }
         };
         let url = 'https://goals-appforyou.firebaseio.com/users.json?auth=' + token;

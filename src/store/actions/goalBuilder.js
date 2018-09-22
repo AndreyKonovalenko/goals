@@ -27,7 +27,7 @@ export const setupGoal = (goalConfig, token, userId ) => {
     return dispatch => {
         dispatch(setupGoalStart());
         const url = 'users/' + userId +'/goals.json?auth=' + token; 
-        axios.patch(url, goalConfig)
+        axios.post(url, goalConfig)
             .then( response => {
                 console.log(response.data.name);
                 dispatch(setupGoalSuccess(goalConfig));
