@@ -6,9 +6,9 @@ import cssObject from './GoalCard.css';
 const goalCard = (props) => {
 
     return (
-        <div className={cssObject.GoalCard} onClick={props.redirectHandler}>
-            <h3>{props.goalConfig.title.value}</h3>
-            <Button buttonType="Danger" clicked={props.delete}>Delete</Button>
+        <div className={cssObject.GoalCard}>
+            <h3>{props.title}</h3>
+            <Button buttonType="Danger" clicked={null}>Delete</Button>
         </div>
         
     );

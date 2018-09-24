@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-//import GoalCard from '../../components/GoalCard/GoalCard';
-import * as actions from '../../store/actions/index'
+
+import GoalCard from '../../components/GoalCard/GoalCard';
+import * as actions from '../../store/actions/index';
 
 
 
@@ -33,13 +34,33 @@ class MyGoals extends Component {
     //         });
     // };
     
-
+    
     render() {
-        console.log(this.props.userId);
-        let goals = 'here should be list of user goals';
+        let listOfGoalsArrey = [];
+        for (let key in this.props.goalsList) {
+            let listElement = {
+                value: this.props.goalsList[key],
+                id: key
+            };
+            listOfGoalsArrey.push(listElement);
+        }
+        // Do not forget add spinner for loading later
+        let list  = (
+            <div>
+            {listOfGoalsArrey.map(element => (
+                <GoalCard 
+                    title={element.value.title}
+                    key={element.id}
+                />
+            
+            ))}
+            </div>
+            
+        )
+        
         return (
             <div>
-                {goals}
+                {list}
             </div>
         );
     }
