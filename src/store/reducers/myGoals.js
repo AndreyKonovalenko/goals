@@ -4,6 +4,7 @@ import { updateObject } from '../../shared/utility';
 const initialSate = {
     goalsList: {},
     loading: false,
+    selectedGoalId:null
 };
 
 

@@ -70,7 +70,8 @@ const mapStateToProps = state => {
     return {
         userId: state.auth.userId,
         token: state.auth.token,
-        goalsList: state.myGoals.goalsList
+        goalsList: state.myGoals.goalsList,
+        selectedGoalId: state.myGoals.selectedGoalId
     }
 };
 
