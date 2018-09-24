@@ -10,7 +10,7 @@ class MyGoals extends Component {
 
 
     componentDidMount() {
-        this.onfetchGoals(this.props.token, this.props.userId);
+        this.props.onFetchGoals(this.props.token, this.props.userId);
     }
    
 
@@ -48,7 +48,8 @@ class MyGoals extends Component {
 const mapStateToProps = state => {
     return {
         userId: state.auth.userId,
-        toket: state.atuth.token
+        token: state.auth.token,
+        goalsList: state.myGoals.goalsList
     }
 };
 

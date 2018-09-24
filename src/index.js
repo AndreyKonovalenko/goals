@@ -11,13 +11,15 @@ import registerServiceWorker from './registerServiceWorker';
 import goalFieldReducer from './store/reducers/goalField';
 import authReducer from './store/reducers/auth';
 import goalBuilderReducer from './store/reducers/goalBuilder';
+import myGoalsReducer from './store/reducers/myGoals';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
     goalField: goalFieldReducer,
     auth: authReducer,
-    goalBuilder: goalBuilderReducer
+    goalBuilder: goalBuilderReducer,
+    myGoals: myGoalsReducer
     
 });
 
