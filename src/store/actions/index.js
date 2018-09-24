@@ -13,3 +13,7 @@ export {
 export {
     setupGoal
 } from './goalBuilder';
+
+export {
+    fetchGoals
+} from './myGoals';

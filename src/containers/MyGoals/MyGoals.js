@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-//import GoalCard from '../../components/GoalCard/GoalCard';
-//import axios from '../../axios-db';
-
 import {connect} from 'react-redux';
+
+//import GoalCard from '../../components/GoalCard/GoalCard';
+import * as actions from '../../store/actions/index'
+
 
 
 class MyGoals extends Component {
 
 
-    // componentDidMount() {
-    //     this.fetchGoals();
-    // }
+    componentDidMount() {
+        this.onfetchGoals(this.props.token, this.props.userId);
+    }
    
 
 
@@ -46,9 +47,16 @@ class MyGoals extends Component {
 
 const mapStateToProps = state => {
     return {
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        toket: state.atuth.token
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId))
+    }
+}
+ 
 
-export default connect(mapStateToProps)(MyGoals);
+export default connect(mapStateToProps, mapDispatchToProps)(MyGoals);
