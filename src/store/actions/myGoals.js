@@ -29,8 +29,9 @@ export const fetchGoals = (token, userId) => {
         // orderBy - sintax provided by Firebase
         axios.get('/users/'+ userId + '/goals.json' + queryParams)
             .then(response => {
-                let goalsList = {...response.data};
-                console.log(response.data);
+                let goalsList = {};
+                goalsList = {...response.data};
+                console.log(goalsList);
                 dispatch(fetchGoalsSuccess(goalsList));
             })
             .catch(error => {
