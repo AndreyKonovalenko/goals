@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Auth from './containers/Auth/Auth';
 import Layout from './hoc/Layout/Layout';
-//import GoalField from './containers/GoalField/GoalField';
+import GoalField from './containers/GoalField/GoalField';
 import MyGoals from './containers/MyGoals/MyGoals';
 import GoalBuilder from './containers/GoalBuilder/GoalBuilder';
 import Logout from './containers/Auth/Logout/Logout';
@@ -29,6 +29,7 @@ class App extends Component {
                     <Route path="/goals"component={MyGoals} />
                     <Route path="/builder" component={GoalBuilder} />
                     <Route path="/logout" component={Logout} />
+                    <Route path="/goal_field" component={GoalField} />
                 </Switch>
             );
         }

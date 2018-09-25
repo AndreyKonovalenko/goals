@@ -56,7 +56,7 @@ class MyGoals extends Component {
             ))}
             </div>
             
-        )
+        );
         
         return (
             <div>
