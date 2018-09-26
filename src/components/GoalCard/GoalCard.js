@@ -8,10 +8,9 @@ const goalCard = (props) => {
 
     return (
         <Auxiliary>
-            <div className={cssObject.GoalCard} onClick={props.selectGoalById}>
+            <div className={cssObject.GoalCard} onClick={props.clicked}>
                 <h3>{props.title}</h3>
             </div>
-
             <Button buttonType="Danger" clicked={() => console.log("Soon deleting functionality will be added")}>Delete</Button>
         </Auxiliary>
     );

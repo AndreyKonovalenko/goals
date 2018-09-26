@@ -29,7 +29,7 @@ class App extends Component {
                     <Route path="/goals"component={MyGoals} />
                     <Route path="/builder" component={GoalBuilder} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/goal_field" component={GoalField} />
+                    <Route path="/goalfield" component={GoalField} />
                 </Switch>
             );
         }

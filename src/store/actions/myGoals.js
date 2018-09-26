@@ -22,10 +22,10 @@ export const fetchGoalsStart = () => {
     };
 };
 
-export const selectGoalById = (goalId) => {
+export const selectGoalById = (selectedGoalId) => {
     return {
         type: actionTypes.SELECT_GOAL_BY_ID,
-        goalId: goalId
+        selectedGoalId: selectedGoalId
     };
 };
 

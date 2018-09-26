@@ -49,14 +49,16 @@ class MyGoals extends Component {
         // Do not forget add spinner for loading later
         let list  = (
             <div>
-            {listOfGoalsArrey.map(element => (
-                <GoalCard 
+            {listOfGoalsArrey.map(element => {
+                console.log(typeof(element.id));
+                return <GoalCard 
                     title={element.value.title}
                     key={element.id}
-                    selectGoalById={this.props.onGoalSelect}
-                />
+                    clicked={() => this.props.onGoalSelect(element.id)}
+                />;
             
-            ))}
+            }
+            )}
             </div>
             
         );
@@ -64,14 +66,14 @@ class MyGoals extends Component {
         
         let redirect = null;
         
-        if (this.props.selectedGoalId) {
-            redirect = <Redirect to="/goal-field" />;
+        if (this.props.selectedGoalId.length > 0) {
+            redirect = <Redirect to="/goalfield" />;
         }
         
         return (
             <div>
-                {list}
                 {redirect}
+                {list}
             </div>
         );
     }

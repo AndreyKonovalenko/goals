@@ -53,6 +53,7 @@ class GoalField extends Component {
         return (
     //       <Editor/>
             <Auxiliary>
+                <h3>draft works</h3>
                 <StatusBoard
                     title={this.props.goalConfig.title}
                     limitation={this.props.goalConfig.limitation}
