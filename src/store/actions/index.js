@@ -15,5 +15,6 @@ export {
 } from './goalBuilder';
 
 export {
-    fetchGoals
+    fetchGoals,
+    selectGoalById
 } from './myGoals';

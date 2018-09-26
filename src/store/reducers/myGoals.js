@@ -23,11 +23,15 @@ const fetchGoalsFail = (state, action) => {
     return updateObject(state, {loading: false});
 };
 
+const selectGoalById = (state, action) => {
+    return updateObject(state, {selectedGoalId: action.selectedGoalId})
+}
 const reducer = (state = initialSate, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GOALS_START: return fetchGoalsStart(state, action);
         case actionTypes.FETCH_GOALS_SUCCESS: return fetchGoalsSuccess(state, action);
         case actionTypes.FETCH_GOALS_FAIL: return fetchGoalsFail(state, action);
+        case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
         default: return state;
     }
 };

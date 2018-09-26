@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 
 import GoalCard from '../../components/GoalCard/GoalCard';
@@ -36,6 +37,7 @@ class MyGoals extends Component {
     
     
     render() {
+        
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
             let listElement = {
@@ -51,6 +53,7 @@ class MyGoals extends Component {
                 <GoalCard 
                     title={element.value.title}
                     key={element.id}
+                    selectGoalById={this.props.onGoalSelect}
                 />
             
             ))}
@@ -58,9 +61,17 @@ class MyGoals extends Component {
             
         );
         
+        
+        let redirect = null;
+        
+        if (this.props.selectedGoalId) {
+            redirect = <Redirect to="/goal-field" />;
+        }
+        
         return (
             <div>
                 {list}
+                {redirect}
             </div>
         );
     }
@@ -77,7 +88,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId))
+        onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
+        onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId))
     }
 }
  
