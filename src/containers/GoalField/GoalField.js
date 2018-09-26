@@ -9,20 +9,12 @@ import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
-    // state = {
-    //     goalConfig: {
-    //         title: "budget 50%",
-    //         startDay: "09.09.2018",
-    //         limitation: 4,
-    //         daysArray: [
-    //             {id: "09.09.2018", success: false, touched: false},
-    //             {id: "10.09.2018", success: false, touched: false},
-    //             {id: "11.09.2018", success: false, touched: false},
-    //             {id: "12.09.2018", success: false, touched: false}
-    //         ]
-    //     }
-    // }
 
+    componentDidMount() {
+        console.log("Did Mount works")
+        this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
+    }
+    
     checkDayHandler = (event) => {
      //    event.target.setAttribute("style", "background-color: green");
         const dayForUpdate = event.target.getAttribute("aria-label");
@@ -49,34 +41,48 @@ class GoalField extends Component {
     }
     
     render () {
-    //    console.log(this.props.goalConfig);
+    
+        let goal = <p>loading requeseted goal ...</p>;
+        
+        if (this.props.goalConfig !== null) {
+            goal =  (
+                <Auxiliary>
+                  <h3>draft works</h3>
+                    <StatusBoard
+                        title={this.props.goalConfig.title}
+                        limitation={this.props.goalConfig.limitation}
+                        start={this.props.goalConfig.startDay}
+                    />
+                    <Calendar 
+                        onDayClick={this.checkDayHandler}
+                        addStyleRules={true}
+                    />  
+                </Auxiliary>
+            );
+                
+        }
+    
         return (
-    //       <Editor/>
-            <Auxiliary>
-                <h3>draft works</h3>
-                <StatusBoard
-                    title={this.props.goalConfig.title}
-                    limitation={this.props.goalConfig.limitation}
-                    start={this.props.goalConfig.startDay}
-                />
-                <Calendar 
-                    onDayClick={this.checkDayHandler}
-                    addStyleRules={true}
-                />
-            </Auxiliary>
+            <div>
+                {goal}
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        goalConfig: state.goalField.goalConfig
+        goalConfig: state.goalField.goalConfig,
+        token: state.auth.token,
+        userId: state.auth.userId,
+        selectedGoalId: state.myGoals.selectedGoalId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)) 
+        onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)),
+        onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId))
     }
 }
 

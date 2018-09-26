@@ -1,5 +1,6 @@
 export {
-    checkUpGoalDay
+    checkUpGoalDay,
+    fetchSelectedGoal
 } from './goalField';
 
 export {
