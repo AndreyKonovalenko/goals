@@ -11,7 +11,8 @@ class Logout extends Component {
     }
     
     render () {
-        return (<Redirect to="/" />);
+        console.log("Logout!")
+        return (<Redirect to="/auth" />);
     }
 }
 

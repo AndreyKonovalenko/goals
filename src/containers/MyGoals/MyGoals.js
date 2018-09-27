@@ -15,7 +15,17 @@ class MyGoals extends Component {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
     }
-
+    
+    componentDidUpdate(nextProps) {
+        if(this.props.isAuthenticated !== nextProps.isAuthenticated && this.props.isAuthenticated) {
+            this.props.onFetchGoals(this.props.token, this.props.userId);
+        }
+    }
+    
+    componentWillUmount(){
+        this.props.onFetchGoals(this.props.token, this.props.userId)
+    }
+    
     render() {
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {

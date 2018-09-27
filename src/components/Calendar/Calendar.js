@@ -41,6 +41,7 @@ class Calendar extends Component {
     };
     
     render() {
+        console.log(this.state.currentMonth);
         return (
             <div className={cssObject.Calendar}>
                 <Header 
