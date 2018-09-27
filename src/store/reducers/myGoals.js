@@ -7,7 +7,13 @@ const initialSate = {
     selectedGoalId: ''
 };
 
-
+const clearState = (state ) => {
+    return updateObject(state, {
+        goalsList: null,
+        loading: false,
+        selectedGoalId: ''
+    });
+};
 const fetchGoalsStart = (state, action) => {
     return updateObject(state, {loading: true});
 };
@@ -32,6 +38,7 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.FETCH_GOALS_SUCCESS: return fetchGoalsSuccess(state, action);
         case actionTypes.FETCH_GOALS_FAIL: return fetchGoalsFail(state, action);
         case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
+        case actionTypes.AUTH_LOGOUT: return clearState(state);
         default: return state;
     }
 };

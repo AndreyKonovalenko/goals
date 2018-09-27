@@ -11,21 +11,23 @@ import * as actions from '../../store/actions/index';
 class MyGoals extends Component {
 
     componentDidMount() {
-        if (this.props.isAuthenticated) {
+        if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
     }
     
     componentDidUpdate(nextProps) {
-        if(this.props.isAuthenticated !== nextProps.isAuthenticated && this.props.isAuthenticated) {
+        if(this.props.token !== nextProps.token && this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
+        
     }
     
-    componentWillUmount(){
-        this.props.onFetchGoals(this.props.token, this.props.userId)
-    }
+    // componentWillUmount(){
+    //     this.props.onFetchGoals(this.props.token, this.props.userId)
+    // }
     
+
     render() {
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
@@ -40,7 +42,7 @@ class MyGoals extends Component {
         let list = <h1>Here you will see your list of goals when login or silgup</h1>;
         
         if (this.props.goalsList !== null) {
-            list  = (
+            list = (
                 <div>
                     {listOfGoalsArrey.map(element => {
                         console.log(typeof(element.id));
@@ -51,11 +53,8 @@ class MyGoals extends Component {
                         />;
                     })}
                 </div>
-                
             );
         }
-        
-        
         let redirect = null;
         
         if (this.props.selectedGoalId.length > 0) {
@@ -77,7 +76,6 @@ const mapStateToProps = state => {
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
         selectedGoalId: state.myGoals.selectedGoalId,
-        isAuthenticated: state.auth.token !== null
     }
 };
 

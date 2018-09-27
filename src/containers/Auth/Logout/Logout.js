@@ -12,7 +12,7 @@ class Logout extends Component {
     
     render () {
         console.log("Logout!")
-        return (<Redirect to="/auth" />);
+        return (<Redirect to="/" />);
     }
 }
 

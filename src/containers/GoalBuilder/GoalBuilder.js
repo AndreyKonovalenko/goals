@@ -119,6 +119,7 @@ class GoalBuilder extends Component {
     
     
     checkDayHandler = (event) => {
+        event.preventDefault();
     //    event.target.setAttribute("style", "background-color: red");
         console.log(event.target.getAttribute("aria-label"));
     //    console.log("clicked", event.target.className, event.target.classList);
