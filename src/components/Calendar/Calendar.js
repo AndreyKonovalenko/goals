@@ -18,10 +18,10 @@ class Calendar extends Component {
         window.addEventListener("resize", this.screenSizeChandgeHandler);
     }
     
-    // componentWillUnmount () {
-    //     window.addEventListener("resize", this.screenSizeChandgeHandler);
-    //     console.log("screenSize");
-    // }
+    componentWillUnmount () {
+        window.addEventListener("resize", this.screenSizeChandgeHandler);
+        console.log("screenSize");
+    }
     
     screenSizeChandgeHandler = () => {
         const sizeMatched = window.matchMedia('(max-width: 800px)').matches;

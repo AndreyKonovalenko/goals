@@ -10,34 +10,13 @@ import * as actions from '../../store/actions/index';
 
 class MyGoals extends Component {
 
-
     componentDidMount() {
-        this.props.onFetchGoals(this.props.token, this.props.userId);
+        if (this.props.isAuthenticated) {
+            this.props.onFetchGoals(this.props.token, this.props.userId);
+        }
     }
-   
 
-
-    // fetchGoals = () => {
-    //     // const queryParams = '?auth=' + '&orderBy="userId"&equalTo="' + userId + '"';
-    //     //     // orderBy - sintax provided by Firebase
-    //     axios.get('/goals.json')
-    //         .then(response => {
-    //             console.log(response.data);
-    //                 // const fetchOrders = [];
-    //                 // for (let key in response.data){
-    //                 //     fetchOrders.push({
-    //                 //         ...response.data[key],
-    //                 //         id: key
-    //                 //     });
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-    
-    
     render() {
-        
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
             let listElement = {
@@ -47,21 +26,24 @@ class MyGoals extends Component {
             listOfGoalsArrey.push(listElement);
         }
         // Do not forget add spinner for loading later
-        let list  = (
-            <div>
-            {listOfGoalsArrey.map(element => {
-                console.log(typeof(element.id));
-                return <GoalCard 
-                    title={element.value.title}
-                    key={element.id}
-                    clicked={() => this.props.onGoalSelect(element.id)}
-                />;
-            
-            }
-            )}
-            </div>
-            
-        );
+        
+        let list = <h1>Here you will see your list of goals when login or silgup</h1>;
+        
+        if (this.props.goalsList !== null) {
+            list  = (
+                <div>
+                    {listOfGoalsArrey.map(element => {
+                        console.log(typeof(element.id));
+                        return <GoalCard 
+                            title={element.value.title}
+                            key={element.id}
+                            clicked={() => this.props.onGoalSelect(element.id)}
+                        />;
+                    })}
+                </div>
+                
+            );
+        }
         
         
         let redirect = null;
@@ -84,7 +66,8 @@ const mapStateToProps = state => {
         userId: state.auth.userId,
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
-        selectedGoalId: state.myGoals.selectedGoalId
+        selectedGoalId: state.myGoals.selectedGoalId,
+        isAuthenticated: state.auth.token !== null
     }
 };
 

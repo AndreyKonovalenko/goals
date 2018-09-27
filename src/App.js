@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Auth from './containers/Auth/Auth';
@@ -15,29 +15,38 @@ import * as actions from './store/actions/index';
 //import './App.css';
 
 class App extends Component {
+    
+    componentDidMount () {
+        this.props.onTryAutoLogin();
+    } 
     render() {
         let routes = (
             <Switch>
-                <Route path="/" exact component={Auth} />
+                <Route path="/auth" component={Auth} />
+                <Route path="/" exact component={MyGoals}/> 
+                <Redirect to ="/" />
             </Switch>
         );
         
         if (this.props.isAuthenticated) {
             routes = (
                 <Switch>
-                    <Route path="/" exact component={Auth} />
-                    <Route path="/goals"component={MyGoals} />
+                    <Route path="/auth" component={Auth} />
+                    <Route path="/" exact component={MyGoals} />
                     <Route path="/builder" component={GoalBuilder} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/goalfield" component={GoalField} />
+                    <Route path="/goalfield" exact component={GoalField} />
+                    <Redirect to ="/" />
                 </Switch>
             );
         }
         
         return (
-            <Layout>
-                {routes}
-            </Layout>
+            <div>
+                <Layout>
+                    {routes}
+                </Layout>
+            </div>
         );
     }
 }
@@ -50,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTryAutoSingup: () => dispatch(actions.authCheckState())
+        onTryAutoLogin: () => dispatch(actions.authCheckState())
     }
 }
 

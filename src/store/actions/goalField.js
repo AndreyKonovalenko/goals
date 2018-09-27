@@ -34,18 +34,11 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
     return dispatch  => {
         dispatch(fetchSelectedGoalStart());
         const queryParams = '?auth=' + token +'"';
-        // orderBy - sintax provided by Firebase
         const url = '/users/'+ userId + '/goals/' + selectedGoalId + '.json';
         console.log(url);
         axios.get(url + queryParams)
-            .then(response => {
-                let goalConfig = {};
-                goalConfig = {...response.data};
-                console.log(goalConfig);
-                dispatch(fetchSelectedGoalSuccess(goalConfig));
-            })
-            .catch(error => {
-                dispatch(fetchSelectedGoalFail(error));
-            });
+            .then(response => dispatch(fetchSelectedGoalSuccess(response.data)))
+            .catch(error => dispatch(fetchSelectedGoalFail(error))
+        );
     };
 };

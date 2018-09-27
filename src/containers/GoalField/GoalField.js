@@ -15,6 +15,10 @@ class GoalField extends Component {
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
     }
     
+    componentWillUnmount() {
+        this.checkDayHandler();
+    }
+    
     checkDayHandler = (event) => {
      //    event.target.setAttribute("style", "background-color: green");
         const dayForUpdate = event.target.getAttribute("aria-label");
