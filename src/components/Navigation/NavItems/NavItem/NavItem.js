@@ -8,7 +8,10 @@ const navItem  = (props) => (
         <NavLink 
             to={props.link}
             exact={props.exact} // for useg only in whe exact props passed from outside not for all navigation Items
-            activeClassName={cssObject.active}>{props.children}</NavLink>
+            activeClassName={cssObject.active}
+        >
+            {props.children}
+        </NavLink>
     </li>
 );
 
