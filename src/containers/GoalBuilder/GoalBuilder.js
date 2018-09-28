@@ -119,21 +119,26 @@ class GoalBuilder extends Component {
     
     
     checkDayHandler = (event) => {
-        event.preventDefault();
-    //    event.target.setAttribute("style", "background-color: red");
-        console.log(event.target.getAttribute("aria-label"));
-    //    console.log("clicked", event.target.className, event.target.classList);
-        const updatedFormElement = updateObject(this.state.goalForm.start, {
-            value: event.target.getAttribute("aria-label"),
-            valid: true,
-            touched: true
-        }); 
-        
-        const updatedGoalForm = updateObject(this.state.goalForm, {
+        try {
+             //    event.target.setAttribute("style", "background-color: red");
+            console.log(event.target.getAttribute("aria-label"));
+            //    console.log("clicked", event.target.className, event.target.classList);
+            const updatedFormElement = updateObject(this.state.goalForm.start, {
+                value: event.target.getAttribute("aria-label"),
+                valid: true,
+                touched: true
+            }); 
+            const updatedGoalForm = updateObject(this.state.goalForm, {
             start: updatedFormElement
-        });
+            });
         
-        this.setState({goalForm: updatedGoalForm});
+            this.setState({goalForm: updatedGoalForm});    
+            
+    
+        } catch (error) {
+            console.log(error);
+        }
+   
     }
     
     render() {
@@ -169,7 +174,7 @@ class GoalBuilder extends Component {
         let calendar = (
                 <div style={{visibility:'hidden'}}>
                     <Calendar   
-                        onDayClick={this.checkDayHandler}
+                        onDayClick={null}
                         addStyleRules={false}
                     />
                 </div>
@@ -177,7 +182,7 @@ class GoalBuilder extends Component {
         if (this.state.goalForm.start.showCalendar) {
                 calendar = (
                     <div style={{visibility:'visible'}}>
-                        <Calendar  onDayClick={this.checkDayHandler}/>
+                        <Calendar  onDayClick={(event) => this.checkDayHandler(event)}/>
                     </div>
                 );
         }
