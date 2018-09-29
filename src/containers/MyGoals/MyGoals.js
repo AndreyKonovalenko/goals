@@ -11,8 +11,10 @@ import * as actions from '../../store/actions/index';
 class MyGoals extends Component {
 
     componentDidMount() {
+        console.log('component did moutn');
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
+            this.props.resetRedirectionState()
         }
     }
     
@@ -85,7 +87,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
-        onRedirect: () => dispatch(actions.redirectToGoal())
+        onRedirect: () => dispatch(actions.redirectToGoal()),
+        resetRedirectionState: () => dispatch(actions.clearRedirectHistory()) 
     }
 }
  

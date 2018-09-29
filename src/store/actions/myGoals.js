@@ -47,3 +47,9 @@ export const redirectToGoal = () => {
         type: actionTypes.REDIRECT_TO_GOAL
     }
 }
+
+export const clearRedirectHistory = () => {
+    return {
+        type: actionTypes.CLEAR_REDIRECT_HISTORY
+    }   
+}

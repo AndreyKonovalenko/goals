@@ -14,6 +14,7 @@ class GoalField extends Component {
         console.log("Did Mount works")
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
     }
+
     
  
     

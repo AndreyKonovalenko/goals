@@ -38,6 +38,11 @@ const redirectToGoal = (state, action) => {
     return updateObject(state, {redirected: true})
 }
 
+const clearRedirectHistory = (state, action) => {
+    return updateObject(state, {redirected: false})
+}
+
+
 const reducer = (state = initialSate, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GOALS_START: return fetchGoalsStart(state, action);
@@ -46,6 +51,7 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
         case actionTypes.AUTH_LOGOUT: return clearState(state);
         case actionTypes.REDIRECT_TO_GOAL: return redirectToGoal(state, action);
+        case actionTypes.CLEAR_REDIRECT_HISTORY: return clearRedirectHistory(state, action);
         default: return state;
     }
 };
