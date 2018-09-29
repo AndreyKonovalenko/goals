@@ -15,6 +15,7 @@ class Calendar extends Component {
     }
     
     componentDidMount () {
+        console.log("caledar Did mount");
         window.addEventListener("resize", this.screenSizeChandgeHandler);
     }
     

@@ -15,33 +15,35 @@ class GoalField extends Component {
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
     }
     
-    componentWillUnmount() {
-        this.checkDayHandler();
-    }
+ 
     
     checkDayHandler = (event) => {
-     //    event.target.setAttribute("style", "background-color: green");
-        const dayForUpdate = event.target.getAttribute("aria-label");
-        const position = checkDaysArrayForUpdate(this.props.goalConfig.daysArray, dayForUpdate);
-        
-        
-        const updatedElement = updateObject(this.props.goalConfig.daysArray[position], {
-            success: !this.props.goalConfig.daysArray[position].success,
-            touched: true
-        }); 
-        const updatedDaysArray = this.props.goalConfig.daysArray.map(element => {
-            let newElement = null;
-            if (this.props.goalConfig.daysArray.indexOf(element) === position){
-                newElement = updatedElement;
-            } else {
-                newElement = element;
-            }
-            return newElement;
-        });
-        const updatedGoalConfig = updateObject(this.props.goalConfig, {
-            daysArray: updatedDaysArray
-        });
-        this.props.onDayCheckUp(updatedGoalConfig);
+        try {
+            //    event.target.setAttribute("style", "background-color: green");
+            const dayForUpdate = event.target.getAttribute("aria-label");
+            const position = checkDaysArrayForUpdate(this.props.goalConfig.daysArray, dayForUpdate);
+            
+            
+            const updatedElement = updateObject(this.props.goalConfig.daysArray[position], {
+                success: !this.props.goalConfig.daysArray[position].success,
+                touched: true
+            }); 
+            const updatedDaysArray = this.props.goalConfig.daysArray.map(element => {
+                let newElement = null;
+                if (this.props.goalConfig.daysArray.indexOf(element) === position){
+                    newElement = updatedElement;
+                } else {
+                    newElement = element;
+                }
+                return newElement;
+            });
+            const updatedGoalConfig = updateObject(this.props.goalConfig, {
+                daysArray: updatedDaysArray
+            });
+            this.props.onDayCheckUp(updatedGoalConfig);
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     render () {
@@ -58,7 +60,7 @@ class GoalField extends Component {
                         start={this.props.goalConfig.startDay}
                     />
                     <Calendar 
-                        onDayClick={this.checkDayHandler}
+                        onDayClick={(event) =>this.checkDayHandler(event)}
                         addStyleRules={true}
                     />  
                 </Auxiliary>

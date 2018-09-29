@@ -57,8 +57,9 @@ class MyGoals extends Component {
         }
         let redirect = null;
         
-        if (this.props.selectedGoalId.length > 0) {
+        if (this.props.selectedGoalId.length > 0 && !this.props.redirected) {
             redirect = <Redirect to="/goalfield" />;
+            this.props.onRedirect();
         }
         
         return (
@@ -76,13 +77,15 @@ const mapStateToProps = state => {
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
         selectedGoalId: state.myGoals.selectedGoalId,
+        redirected: state.myGoals.redirected 
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
-        onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId))
+        onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
+        onRedirect: () => dispatch(actions.redirectToGoal())
     }
 }
  

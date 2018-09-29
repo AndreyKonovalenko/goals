@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utility';
 const initialSate = {
     goalsList: null,
     loading: false,
-    selectedGoalId: ''
+    selectedGoalId: '',
+    redirected: false
 };
 
 const clearState = (state ) => {
@@ -32,6 +33,11 @@ const fetchGoalsFail = (state, action) => {
 const selectGoalById = (state, action) => {
     return updateObject(state, {selectedGoalId: action.selectedGoalId})
 }
+
+const redirectToGoal = (state, action) => {
+    return updateObject(state, {redirected: true})
+}
+
 const reducer = (state = initialSate, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GOALS_START: return fetchGoalsStart(state, action);
@@ -39,6 +45,7 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.FETCH_GOALS_FAIL: return fetchGoalsFail(state, action);
         case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
         case actionTypes.AUTH_LOGOUT: return clearState(state);
+        case actionTypes.REDIRECT_TO_GOAL: return redirectToGoal(state, action);
         default: return state;
     }
 };

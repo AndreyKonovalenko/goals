@@ -17,5 +17,6 @@ export {
 
 export {
     fetchGoals,
-    selectGoalById
+    selectGoalById,
+    redirectToGoal
 } from './myGoals';

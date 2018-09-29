@@ -35,7 +35,7 @@ class App extends Component {
                     <Route path="/" exact component={MyGoals} />
                     <Route path="/builder" component={GoalBuilder} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/goalfield" exact component={GoalField} />
+                    <Route path="/goalfield" component={GoalField} />
                     <Redirect to ="/" />
                 </Switch>
             );

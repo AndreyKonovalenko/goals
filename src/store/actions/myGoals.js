@@ -41,3 +41,9 @@ export const fetchGoals = (token, userId) => {
         );
     };
 };
+
+export const redirectToGoal = () => {
+    return {
+        type: actionTypes.REDIRECT_TO_GOAL
+    }
+}

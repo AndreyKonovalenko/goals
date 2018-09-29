@@ -58,11 +58,7 @@ class GoalBuilder extends Component {
 
         }
     }
-    
-     componentWillUnmount() {
-        this.checkDayHandler();
-    }
-    
+       
          
     saveHandler = (event) => {
         event.preventDefault();
