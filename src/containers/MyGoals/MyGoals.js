@@ -33,11 +33,13 @@ class MyGoals extends Component {
         //This is solution of redirecton
     }
 
-    combinedHandeler = (elementId) => {
+    combinedHandler = (elementId, selectedGoalId) => {
         this.props.onGoalSelect(elementId);
-        console.log("second");
-        this.redirectToGoalHandler();
-        console.log("first");  
+        console.log("first");
+        if (selectedGoalId.length> 0) {
+            this.redirectToGoalHandler();
+            console.log("second");  
+        }
     } 
 
     render() {
@@ -61,7 +63,7 @@ class MyGoals extends Component {
                         return <GoalCard 
                             title={element.value.title}
                             key={element.id}
-                            clicked={() => this.combinedHandeler(element.id)}
+                            clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
                         />;
                     })}
                 </div>
