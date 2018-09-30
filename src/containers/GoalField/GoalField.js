@@ -89,7 +89,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)),
-        onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId))
+        onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId)),
     }
 }
 

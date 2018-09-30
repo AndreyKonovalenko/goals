@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 
 
 import GoalCard from '../../components/GoalCard/GoalCard';
@@ -11,10 +11,9 @@ import * as actions from '../../store/actions/index';
 class MyGoals extends Component {
 
     componentDidMount() {
-        console.log('component did moutn');
+        console.log(' My Goals component did mount');
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
-            this.props.resetRedirectionState()
         }
     }
     
@@ -28,7 +27,18 @@ class MyGoals extends Component {
     // componentWillUmount(){
     //     this.props.onFetchGoals(this.props.token, this.props.userId)
     // }
-    
+    redirectToGoalHandler = () => {
+        console.log(this.props.location);
+        this.props.history.push('/goalfield'); 
+        //This is solution of redirecton
+    }
+
+    combinedHandeler = (elementId) => {
+        this.props.onGoalSelect(elementId);
+        console.log("second");
+        this.redirectToGoalHandler();
+        console.log("first");  
+    } 
 
     render() {
         let listOfGoalsArrey = [];
@@ -51,22 +61,22 @@ class MyGoals extends Component {
                         return <GoalCard 
                             title={element.value.title}
                             key={element.id}
-                            clicked={() => this.props.onGoalSelect(element.id)}
+                            clicked={() => this.combinedHandeler(element.id)}
                         />;
                     })}
                 </div>
             );
         }
-        let redirect = null;
+        // let redirect = null;
         
-        if (this.props.selectedGoalId.length > 0 && !this.props.redirected) {
-            redirect = <Redirect to="/goalfield" />;
-            this.props.onRedirect();
-        }
-        
+        // if (this.props.selectedGoalId.length > 0 && !this.props.redirected) {
+        //     redirect = <Redirect to="/goalfield" />;
+        //     this.props.onRedirect();
+        // }
+        // console.log(redirect);
         return (
             <div>
-                {redirect}
+                {/* {redirect} */}
                 {list}
             </div>
         );
@@ -87,8 +97,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
-        onRedirect: () => dispatch(actions.redirectToGoal()),
-        resetRedirectionState: () => dispatch(actions.clearRedirectHistory()) 
+        // onRedirect: () => dispatch(actions.redirectToGoal())
     }
 }
  

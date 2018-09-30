@@ -39,6 +39,7 @@ const redirectToGoal = (state, action) => {
 }
 
 const clearRedirectHistory = (state, action) => {
+    console.log("ClEAR_REDIRECT_HISTORY");
     return updateObject(state, {redirected: false})
 }
 
