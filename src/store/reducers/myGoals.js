@@ -31,7 +31,7 @@ const fetchGoalsFail = (state, action) => {
 };
 
 const selectGoalById = (state, action) => {
-    return updateObject(state, {selectedGoalId: action.selectedGoalId})
+    return updateObject(state, {selectedGoalId: action.selectedGoalId}, )
 }
 
 const redirectToGoal = (state, action) => {
