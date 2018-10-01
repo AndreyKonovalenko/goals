@@ -20,7 +20,6 @@ class MyGoals extends Component {
         if(this.props.token !== nextProps.token && this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
-        
     }
     
     redirectToGoalHandler = () => {
@@ -31,11 +30,8 @@ class MyGoals extends Component {
     combinedHandler = (elementId, selectedGoalId) => {
         this.props.onGoalSelect(elementId);
         console.log("first");
-        console.log(selectedGoalId.length > 0);
-        if (selectedGoalId.length> 0) {
-            this.redirectToGoalHandler();
-            console.log("second");  
-        }
+        this.redirectToGoalHandler();
+        console.log("second");  
     } 
 
     render() {
@@ -48,7 +44,7 @@ class MyGoals extends Component {
             listOfGoalsArrey.push(listElement);
         }
         // Do not forget add spinner for loading later
-        let list = <h1>Here you will see your list of goals when login or silgup</h1>;
+        let list = <h1> Here you will see your list of goals when login or silgup </h1>;
         
         if (this.props.goalsList !== null) {
             list = (
@@ -88,6 +84,5 @@ const mapDispatchToProps = dispatch => {
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
     };
 };
- 
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyGoals);
