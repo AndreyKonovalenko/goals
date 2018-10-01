@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 //import {Redirect} from 'react-router-dom';
 
-
 import GoalCard from '../../components/GoalCard/GoalCard';
 import * as actions from '../../store/actions/index';
 
@@ -24,18 +23,15 @@ class MyGoals extends Component {
         
     }
     
-    // componentWillUmount(){
-    //     this.props.onFetchGoals(this.props.token, this.props.userId)
-    // }
     redirectToGoalHandler = () => {
-        console.log(this.props.location);
         this.props.history.push('/goalfield'); 
-        //This is solution of redirecton
+        //This is solution of redirection
     }
 
     combinedHandler = (elementId, selectedGoalId) => {
         this.props.onGoalSelect(elementId);
         console.log("first");
+        console.log(selectedGoalId.length > 0);
         if (selectedGoalId.length> 0) {
             this.redirectToGoalHandler();
             console.log("second");  
@@ -52,7 +48,6 @@ class MyGoals extends Component {
             listOfGoalsArrey.push(listElement);
         }
         // Do not forget add spinner for loading later
-        
         let list = <h1>Here you will see your list of goals when login or silgup</h1>;
         
         if (this.props.goalsList !== null) {
@@ -69,16 +64,9 @@ class MyGoals extends Component {
                 </div>
             );
         }
-        // let redirect = null;
-        
-        // if (this.props.selectedGoalId.length > 0 && !this.props.redirected) {
-        //     redirect = <Redirect to="/goalfield" />;
-        //     this.props.onRedirect();
-        // }
-        // console.log(redirect);
+
         return (
             <div>
-                {/* {redirect} */}
                 {list}
             </div>
         );
@@ -90,18 +78,16 @@ const mapStateToProps = state => {
         userId: state.auth.userId,
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
-        selectedGoalId: state.myGoals.selectedGoalId,
-        redirected: state.myGoals.redirected 
-    }
+        selectedGoalId: state.myGoals.selectedGoalId
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
-        // onRedirect: () => dispatch(actions.redirectToGoal())
-    }
-}
+    };
+};
  
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyGoals);

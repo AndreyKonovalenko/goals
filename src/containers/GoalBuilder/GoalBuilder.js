@@ -68,34 +68,18 @@ class GoalBuilder extends Component {
             limitation:this.state.goalForm.limitation.value,
             daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
         };
-             
-        // console.log(goalInitConfig);
-        
-        // axios.post('/goals.json', goalInitConfig)
-        //     .then( response => {
-        //         console.log(response);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        // });
-        
         this.props.onSetupGoal(goalInitConfig, this.props.token, this.props.userId);
-        
     }
     
     inputChangedHandler = (event, inputIdentifier) => {
-        //immutable way to copy complex objects with nested objects
-        //using spread operator "..."
         const updatedFormElement = updateObject(this.state.goalForm[inputIdentifier], {
             value: event.target.value,
             valid: checkValidity(event.target.value, this.state.goalForm[inputIdentifier].validation),
             touched: true
         }); 
-        
         const updatedGoalForm = updateObject(this.state.goalForm, {
             [inputIdentifier]: updatedFormElement
         });
-        
         let formIsValid = true;
         for (let inputIdentifier in updatedGoalForm) {
             formIsValid = updatedGoalForm[inputIdentifier].valid && formIsValid;
@@ -112,7 +96,6 @@ class GoalBuilder extends Component {
         });
         this.setState({goalForm: updatedGoalForm});
     }
-    
     
     checkDayHandler = (event) => {
         try {
@@ -145,26 +128,25 @@ class GoalBuilder extends Component {
                 config: this.state.goalForm[key] 
             });
         }
-//        console.log(this.state.goalForm.start);
-
+        
         let form = (
-                <form>
-                    {formElementArray.map(element => (
+            <form>
+                {formElementArray.map(element => (
                     <Input
-                            key={element.id} 
-                            elementType={element.config.elementType}
-                            elementConfig={element.config.elementConfig}
-                            value={element.config.value}
-                            changed={(event) => this.inputChangedHandler(event, element.id)}
-                            invalid={!element.config.valid}
-                            shouldValidate={element.config.validation}
-                            touched={element.config.touched}
-                            unhide={(element.id === "start")? this.unHideCalendarHandler: null}/>
-                    ))}
-                    <Button buttonType="Success" clicked={this.saveHandler}>SAVE</Button>
-                    <Button buttonType="Danger">CANCEL</Button>
-                    
-                </form>
+                        key={element.id} 
+                        elementType={element.config.elementType}
+                        elementConfig={element.config.elementConfig}
+                        value={element.config.value}
+                        changed={(event) => this.inputChangedHandler(event, element.id)}
+                        invalid={!element.config.valid}
+                        shouldValidate={element.config.validation}
+                        touched={element.config.touched}
+                        unhide={(element.id === "start")? this.unHideCalendarHandler: null}/>
+                    ))
+                }
+                <Button buttonType="Success" clicked={this.saveHandler}>SAVE</Button>
+                <Button buttonType="Danger">CANCEL</Button>
+            </form>
         );
         
         let calendar = (
