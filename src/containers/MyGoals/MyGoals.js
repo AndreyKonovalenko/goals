@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 
 
@@ -44,10 +45,8 @@ class MyGoals extends Component {
             listOfGoalsArrey.push(listElement);
         }
         // Do not forget add spinner for loading later
-        let list = <h1> Here you will see your list of goals when login or silgup </h1>;
         
-        if (this.props.goalsList !== null) {
-            list = (
+        let list = (
                 <div>
                     {listOfGoalsArrey.map(element => {
                         console.log(typeof(element.id));
@@ -58,8 +57,16 @@ class MyGoals extends Component {
                         />;
                     })}
                 </div>
-            );
-        }
+        );
+        
+        if (this.props.loading) {
+            console.log('shoul see Spinner');
+            list = <Spinner />;
+        };
+        
+        if (this.props.goalsList === null) {
+            list = <h2>Here you will see list of your goals when login/singup</h2>
+        } 
 
         return (
             <div>
@@ -74,7 +81,8 @@ const mapStateToProps = state => {
         userId: state.auth.userId,
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
-        selectedGoalId: state.myGoals.selectedGoalId
+        selectedGoalId: state.myGoals.selectedGoalId,
+        loading: state.myGoals.loading
     };
 };
 
