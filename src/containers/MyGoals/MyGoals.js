@@ -47,7 +47,6 @@ class MyGoals extends Component {
         // Do not forget add spinner for loading later
         
         let list = <Spinner />;
-        
         if (!this.props.loading && this.props.goalsList === null) {
             list = <h2>Here you will see list of your goals when login/singup</h2>;
         } else if (!this.props.loading && this.props.goalsList !== null){
@@ -67,7 +66,7 @@ class MyGoals extends Component {
 
         return (
             <div>
-                {list}
+               {list}
             </div>
         );
     }
