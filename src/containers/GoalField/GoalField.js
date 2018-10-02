@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import StatusBoard from '../../components/StatusBoard/StatusBoard';
 import Calendar from '../../components/Calendar/Calendar';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
@@ -43,9 +44,9 @@ class GoalField extends Component {
     }
     
     render () {
-        let goal = <p>loading requeseted goal ...</p>;
+        let goal = <Spinner />;
         
-        if (this.props.goalConfig !== null) {
+        if (!this.props.loading && this.props.goalConfig !== null) {
             goal =  (
                 <Auxiliary>
                   <h3>draft works</h3>
@@ -60,7 +61,6 @@ class GoalField extends Component {
                     />  
                 </Auxiliary>
             );
-                
         }
     
         return (
@@ -76,7 +76,8 @@ const mapStateToProps = state => {
         goalConfig: state.goalField.goalConfig,
         token: state.auth.token,
         userId: state.auth.userId,
-        selectedGoalId: state.myGoals.selectedGoalId
+        selectedGoalId: state.myGoals.selectedGoalId,
+        loading: state.goalField.loading
     };
 };
 
