@@ -46,7 +46,12 @@ class MyGoals extends Component {
         }
         // Do not forget add spinner for loading later
         
-        let list = (
+        let list = <Spinner />;
+        
+        if (!this.props.loading && this.props.goalsList === null) {
+            list = <h2>Here you will see list of your goals when login/singup</h2>;
+        } else if (!this.props.loading && this.props.goalsList !== null){
+            list = (
                 <div>
                     {listOfGoalsArrey.map(element => {
                         console.log(typeof(element.id));
@@ -57,16 +62,8 @@ class MyGoals extends Component {
                         />;
                     })}
                 </div>
-        );
-        
-        if (this.props.loading) {
-            console.log('shoul see Spinner');
-            list = <Spinner />;
-        };
-        
-        if (this.props.goalsList === null) {
-            list = <h2>Here you will see list of your goals when login/singup</h2>
-        } 
+            );
+        }
 
         return (
             <div>
