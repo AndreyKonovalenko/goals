@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Login from '../../components/Authentication/Login/Login';
+import Signup from '../../components/Authentication/Signup/Signup';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 
 // import Input from '../../components/UI/Input/Input';
@@ -102,15 +103,32 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirectPath} />;
         }
         
-        return (
-            <Auxiliary>
-                {authRedirect}
+        let loginOrSignup;
+        console.log(loginOrSignup);
+        if (this.props.location.pathname === '/auth/login') {
+            loginOrSignup= (
                 <Login
                     controls={this.state.controls}
                     error={this.props.error}
                     submitHandler={(event) => this.submitHandler(event, false)}
                     inputChangedHandler={(event, controlName) => this.inputChangedHandler(event, controlName)}
                 />
+            );
+        }
+        if (this.props.location.pathname === '/auth/signup') {
+            loginOrSignup= (
+                <Signup
+                    controls={this.state.controls}
+                    error={this.props.error}
+                    submitHandler={(event) => this.submitHandler(event, true)}
+                    inputChangedHandler={(event, controlName) => this.inputChangedHandler(event, controlName)}
+                />
+            );
+        }
+        return (
+            <Auxiliary>
+                {authRedirect}
+                {loginOrSignup}
             </Auxiliary>
         );
     }

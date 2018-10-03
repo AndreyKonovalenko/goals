@@ -22,7 +22,8 @@ class App extends Component {
     render() {
         let routes = (
             <Switch>
-                <Route path="/auth" component={Auth} />
+                <Route path="/auth/login" component={Auth} />
+                <Route path="/auth/signup" component={Auth} />
                 <Route path="/" exact component={MyGoals}/> 
                 <Redirect to ="/" />
             </Switch>
@@ -31,7 +32,8 @@ class App extends Component {
         if (this.props.isAuthenticated) {
             routes = (
                 <Switch>
-                    <Route path="/auth" component={Auth} />
+                    <Route path="/auth/login" component={Auth} />
+                    <Route path="/auth/signup" component={Auth} />
                     <Route path="/" exact component={MyGoals} />
                     <Route path="/builder" component={GoalBuilder} />
                     <Route path="/logout" component={Logout} />

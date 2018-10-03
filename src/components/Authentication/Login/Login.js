@@ -37,6 +37,7 @@ const login = (props) => {
             <form  onSubmit={props.submitHandler}>
                 {form}
                 {errorMessage}
+                <p>Forget password?</p>
                 <Button buttonType="Success">LOGIN</Button>
             </form>
         </div>
