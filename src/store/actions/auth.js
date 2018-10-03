@@ -87,7 +87,7 @@ export const createUserRepo = ( token, userId, userHasRepo, email) => {
     };
 };
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, newUser) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -95,9 +95,9 @@ export const auth = (email, password, isSignup) => {
             password: password,
             returnSecureToken: true
         };
-        
+        console.log(newUser);
         let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDKeLGUQaas0KO59DL-1wCdNtYxuLLRpDE';
-        if( !isSignup ) {
+        if( newUser === false ) {
             url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDKeLGUQaas0KO59DL-1wCdNtYxuLLRpDE';
         }
         axios.post(url, authData)

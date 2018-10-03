@@ -44,7 +44,7 @@ class Auth extends Component {
                 touched: false
             }  
         },
-        isSignup: true
+        // isSignup: true
     };
     
     
@@ -59,9 +59,10 @@ class Auth extends Component {
         this.setState({controls: updatedControls});
     }
     
-     submitHandler = (event) => {
+     submitHandler = (event, newUser) => {
         event.preventDefault();  
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+        console.log(newUser);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, newUser);
     }
     
     // switchAuthModeHandler = () => {
@@ -107,7 +108,7 @@ class Auth extends Component {
                 <Login
                     controls={this.state.controls}
                     error={this.props.error}
-                    submitHandler={this.submitHandler}
+                    submitHandler={(event) => this.submitHandler(event, false)}
                     inputChangedHandler={(event, controlName) => this.inputChangedHandler(event, controlName)}
                 />
             </Auxiliary>
@@ -129,7 +130,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+        onAuth: (email, password, newUser) => dispatch(actions.auth(email, password, newUser)),
         createRepo: (token, userId, userHasRepo, email) => dispatch(actions.createUserRepo(token, userId, userHasRepo, email)),
         onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
