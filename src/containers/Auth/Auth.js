@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import Login from '../../components/Authentication/Login/Login';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
+// import Input from '../../components/UI/Input/Input';
+// import Button from '../../components/UI/Button/Button';
 import * as  actions from  '../../store/actions/index';
-import cssObject from './Auth.css';
+//import cssObject from './Auth.css';
 import {updateObject, checkValidity} from '../../shared/utility';
+
 
 class Auth extends Component {
     state = {
@@ -61,46 +64,37 @@ class Auth extends Component {
         this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
     
-    switchAuthModeHandler = () => {
-        this.setState(prevState => {
-            return {isSignup: !prevState.isSignup};
-        });
-    }
+    // switchAuthModeHandler = () => {
+    //     this.setState(prevState => {
+    //         return {isSignup: !prevState.isSignup};
+    //     });
+    // }
     
     
     render () {
-        const formElementArray = [];
-        for (let key in this.state.controls) {
-            formElementArray.push({
-                id: key,
-                config: this.state.controls[key]
-            });
-        }
+        // const formElementArray = [];
+        // for (let key in this.state.controls) {
+        //     formElementArray.push({
+        //         id: key,
+        //         config: this.state.controls[key]
+        //     });
+        // }
         
-         let form = formElementArray.map(element => (
-            <Input 
-                key={element.id}
-                elementType={element.config.elementType}
-                elementConfig={element.config.elementConfig}
-                value={element.config.value}
-                changed={(event) => this.inputChangedHandler(event, element.id)}
-                invalid={!element.config.valid}
-                shouldValidate={element.config.validation}
-                touched={element.config.touched} />
-        ));
-        
-        let errorMessage = null;
-        
-        if (this.props.error) {
-            errorMessage = (
-                <p>{this.props.error.message}</p>    
-            );
-        }
+        //  let form = formElementArray.map(element => (
+        //     <Input 
+        //         key={element.id}
+        //         elementType={element.config.elementType}
+        //         elementConfig={element.config.elementConfig}
+        //         value={element.config.value}
+        //         changed={(event) => this.inputChangedHandler(event, element.id)}
+        //         invalid={!element.config.valid}
+        //         shouldValidate={element.config.validation}
+        //         touched={element.config.touched} />
+        // ));
         
         let authRedirect = null;
         
         if (this.props.isAuthenticated) {
-            
             if(this.state.isSignup) {
                 this.props.createRepo(this.props.token, this.props.userId, this.props.userHasRepo, this.state.controls.email.value);
             }
@@ -108,20 +102,16 @@ class Auth extends Component {
         }
         
         return (
-            <div className={cssObject.Auth}>
-                <form  onSubmit={this.submitHandler}>
-                    {authRedirect}
-                    {form}
-                    {errorMessage}
-                    <Button buttonType="Success">SUBMIT</Button>
-                </form>
-                <Button
-                    clicked={this.switchAuthModeHandler}
-                    buttonType="Danger">SWITCH TO {this.state.isSignup ? 'LOGIN': 'SIGNUP'}
-                </Button>
-            </div>    
+            <Auxiliary>
+                {authRedirect}
+                <Login
+                    controls={this.state.controls}
+                    error={this.props.error}
+                    submitHandler={this.submitHandler}
+                    inputChangedHandler={(event, controlName) => this.inputChangedHandler(event, controlName)}
+                />
+            </Auxiliary>
         );
-        
     }
     
 }
@@ -140,8 +130,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
-        createRepo: (token, userId, userHasRepo, email) => dispatch(actions.createUserRepo(token, userId, userHasRepo, email))
-        //onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+        createRepo: (token, userId, userHasRepo, email) => dispatch(actions.createUserRepo(token, userId, userHasRepo, email)),
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
 
