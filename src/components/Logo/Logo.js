@@ -1,5 +1,5 @@
 import React from 'react';
-import goalsLogo from '../../assets/images/logo_draft2.png';
+import goalsLogo from '../../assets/images/goals100.png';
 import cssObject from './Logo.css'
 
 //style property we don't use it, it's here to show differnt way to adjasting logo height
