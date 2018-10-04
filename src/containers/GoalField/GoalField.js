@@ -5,6 +5,7 @@ import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import StatusBoard from '../../components/StatusBoard/StatusBoard';
 import Calendar from '../../components/Calendar/Calendar';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 
 import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
@@ -43,13 +44,14 @@ class GoalField extends Component {
         }
     }
     
+    
     render () {
         let goal = <Spinner />;
         
         if (!this.props.loading && this.props.goalConfig !== null) {
             goal =  (
                 <Auxiliary>
-                  <h3>draft works</h3>
+                    <h3>draft works</h3>
                     <StatusBoard
                         title={this.props.goalConfig.title}
                         limitation={this.props.goalConfig.limitation}
@@ -58,7 +60,8 @@ class GoalField extends Component {
                     <Calendar 
                         onDayClick={(event) =>this.checkDayHandler(event)}
                         addStyleRules={true}
-                    />  
+                    />
+                    <Button buttonType='Success'>SAVE</Button>
                 </Auxiliary>
             );
         }

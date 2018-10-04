@@ -42,3 +42,42 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
         );
     };
 };
+
+
+export const updateGoalSuccess= (goalConfig) => {
+    return {
+        type: actionTypes.UPDATE_GOAL_SUCCESS,
+        goalConfig: goalConfig
+    };
+};
+
+export const updateGoalFail = (error) => {
+    return {
+        type: actionTypes.UPDATE_GOAL_FAIL,
+        error: error
+    };
+};
+
+export const updateGoalStart = () => {
+    return {
+        type: actionTypes.UPDATE_GOAL_START
+    };
+};
+
+export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
+    return dispatch  => {
+        dispatch(updateGoalStart());
+        const queryParams = '?auth=' + token +'"';
+        const url = '/users/' + userId + '/goals/' + selectedGoalId + '/daysArray.json' + queryParams;
+        console.log(url);
+        axios.put(url, goalConfig)
+            .then(response => {
+                console.log(response.data.name);
+                dispatch(updateGoalSuccess(goalConfig))
+            }
+            .catch(error => {
+                dispatch(updateGoalFail(error))
+            }
+        )
+    };
+};
