@@ -1,5 +1,6 @@
 import React from 'react';
 import goalsLogo from '../../assets/images/goals100.png';
+import goalsLogoSVG from '../../assets/images/goals100.svg';
 import cssObject from './Logo.css'
 
 //style property we don't use it, it's here to show differnt way to adjasting logo height
@@ -7,7 +8,7 @@ import cssObject from './Logo.css'
 
 const logo = (props) => (
     <div className={cssObject.Logo} style={{height:props.height}}>
-        <img src={goalsLogo} alt="MyBurger"/>
+        <img src={goalsLogoSVG} alt={goalsLogo}/>
     </div>
 );
 
