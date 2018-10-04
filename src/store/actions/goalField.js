@@ -74,7 +74,7 @@ export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
             .then(response => {
                 console.log(response.data.name);
                 dispatch(updateGoalSuccess(goalConfig))
-            }
+            })
             .catch(error => {
                 dispatch(updateGoalFail(error))
             }
