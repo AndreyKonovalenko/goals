@@ -4,8 +4,7 @@ import axios from '../../axios-db';
 
 export const setupGoalSuccess = ( goalConfig ) => {
     return {
-        type: actionTypes.SETUP_GOAL_SUCCESS,
-        goalConfig: goalConfig
+        type: actionTypes.SETUP_GOAL_SUCCESS
     };
 };
 
@@ -30,7 +29,7 @@ export const setupGoal = (goalConfig, token, userId ) => {
         axios.post(url, goalConfig)
             .then( response => {
                 console.log(response.data.name);
-                dispatch(setupGoalSuccess(goalConfig));
+                dispatch(setupGoalSuccess());
             })
             .catch(error => {
                 dispatch(setupGoalFail(error));
