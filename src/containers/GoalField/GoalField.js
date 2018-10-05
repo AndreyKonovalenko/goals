@@ -61,7 +61,10 @@ class GoalField extends Component {
                         onDayClick={(event) =>this.checkDayHandler(event)}
                         addStyleRules={true}
                     />
-                    <Button buttonType='Success'>SAVE</Button>
+                    <Button 
+                        buttonType='Success'
+                        //clicked={this.props.onSaveChangeHandler(this.props.token, this.props.userId, this.props.selectedGoalId, this.props.goalConfig.daysArray)}
+                    >SAVE</Button>
                 </Auxiliary>
             );
         }
@@ -71,7 +74,7 @@ class GoalField extends Component {
                 {goal}
             </div>
         );
-    }
+    } 
 }
 
 const mapStateToProps = state => {
@@ -87,7 +90,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)),
-        onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId))
+        onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId)),
+        onSaveChangeHandler: (token, userId, selectedGoalId, goalConfigDaysArray) => dispatch(actions.updateGoal(token, userId, selectedGoalId, goalConfigDaysArray))
     };
 };
 
