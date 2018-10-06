@@ -63,7 +63,16 @@ class GoalField extends Component {
                     />
                     <Button 
                         buttonType='Success'
-                        clicked={() => this.props.onSaveChangeHandler(this.props.token, this.props.userId, this.props.selectedGoalId, this.props.goalConfig.daysArray)}
+                        clicked={() => {
+                            console.log('Funcion will execute now');
+                            return (this.props.onSaveChangeHandler(
+                                this.props.token, 
+                                this.props.userId,
+                                this.props.selectedGoalId,
+                                this.props.goalConfig.daysArray)
+                                );                           
+                            }
+                        }
                     >SAVE</Button>
                 </Auxiliary>
             );
