@@ -44,10 +44,9 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
 };
 
 
-export const updateGoalSuccess= (goalConfig) => {
+export const updateGoalSuccess= () => {
     return {
         type: actionTypes.UPDATE_GOAL_SUCCESS,
-        goalConfig: goalConfig
     };
 };
 
@@ -73,7 +72,7 @@ export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
         axios.put(url, goalConfig)
             .then(response => {
                 console.log(response.data.name);
-                dispatch(updateGoalSuccess(goalConfig))
+                dispatch(updateGoalSuccess())
             })
             .catch(error => {
                 dispatch(updateGoalFail(error))
