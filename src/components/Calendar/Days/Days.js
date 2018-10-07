@@ -6,6 +6,16 @@ import cssObject from './Days.css';
 import { isDayInDayArray } from '../../../shared/utility';
 
 class  Days extends Component  {
+    componentDidMount () {
+        this.mounted = true;
+        console.log(this.mounted, 'Days');
+    }
+    
+    componentWillUnmount () {
+        this.mounted = false;
+        console.log(this.mounted, 'Days');
+    }
+
      render() {
         const monthStart = dateFns.startOfMonth(this.props.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);

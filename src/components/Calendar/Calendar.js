@@ -17,11 +17,15 @@ class Calendar extends Component {
     componentDidMount () {
         console.log("caledar Did mount");
         window.addEventListener("resize", this.screenSizeChandgeHandler);
+        this.mounted = true;
+        console.log(this.mounted, 'Calendar');
     }
     
     componentWillUnmount () {
         window.addEventListener("resize", this.screenSizeChandgeHandler);
         console.log("screenSize");
+        this.mounted = false;
+        console.log(this.mounted, 'Calendar');
     }
     
     screenSizeChandgeHandler = () => {
@@ -42,7 +46,7 @@ class Calendar extends Component {
     };
     
     render() {
-        console.log(this.state.currentMonth);
+     //   console.log(this.state.currentMonth);
         return (
             <div className={cssObject.Calendar}>
                 <Header 

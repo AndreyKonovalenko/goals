@@ -13,10 +13,19 @@ import * as  actions from '../../store/actions/index';
 class GoalField extends Component {
 
     componentDidMount() {
+        this.mounted = true;
         console.log("Did Mount works");
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
+        console.log(this.mounted)
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+        console.log(this.mounted);
     }
     
+
+
     checkDayHandler = (event) => {
         try {
             //    event.target.setAttribute("style", "background-color: green");
