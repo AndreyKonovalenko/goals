@@ -11,22 +11,22 @@ class Calendar extends Component {
     
     state = {
         currentMonth: new Date(),
-        screenSize: window.matchMedia('(max-width: 800px)').matches,
+        //screenSize: window.matchMedia('(max-width: 800px)').matches,
     }
     
-    componentDidMount () {
-        console.log("caledar Did mount");
-        window.addEventListener("resize", this.screenSizeChandgeHandler);
-        this.mounted = true;
-        console.log(this.mounted, 'Calendar');
-    }
+    // componentDidMount () {
+    //     console.log("caledar Did mount");
+    //     window.addEventListener("resize", this.screenSizeChandgeHandler);
+    //     this.mounted = true;
+    //     console.log(this.mounted, 'Calendar');
+    // }
     
-    componentWillUnmount () {
-        window.addEventListener("resize", this.screenSizeChandgeHandler);
-        console.log("screenSize");
-        this.mounted = false;
-        console.log(this.mounted, 'Calendar');
-    }
+    // componentWillUnmount () {
+    //     window.addEventListener("resize", this.screenSizeChandgeHandler);
+    //     console.log("screenSize");
+    //     this.mounted = false;
+    //     console.log(this.mounted, 'Calendar');
+    // }
     
     screenSizeChandgeHandler = () => {
         const sizeMatched = window.matchMedia('(max-width: 800px)').matches;
@@ -46,7 +46,7 @@ class Calendar extends Component {
     };
     
     render() {
-     //   console.log(this.state.currentMonth);
+        console.log(this.state.currentMonth);
         return (
             <div className={cssObject.Calendar}>
                 <Header 
@@ -55,7 +55,7 @@ class Calendar extends Component {
                     prevMonth={this.prevMonth}/>
                 <WeekDays
                     currentMonth={this.state.currentMonth}
-                    screenSize={this.state.screenSize}
+                    screenSize={null}
                 />
                 <Days
                     currentMonth={this.state.currentMonth}
