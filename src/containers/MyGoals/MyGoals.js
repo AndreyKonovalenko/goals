@@ -58,6 +58,7 @@ class MyGoals extends Component {
                             title={element.value.title}
                             key={element.id}
                             clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
+                            delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
                         />;
                     })}
                 </div>
@@ -86,6 +87,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
+        onDeleteGoal: (token, userId, goalId) => dispatch(actions.deleteGoal(token, userId, goalId))
     };
 };
 

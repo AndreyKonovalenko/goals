@@ -34,6 +34,19 @@ const selectGoalById = (state, action) => {
     return updateObject(state, {selectedGoalId: action.selectedGoalId}); 
 };
 
+
+const deleteGoalSuccess = (state, action) => {
+    return updateObject(state, { loading: false });
+};
+
+const deleteGoalFail = (state, action) => {
+    return updateObject(state, {loading: false});
+};
+
+const deleteGoalStart = (state, action) => {
+    return updateObject(state, {loading: true});
+};
+
 const reducer = (state = initialSate, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GOALS_START: return fetchGoalsStart(state, action);
@@ -41,6 +54,9 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.FETCH_GOALS_FAIL: return fetchGoalsFail(state, action);
         case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
         case actionTypes.AUTH_LOGOUT: return clearState(state);
+        case actionTypes.DELETE_GOAL_START: return deleteGoalStart(state, action);
+        case actionTypes.DELETE_GOAL_FAIL: return deleteGoalFail(state, action);
+        case actionTypes.DELETE_GOAL_SUCCESS: return deleteGoalSuccess(state, action);
         default: return state;
     }
 };

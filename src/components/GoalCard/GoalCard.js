@@ -11,7 +11,7 @@ const goalCard = (props) => {
             <div className={cssObject.GoalCard} onClick={props.clicked}>
                 <h3>{props.title}</h3>
             </div>
-            <Button buttonType="Danger" clicked={() => console.log("Soon deleting functionality will be added")}>Delete</Button>
+            <Button buttonType="Danger" clicked={props.delete}>Delete</Button>
         </Auxiliary>
     );
     

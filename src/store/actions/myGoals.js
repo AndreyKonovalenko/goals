@@ -72,7 +72,7 @@ export const deleteGoal = (token, userId, goalId) => {
         axios.delete(url + queryParams)
             .then(response => {
                 dispatch(fetchGoalsSuccess());
-                //dispatch(fetchGoals(token, userId));
+                dispatch(fetchGoals(token, userId));
             })
             .catch(error => dispatch(fetchGoalsFail(error))
         );
