@@ -53,7 +53,7 @@ class MyGoals extends Component {
             list = (
                 <div>
                     {listOfGoalsArrey.map(element => {
-                        // console.log(typeof(element.id));
+                        console.log(element.id);
                         return <GoalCard 
                             title={element.value.title}
                             key={element.id}

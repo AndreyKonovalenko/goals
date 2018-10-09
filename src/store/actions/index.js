@@ -18,5 +18,6 @@ export {
 
 export {
     fetchGoals,
-    selectGoalById
+    selectGoalById,
+    deleteGoal
 } from './myGoals';

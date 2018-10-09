@@ -41,3 +41,40 @@ export const fetchGoals = (token, userId) => {
         );
     };
 };
+
+
+
+export const deleteGoalSuccess = () => {
+    return {
+        type: actionTypes.DELETE_GOAL_SUCCESS
+    };
+};
+
+
+export const deleteGaolFail = (error) => {
+    return {
+        type: actionTypes.DELETE_GOAL_FAIL,
+        error: error
+    };
+};
+
+export const deleteGoalStart = () => {
+    return {
+        type: actionTypes.DELETE_GOAL_START
+    };
+};
+
+export const deleteGoal = (token, userId, goalId) => {
+    return dispatch  => {
+        dispatch(deleteGoalStart());
+        const queryParams = '?auth=' + token +'"';
+        const url = '/users/'+ userId + '/goals/' + goalId + '.json';
+        axios.delete(url + queryParams)
+            .then(response => {
+                dispatch(fetchGoalsSuccess());
+                //dispatch(fetchGoals(token, userId));
+            })
+            .catch(error => dispatch(fetchGoalsFail(error))
+        );
+    };
+};
