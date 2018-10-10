@@ -135,6 +135,7 @@ class GoalBuilder extends Component {
             })
         });
         this.setState({goalForm: emptyForm});
+        // need to add action which will reset goalCreated to false
         console.log(emptyForm);
 
     }
