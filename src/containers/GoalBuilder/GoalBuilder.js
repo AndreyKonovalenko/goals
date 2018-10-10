@@ -59,10 +59,6 @@ class GoalBuilder extends Component {
         }
     }
     
-    compomentDidMount () {
-        const initialForm = updateObject(this.state.goalForm);
-        console.log(initialForm);
-    }
     saveHandler = (event) => {
         event.preventDefault();
         const goalInitConfig = {
@@ -123,14 +119,28 @@ class GoalBuilder extends Component {
         }
     }
     
-    resetFormHandler = (event, form) => {
+    resetFormHandler = (event) => {
         event.preventDefault();
-        this.setState({goalForm: form});
+        console.log('reset form')
+        let emptyForm = {};
+        const keysArray = Object.keys(this.state.goalForm);
+        
+        keysArray.forEach(element => {
+            emptyForm = updateObject(this.state.goalForm, {
+                [element]: updateObject(this.state.goalForm[element], {
+                    value: '',
+                    valid: false,
+                    touched: false
+                })
+            });
+           // console.log(key, emptyForm[key]);
+        });
+        this.setState({goalForm: emptyForm});
+        console.log(emptyForm);
+        console.log(keysArray);
     }
     
     render() {
-        
-        console.log(this.props);
         const formElementArray = [];
         for (let key in this.state.goalForm) {
             formElementArray.push({
@@ -155,7 +165,7 @@ class GoalBuilder extends Component {
                     ))
                 }
                 <Button buttonType="Success" clicked={this.saveHandler}>SAVE</Button>
-                <Button buttonType="Danger" clicked={(event) => this.resetFormHandler(event, this.initialForm)}>CANCEL</Button>
+                <Button buttonType="Danger" clicked={this.resetFormHandler}>CANCEL</Button>
             </form>
         );
         
@@ -187,8 +197,7 @@ class GoalBuilder extends Component {
             <div className={cssObject.GoalBuilder}>
                     {message}
                     {form}
-                    {calendar}
-                    
+                    {calendar}       
             </div>
         );
     }
