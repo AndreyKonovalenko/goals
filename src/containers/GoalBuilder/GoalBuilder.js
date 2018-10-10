@@ -58,8 +58,11 @@ class GoalBuilder extends Component {
 
         }
     }
-       
-         
+    
+    compomentDidMount () {
+        const initialForm = updateObject(this.state.goalForm);
+        console.log(initialForm);
+    }
     saveHandler = (event) => {
         event.preventDefault();
         const goalInitConfig = {
@@ -69,6 +72,7 @@ class GoalBuilder extends Component {
             daysArray: daysArrayBuilder(this.state.goalForm.start.value, this.state.goalForm.limitation.value)
         };
         this.props.onSetupGoal(goalInitConfig, this.props.token, this.props.userId);
+
     }
     
     inputChangedHandler = (event, inputIdentifier) => {
@@ -117,10 +121,16 @@ class GoalBuilder extends Component {
         } catch (error) {
             console.log(error);
         }
-   
+    }
+    
+    resetFormHandler = (event, form) => {
+        event.preventDefault();
+        this.setState({goalForm: form});
     }
     
     render() {
+        
+        console.log(this.props);
         const formElementArray = [];
         for (let key in this.state.goalForm) {
             formElementArray.push({
@@ -130,7 +140,7 @@ class GoalBuilder extends Component {
         }
         
         let form = (
-            <form>
+            <form className='dataForm'>
                 {formElementArray.map(element => (
                     <Input
                         key={element.id} 
@@ -145,7 +155,7 @@ class GoalBuilder extends Component {
                     ))
                 }
                 <Button buttonType="Success" clicked={this.saveHandler}>SAVE</Button>
-                <Button buttonType="Danger">CANCEL</Button>
+                <Button buttonType="Danger" clicked={(event) => this.resetFormHandler(event, this.initialForm)}>CANCEL</Button>
             </form>
         );
         
@@ -165,7 +175,7 @@ class GoalBuilder extends Component {
                 );
         }
         console.log(this.state.goalForm.start.touched);
-        let message = null;
+        let message = <h3>Set up your new goal parameters!</h3>;
         if (this.props.error !== null) {
             message = <h3>{this.props.error} </h3>; 
         }
@@ -175,7 +185,6 @@ class GoalBuilder extends Component {
         
         return (
             <div className={cssObject.GoalBuilder}>
-                    <h3>Set up your new goal parameters!</h3>
                     {message}
                     {form}
                     {calendar}
