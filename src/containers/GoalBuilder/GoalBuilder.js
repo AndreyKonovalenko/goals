@@ -121,7 +121,8 @@ class GoalBuilder extends Component {
     
     resetFormHandler = (event) => {
         event.preventDefault();
-        console.log('reset form')
+        this.props.onCancel();
+        
         let emptyForm = {...this.state.goalForm};
         for (let key in emptyForm) {
             emptyForm = updateObject(emptyForm, {
@@ -211,7 +212,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetupGoal: (goalConfig, token, userId) => dispatch(actions.setupGoal(goalConfig, token, userId))
+        onSetupGoal: (goalConfig, token, userId) => dispatch(actions.setupGoal(goalConfig, token, userId)),
+        onCancel: () => dispatch(actions.setupGoalCancel())
     };
 }
 

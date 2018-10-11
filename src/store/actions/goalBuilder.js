@@ -21,6 +21,11 @@ export const setupGoalStart = () => {
     };
 };
 
+export const setupGoalCancel = () => {
+    return {
+        type: actionTypes.SETUP_GOAL_CANCEL
+    };
+};
 
 export const setupGoal = (goalConfig, token, userId ) => {
     return dispatch => {

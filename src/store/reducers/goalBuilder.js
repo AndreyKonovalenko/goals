@@ -27,11 +27,18 @@ const setupGoalFail = (state, action) => {
     });
 };
 
+const setupGoalCancel = (state, action) => {
+    return updateObject(state, {
+        goalCreated: false
+    })
+}
+
 const reducer = (state = initialSate, action) => {
     switch (action.type) {
         case actionTypes.SETUP_GOAL_START: return setupGoalStart(state, action);
         case actionTypes.SETUP_GOAL_SUCCESS: return setupGoalSuccess(state, action);
         case actionTypes.SETUP_GOAL_FAIL: return setupGoalFail(state, action);
+        case actionTypes.SETUP_GOAL_CANCEL: return setupGoalCancel(state, action);
         default: return state;
     }    
 };

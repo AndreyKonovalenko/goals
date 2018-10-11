@@ -13,7 +13,8 @@ export {
 } from './auth';
 
 export {
-    setupGoal
+    setupGoal,
+    setupGoalCancel
 } from './goalBuilder';
 
 export {
