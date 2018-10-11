@@ -123,20 +123,17 @@ class GoalBuilder extends Component {
         event.preventDefault();
         console.log('reset form')
         let emptyForm = {...this.state.goalForm};
-        const keysArray = Object.keys(this.state.goalForm);
-        
-        keysArray.forEach(element => {
+        for (let key in emptyForm) {
             emptyForm = updateObject(emptyForm, {
-                [element]: updateObject(emptyForm[element], {
+                [key]: updateObject(emptyForm[key], {
                     value: '',
                     valid: false,
                     touched: false
                 })
-            })
-        });
+            });
+        }
         this.setState({goalForm: emptyForm});
-        // need to add action which will reset goalCreated to false
-        console.log(emptyForm);
+        console.table(emptyForm);
 
     }
     
