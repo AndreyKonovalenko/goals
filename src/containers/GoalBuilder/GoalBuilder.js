@@ -133,9 +133,9 @@ class GoalBuilder extends Component {
                 })
             });
         }
+        
         this.setState({goalForm: emptyForm});
         console.table(emptyForm);
-
     }
     
     render() {
