@@ -7,24 +7,22 @@ import Calendar from '../../components/Calendar/Calendar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 
-import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
+import {updateObject, checkDaysArrayForUpdate, setupIndecators} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
+    
+    state = {
+        indicators: {
+            left: null,
+            succeeded: null,
+            failed: null,
+        }
+    }
 
     componentDidMount() {
-        this.mounted = true;
-        console.log("Did Mount works");
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
-        console.log(this.mounted)
     }
-
-    componentWillUnmount() {
-        this.mounted = false;
-        console.log(this.mounted);
-    }
-    
-
 
     checkDayHandler = (event) => {
         try {
@@ -55,9 +53,13 @@ class GoalField extends Component {
     
     
     render () {
+        
+     //  
         let goal = <Spinner />;
         
         if (!this.props.loading && this.props.goalConfig !== null) {
+            console.log(this.props.goalConfig.daysArray);
+            console.log(setupIndecators(this.props.goalConfig.daysArray));
             goal =  (
                 <Auxiliary>
                     <h3>draft works</h3>
@@ -86,7 +88,7 @@ class GoalField extends Component {
                 </Auxiliary>
             );
         }
-    
+        
         return (
             <div>
                 {goal}

@@ -77,3 +77,23 @@ export const isDayInDayArray = ( currentDay, daysArray ) => {
     console.log(result);
     return result;
 };
+
+
+
+export const setupInd = (daysArray) => {
+    let left = daysArray.length;
+    let succeeded = 0;
+    let failed = 0;
+    daysArray.forEach(element => {
+        if (element.touched){
+            left = left - 1;
+        }
+        if (element.success){
+            succeeded = succeeded + 1;
+        }
+        if (element.touched && !element.success) {
+            failed = failed + 1;
+        }
+    });
+    return {left, succeeded, failed};
+};

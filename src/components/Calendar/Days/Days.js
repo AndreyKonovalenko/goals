@@ -37,20 +37,20 @@ class  Days extends Component  {
                 if (isInGoalRange !== null && isInGoalRange.touched === false) {
                     //Current day styling
                     if (dateFns.isToday(currentDay)) {
-                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" , backgroundColor: '#fff', cursor: 'pointer' }};
+                        inLineStyle = {...{ fontWeight: 'bold', border: "1px solid #2b2929" , backgroundColor: '#fff', cursor: 'pointer' }};
                     } else {
-                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff', cursor: 'pointer'  }};
+                        inLineStyle = {...{ backgroundColor: '#fff', cursor: 'pointer'  }};
                     }
                     
                 } 
                 
                 if (isInGoalRange !== null && isInGoalRange.touched === true) {
                      if (isInGoalRange.success === true) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: 'green', cursor: 'pointer' }};
+                        inLineStyle = {...{ backgroundColor: 'green', cursor: 'pointer' }};
                     }
                     
                     if (isInGoalRange.success === false) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: 'red', cursor: 'pointer' }};
+                        inLineStyle = {...{ backgroundColor: 'red', cursor: 'pointer' }};
                     }
                 }
                 days.push(
@@ -70,11 +70,11 @@ class  Days extends Component  {
                 let inLineStyle = {};
                 // offMonth day styling
                 if (currentDay < monthStart || currentDay > monthEnd) {
-                    inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
+                    inLineStyle = {...{ backgroundColor: '#fff' }};
                 }
                 //Current day styling
                 if (dateFns.isToday(currentDay)) {
-                    inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                    inLineStyle = {...{ fontWeight: 'bold', border: "1px solid #2b2929" }};
                 }
                 days.push(
                     <li 

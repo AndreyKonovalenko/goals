@@ -63,6 +63,13 @@ export const updateGoalStart = () => {
     };
 };
 
+export const setupIndecators = (indecators) => {
+    return {
+        type: actionTypes.SETUP_GOAL_INDECATORS,
+        indecators: indecators
+    }
+}
+
 export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
     return dispatch  => {
         dispatch(updateGoalStart());

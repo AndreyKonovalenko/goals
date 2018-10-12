@@ -1,10 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import { updateObject, setupInd} from '../../shared/utility';
 
 const initialState = {
     goalConfig: null,
     loading: false,
-    error: null
+    error: null,
+    indicators: {
+        left: null,
+        succeeded: null,
+        failed: null,
+    }
 };
 
 const updateGoalConfig = (state, action) => {
@@ -40,7 +45,13 @@ const updateGoalFail = (state, action) => {
 
 const updateGoalSuccess = (state, action) => {
     return updateObject(state, {loading: false});
-    
+};
+
+
+const setupIndecators = (state, action) => {
+    return updateObject(state, {
+        indicators: setupInd(actionTypes.indicators)
+    });
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,9 +63,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_GOAL_SUCCESS: return updateGoalSuccess(state, action);
         case actionTypes.UPDATE_GOAL_START: return updateGoalStart(state, action);
         case actionTypes.UPDATE_GOAL_FAIL: return updateGoalFail(state, action);
+        case actionTypes.SETUP_GOAL_INDECATORS: return setupIndecators(state, action);
         default: return state;
     }
-    
-}
+};
 
 export default reducer;
