@@ -19,36 +19,38 @@ class  Days extends Component  {
             for (let i = 0 ; i <= daysRange; i++) {
                 let currentDay = dateFns.addDays(startDate, i);
                 let inLineStyle = {};
+                
                 let isInGoalRange = isDayInDayArray(dateFns.format(currentDay, "DD.MM.YYYY"), this.props.goalConfig.daysArray);
                 
-                if (isInGoalRange === null) {
-                    // offMonth day styling
-                    if (currentDay < monthStart || currentDay > monthEnd) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
-                    }
-                    //Current day styling
-                    if (dateFns.isToday(currentDay)) {
-                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
-                    }
-                } 
+                // style for day out of goal gange
+                // if (isInGoalRange === null) {
+                //     // offMonth day styling
+                //     if (currentDay < monthStart || currentDay > monthEnd) {
+                //         inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
+                //     }
+                //     //Current day styling
+                //     if (dateFns.isToday(currentDay)) {
+                //         inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                //     }
+                // } 
                 
-                if (isInGoalRange!==null && isInGoalRange.touched === false) {
-                     if (currentDay < monthStart || currentDay > monthEnd) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff' }};
-                    }
+                if (isInGoalRange !== null && isInGoalRange.touched === false) {
                     //Current day styling
                     if (dateFns.isToday(currentDay)) {
-                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" }};
+                        inLineStyle = {...inLineStyle = { fontWeight: 'bold', border: "1px solid #2b2929" , backgroundColor: '#fff', cursor: 'pointer' }};
+                    } else {
+                        inLineStyle = {...inLineStyle = { backgroundColor: '#fff', cursor: 'pointer'  }};
                     }
+                    
                 } 
                 
                 if (isInGoalRange !== null && isInGoalRange.touched === true) {
                      if (isInGoalRange.success === true) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: 'green' }};
+                        inLineStyle = {...inLineStyle = { backgroundColor: 'green', cursor: 'pointer' }};
                     }
                     
                     if (isInGoalRange.success === false) {
-                        inLineStyle = {...inLineStyle = { backgroundColor: 'red' }};
+                        inLineStyle = {...inLineStyle = { backgroundColor: 'red', cursor: 'pointer' }};
                     }
                 }
                 days.push(
