@@ -60,7 +60,7 @@ export const checkDaysArrayForUpdate = (daysArray, pickedDay) => {
     daysArray.forEach(element => {
         if (element.id === pickedDay){
             console.log(daysArray.indexOf(element));
-            result =  daysArray.indexOf(element);
+            result = daysArray.indexOf(element);
         }
     });
     return result;
@@ -68,11 +68,12 @@ export const checkDaysArrayForUpdate = (daysArray, pickedDay) => {
 };
 
 export const isDayInDayArray = ( currentDay, daysArray ) => {
-    let result = null;
+    let result = false;
     daysArray.forEach(element => {
         if( element.id === currentDay) {
-            result = element;
+            result = true;
         }
     });
+    console.log(result);
     return result;
 }
