@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject, setupInd} from '../../shared/utility';
+import { updateObject} from '../../shared/utility';
 
 const initialState = {
     goalConfig: null,
@@ -50,7 +50,7 @@ const updateGoalSuccess = (state, action) => {
 
 const setupIndecators = (state, action) => {
     return updateObject(state, {
-        indicators: setupInd(actionTypes.indicators)
+        indecators: actionTypes.indecators
     });
 };
 

@@ -12,13 +12,7 @@ import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
     
-    state = {
-        indicators: {
-            left: null,
-            succeeded: null,
-            failed: null,
-        }
-    }
+   
 
     componentDidMount() {
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
