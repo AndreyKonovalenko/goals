@@ -100,7 +100,7 @@ class  Days extends Component  {
 
 const mapStateToProps = state => {
     return {
-        goalConfig: state.goalField.goalConfig
+        goalConfig: state.goalFieldR.goalConfig
     }
 }
 

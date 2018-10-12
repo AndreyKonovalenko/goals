@@ -203,10 +203,10 @@ class GoalBuilder extends Component {
 
 const mapStateToProps = state => {
     return {        
-        error: state.goalBuilder.error,
-        token: state.auth.token,
-        userId: state.auth.userId,
-        goalCreated: state.goalBuilder.goalCreated
+        error: state.goalBuilderR.error,
+        token: state.authR.token,
+        userId: state.authR.userId,
+        goalCreated: state.goalBuilderR.goalCreated
     };
 }
 

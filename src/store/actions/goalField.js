@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-db';
+impoet {setupInd} from '../../shared/utility';
 
 
 export const checkUpGoalDay = (updatedGoalConfig) => {
@@ -37,7 +38,10 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
         const url = '/users/'+ userId + '/goals/' + selectedGoalId + '.json';
         console.log(url);
         axios.get(url + queryParams)
-            .then(response => dispatch(fetchSelectedGoalSuccess(response.data)))
+            .then(response => {
+                dispatch(fetchSelectedGoalSuccess(response.data))
+                dispatch(setupIndecator(response.data.daysArray))
+            })
             .catch(error => dispatch(fetchSelectedGoalFail(error))
         );
     };
@@ -63,10 +67,10 @@ export const updateGoalStart = () => {
     };
 };
 
-export const setupIndecators = (indecators) => {
+export const setupIndicators = (daysArray) => {
     return {
         type: actionTypes.SETUP_GOAL_INDECATORS,
-        indecators: indecators
+        indicators: setupInd(daysArray)
     }
 }
 
@@ -79,7 +83,7 @@ export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
         axios.put(url, goalConfig)
             .then(response => {
                 console.log(response.data.name);
-                dispatch(updateGoalSuccess())
+                dispatch(updateGoalSuccess());
             })
             .catch(error => {
                 dispatch(updateGoalFail(error))

@@ -8,10 +8,10 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import goalFieldReducer from './store/reducers/goalField';
-import authReducer from './store/reducers/auth';
-import goalBuilderReducer from './store/reducers/goalBuilder';
-import myGoalsReducer from './store/reducers/myGoals';
+import goalFieldReducer from './store/reducers/goalFieldR';
+import authReducer from './store/reducers/authR';
+import goalBuilderReducer from './store/reducers/goalBuilderR';
+import myGoalsReducer from './store/reducers/myGoalsR';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
