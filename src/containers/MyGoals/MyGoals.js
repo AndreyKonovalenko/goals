@@ -75,11 +75,11 @@ class MyGoals extends Component {
 
 const mapStateToProps = state => {
     return {
-        userId: state.authR.userId,
-        token: state.authR.token,
-        goalsList: state.myGoalsR.goalsList,
-        selectedGoalId: state.myGoalsR.selectedGoalId,
-        loading: state.myGoalsR.loading
+        userId: state.auth.userId,
+        token: state.auth.token,
+        goalsList: state.myGoals.goalsList,
+        selectedGoalId: state.myGoals.selectedGoalId,
+        loading: state.myGoals.loading
     };
 };
 

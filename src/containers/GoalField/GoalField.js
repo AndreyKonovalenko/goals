@@ -47,8 +47,6 @@ class GoalField extends Component {
     
     
     render () {
-        
-     //  
         let goal = <Spinner />;
         
         if (!this.props.loading && this.props.goalConfig !== null) {
@@ -91,11 +89,11 @@ class GoalField extends Component {
 
 const mapStateToProps = state => {
     return {
-        goalConfig: state.goalFieldR.goalConfig,
-        token: state.authR.token,
-        userId: state.authR.userId,
-        selectedGoalId: state.myGoalsR.selectedGoalId,
-        loading: state.goalFieldR.loading
+        goalConfig: state.goalField.goalConfig,
+        token: state.auth.token,
+        userId: state.auth.userId,
+        selectedGoalId: state.myGoals.selectedGoalId,
+        loading: state.goalField.loading
     };
 };
 

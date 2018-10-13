@@ -47,8 +47,8 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
         console.log(url);
         axios.get(url + queryParams)
             .then(response => {
-                dispatch(fetchSelectedGoalSuccess(response.data))
-                dispatch(setupIndicators(response.data.daysArray))
+                dispatch(setupIndicators(response.data.daysArray));
+                dispatch(fetchSelectedGoalSuccess(response.data));
             })
             .catch(error => dispatch(fetchSelectedGoalFail(error))
         );
@@ -76,6 +76,7 @@ export const updateGoalStart = () => {
 };
 
 
+
 export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
     return dispatch  => {
         dispatch(updateGoalStart());
@@ -85,7 +86,7 @@ export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
         axios.put(url, goalConfig)
             .then(response => {
                 console.log(response.data.name);
-                dispatch(updateGoalSuccess());
+                dispatch(updateGoalSuccess())
             })
             .catch(error => {
                 dispatch(updateGoalFail(error))
