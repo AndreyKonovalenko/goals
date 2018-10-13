@@ -95,5 +95,5 @@ export const setupInd = (daysArray) => {
             failed = failed + 1;
         }
     });
-    return {left, succeeded, failed};
+    return {'left': left,'succeeded': succeeded,'failed': failed};
 };

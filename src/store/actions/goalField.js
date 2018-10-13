@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-db';
-impoet {setupInd} from '../../shared/utility';
+import {setupInd} from '../../shared/utility';
 
 
 export const checkUpGoalDay = (updatedGoalConfig) => {
@@ -40,7 +40,7 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
         axios.get(url + queryParams)
             .then(response => {
                 dispatch(fetchSelectedGoalSuccess(response.data))
-                dispatch(setupIndecator(response.data.daysArray))
+                dispatch(setupIndicators(response.data.daysArray))
             })
             .catch(error => dispatch(fetchSelectedGoalFail(error))
         );
