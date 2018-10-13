@@ -74,13 +74,13 @@ export const isDayInDayArray = ( currentDay, daysArray ) => {
            result = element;
         }
     });
-    console.log(result);
     return result;
 };
 
 
 
 export const setupInd = (daysArray) => {
+    console.log(daysArray);
     let left = daysArray.length;
     let succeeded = 0;
     let failed = 0;
@@ -96,4 +96,6 @@ export const setupInd = (daysArray) => {
         }
     });
     return {'left': left,'succeeded': succeeded,'failed': failed};
+    console.log({left: left,succeeded: succeeded,failed: failed});
+    return {left: left,succeeded: succeeded,failed: failed};
 };

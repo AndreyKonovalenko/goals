@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-db';
-import {setupInd} from '../../shared/utility';
+import { setupInd } from '../../shared/utility';
 
 
 export const checkUpGoalDay = (updatedGoalConfig) => {
@@ -30,6 +30,14 @@ export const fetchSelectedGoalStart = () => {
         type: actionTypes.FETCH_SELECTED_GOAL_START
     };
 };
+
+
+export const setupIndicators = (daysArray) => {
+    return {
+        type: actionTypes.SETUP_GOAL_INDICATORS,
+        indicators: setupInd(daysArray)
+    }
+}
 
 export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
     return dispatch  => {
@@ -67,12 +75,6 @@ export const updateGoalStart = () => {
     };
 };
 
-export const setupIndicators = (daysArray) => {
-    return {
-        type: actionTypes.SETUP_GOAL_INDECATORS,
-        indicators: setupInd(daysArray)
-    }
-}
 
 export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
     return dispatch  => {
