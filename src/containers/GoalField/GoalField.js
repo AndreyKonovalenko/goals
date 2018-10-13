@@ -7,7 +7,7 @@ import Calendar from '../../components/Calendar/Calendar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 
-import {updateObject, checkDaysArrayForUpdate, setupIndecators} from '../../shared/utility';
+import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
@@ -52,8 +52,6 @@ class GoalField extends Component {
         let goal = <Spinner />;
         
         if (!this.props.loading && this.props.goalConfig !== null) {
-            console.log(this.props.goalConfig.daysArray);
-            console.log(setupIndecators(this.props.goalConfig.daysArray));
             goal =  (
                 <Auxiliary>
                     <h3>draft works</h3>

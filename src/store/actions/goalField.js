@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-db';
+import { setupInd } from '../../shared/utility';
 
 
 export const checkUpGoalDay = (updatedGoalConfig) => {
@@ -30,6 +31,14 @@ export const fetchSelectedGoalStart = () => {
     };
 };
 
+
+export const setupIndicators = (daysArray) => {
+    return {
+        type: actionTypes.SETUP_GOAL_INDICATORS,
+        indicators: setupInd(daysArray)
+    }
+}
+
 export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
     return dispatch  => {
         dispatch(fetchSelectedGoalStart());
@@ -37,7 +46,10 @@ export const fetchSelectedGoal = (token, userId, selectedGoalId) => {
         const url = '/users/'+ userId + '/goals/' + selectedGoalId + '.json';
         console.log(url);
         axios.get(url + queryParams)
-            .then(response => dispatch(fetchSelectedGoalSuccess(response.data)))
+            .then(response => {
+                dispatch(setupIndicators(response.data.daysArray));
+                dispatch(fetchSelectedGoalSuccess(response.data));
+            })
             .catch(error => dispatch(fetchSelectedGoalFail(error))
         );
     };
@@ -63,12 +75,7 @@ export const updateGoalStart = () => {
     };
 };
 
-export const setupIndecators = (indecators) => {
-    return {
-        type: actionTypes.SETUP_GOAL_INDECATORS,
-        indecators: indecators
-    }
-}
+
 
 export const updateGoal = (token, userId, selectedGoalId, goalConfig) => {
     return dispatch  => {

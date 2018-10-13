@@ -47,10 +47,9 @@ const updateGoalSuccess = (state, action) => {
     return updateObject(state, {loading: false});
 };
 
-
-const setupIndecators = (state, action) => {
+const setupIndicators = (state, action) => {
     return updateObject(state, {
-        indecators: actionTypes.indecators
+        indicators: action.indicators
     });
 };
 
@@ -63,7 +62,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_GOAL_SUCCESS: return updateGoalSuccess(state, action);
         case actionTypes.UPDATE_GOAL_START: return updateGoalStart(state, action);
         case actionTypes.UPDATE_GOAL_FAIL: return updateGoalFail(state, action);
-        case actionTypes.SETUP_GOAL_INDECATORS: return setupIndecators(state, action);
+        case actionTypes.SETUP_GOAL_INDICATORS: return setupIndicators(state, action);
         default: return state;
     }
 };
