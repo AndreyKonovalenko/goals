@@ -8,7 +8,9 @@ const statusBoard = (props) => {
             <h2>{props.title}</h2>
             <h4>started on {props.start}</h4>
             <p>all period is: {props.limitation} days</p>
-            <p>days left:  dyas complete: </p>
+            <p>days left: {props.left} </p>
+            <p>dyas succeeded: {props.succeeded}</p>
+            <p>dyas failed:{props.failed}  </p>
         </div>
     );
 }

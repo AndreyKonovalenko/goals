@@ -57,6 +57,9 @@ class GoalField extends Component {
                         title={this.props.goalConfig.title}
                         limitation={this.props.goalConfig.limitation}
                         start={this.props.goalConfig.startDay}
+                        left={this.props.indicators.left}
+                        succeeded={this.props.indicators.succeeded}
+                        failed={this.props.indicators.failed}
                     />
                     <Calendar 
                         onDayClick={(event) =>this.checkDayHandler(event)}
@@ -93,7 +96,8 @@ const mapStateToProps = state => {
         token: state.auth.token,
         userId: state.auth.userId,
         selectedGoalId: state.myGoals.selectedGoalId,
-        loading: state.goalField.loading
+        loading: state.goalField.loading,
+        indicators: state.goalField.indicators
     };
 };
 
