@@ -21,10 +21,18 @@ class Layout extends Component {
     //     });
     // }
 
+    onNavigateGoalBuilder = () => {
+        console.log('to builder');
+        this.props.history.push('/builder');
+    }
+
     render () {
         return(
             <Auxiliary>
-                <Toolbar isAuth={this.props.isAuthenticated}/>
+                <Toolbar
+                    isAuth={this.props.isAuthenticated} 
+                    onAddGoalClick={this.onNavigateGoalBuilder}
+                />
                 <main className={cssObject.Content}>
                     {this.props.children}
                 </main>
