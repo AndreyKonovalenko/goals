@@ -38,7 +38,7 @@ const signup = (props) => {
                 {form}
                 {errorMessage}
                 <p>Already have an account, use button Log in?</p>
-                <Button buttonType="Success">SIGUP</Button>
+                <Button buttonType="Success">SIGNUP</Button>
             </form>
         </div>
         
