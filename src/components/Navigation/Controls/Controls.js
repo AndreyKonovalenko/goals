@@ -8,7 +8,7 @@ const controls = (props) => {
     const controls =(
         <Auxiliary>
             <Button clicked={props.onAddGoal}>Add Goal</Button>
-            <Button >EDIT</Button>
+            <Button style={{borderRight: "1px solid #dedede"}}>EDIT</Button>
         </Auxiliary>
     );
     
