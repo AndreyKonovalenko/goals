@@ -12,15 +12,15 @@ const toolbar = (props) => (
         <div className={cssObject.Logo}>
            <Logo /> 
         </div>
-        <div>
+        <div className={cssObject.SubConteiner}>
             <Controls 
                 isAuthenticated={props.isAuth} 
                 onAddGoal={props.onAddGoalClick}
             />
+            <nav>
+                <NavItems isAuthenticated={props.isAuth}/>
+            </nav>
         </div>
-        <nav>
-            <NavItems isAuthenticated={props.isAuth}/>
-        </nav>
     </header>
 );
 

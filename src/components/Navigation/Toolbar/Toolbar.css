@@ -4,11 +4,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #c2dbe8;
+    background-color: #fbfbfb;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    border-bottom: 1px solid #dedede;
     box-sizing: border-box;
     z-index:90;
 }
@@ -21,3 +22,9 @@
     height: 80%;
 }
 
+.SubConteiner {
+    width:40%;
+    display: flex;
+    justify-content:space-between;
+    
+}
