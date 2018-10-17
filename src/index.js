@@ -15,6 +15,9 @@ import myGoalsReducer from './store/reducers/myGoals';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
+// Only chrome can handle the redux dev tool
+// redux compose cannot handle a null or undefined middleware
+
 const rootReducer = combineReducers({
     goalField: goalFieldReducer,
     auth: authReducer,
