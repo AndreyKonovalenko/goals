@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {Motion, spring} from 'react-motion';
 //import {Redirect} from 'react-router-dom';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
@@ -9,9 +10,11 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 
 class MyGoals extends Component {
-
+    state = {
+        open: false
+    }
     componentDidMount() {
-        console.log(' My Goals component did mount');
+        console.log(' My Goals component did mount', this.state.open);
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
@@ -54,12 +57,31 @@ class MyGoals extends Component {
                 <div>
                     {listOfGoalsArrey.map(element => {
                         console.log(element.id);
-                        return <GoalCard 
-                            title={element.value.title}
-                            key={element.id}
-                            clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
-                            delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
-                        />;
+                        return (
+                            <Motion style={{x: spring(this.state.open ? 200 : 0)}}  key={element.id} >
+                                { ({x}) => {
+                                    console.log('motion fiered')
+                                    return (
+                                    <div style={{position:'relative', width: '1000px', border: '1px solid #dedede'}}> 
+                                        <div style={{
+                                                border: '1px solid #dedede',
+                                                width: '400px',
+                                                positon:'absolut',
+                                                WebkitTransform: `translate3d(${x}px, 0, 0)`,
+                                                transform: `translate3d(${x}px, 0, 0)`,}}
+                                        >
+                                            <GoalCard 
+                                                title={element.value.title}
+                                                clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
+                                                delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
+                                            />
+                                        </div>
+                                    </div>);
+                                    
+                                }
+                                }
+                            </Motion>
+                        );
                     })}
                 </div>
             );
