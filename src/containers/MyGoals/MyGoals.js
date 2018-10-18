@@ -26,6 +26,16 @@ class MyGoals extends Component {
         }
     }
     
+    
+    handleMouseDown = () => {
+        this.setState({open: !this.state.open});
+    };
+
+    handleTouchStart = (e) => {
+        e.preventDefault();
+        this.handleMouseDown();
+    };
+    
     redirectToGoalHandler = () => {
         this.props.history.push('/goalfield'); 
         //This is solution of redirection
@@ -89,6 +99,11 @@ class MyGoals extends Component {
 
         return (
             <div>
+                <button
+                    onMouseDown={this.handleMouseDown}
+                    onTouchStart={this.handleTouchStart}>
+                    Toggle
+                </button>
                {list}
             </div>
         );
