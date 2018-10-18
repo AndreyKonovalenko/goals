@@ -72,13 +72,21 @@ class MyGoals extends Component {
                                 { ({x}) => {
                                     console.log('motion fiered')
                                     return (
-                                    <div style={{position:'relative', width: '1000px', border: '1px solid #dedede'}}> 
+                                    <div style={{
+                                        position:'relative', 
+                                        width: '80%', 
+                                        border: '1px solid #dedede',
+                                        
+                                    }}> 
                                         <div style={{
                                                 border: '1px solid #dedede',
-                                                width: '400px',
+                                                width: '50%',
                                                 positon:'absolut',
                                                 WebkitTransform: `translate3d(${x}px, 0, 0)`,
-                                                transform: `translate3d(${x}px, 0, 0)`,}}
+                                                transform: `translate3d(${x}px, 0, 0)`,
+                                                webkitTransition:"all 0.02s linear",
+                                                Transition:"all 0.02s linear",
+                                        }}
                                         >
                                             <GoalCard 
                                                 title={element.value.title}
