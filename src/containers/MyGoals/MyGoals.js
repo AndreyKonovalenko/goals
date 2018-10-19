@@ -8,6 +8,7 @@ import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 // This is feature/animation branch 
+// test pull request to master
 class MyGoals extends Component {
     state = {
         open: false
