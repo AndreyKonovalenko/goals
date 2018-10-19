@@ -7,8 +7,7 @@ import GoalCard from '../../components/GoalCard/GoalCard';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-
-
+// This is feature/animation branch 
 class MyGoals extends Component {
     state = {
         open: false
