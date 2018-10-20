@@ -6,6 +6,7 @@ import {Motion, spring} from 'react-motion';
 import GoalCard from '../../components/GoalCard/GoalCard';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import classes from './MyGoals.css'
 
 // This is feature/animation branch 
 // test pull request to master
@@ -72,20 +73,10 @@ class MyGoals extends Component {
                                 { ({x}) => {
                                     console.log('motion fiered')
                                     return (
-                                    <div style={{
-                                        position:'relative', 
-                                        width: '80%', 
-                                        border: '1px solid #dedede',
-                                        
-                                    }}> 
-                                        <div style={{
-                                                border: '1px solid #dedede',
-                                                width: '50%',
-                                                positon:'absolut',
-                                                WebkitTransform: `translate3d(${x}px, 0, 0)`,
-                                                transform: `translate3d(${x}px, 0, 0)`,
-                                                webkitTransition:"all 0.02s linear",
-                                                Transition:"all 0.02s linear",
+                                    <div className={classes.AnimationConteniner}> 
+                                        <div className={classes.AnimatedComponent} style={{
+                                            WebkitTransform: `translate3d(${x}px, 0, 0)`,
+                                            transform: `translate3d(${x}px, 0, 0)`,                                                
                                         }}
                                         >
                                             <GoalCard 
