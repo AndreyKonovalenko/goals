@@ -85,8 +85,7 @@ class MyGoals extends Component {
                                             />
                                         </div>
                                     </div>);
-                                    
-                                }
+                                   }
                                 }
                             </Motion>
                         );
