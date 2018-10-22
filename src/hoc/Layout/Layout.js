@@ -33,7 +33,7 @@ class Layout extends Component {
                 <Toolbar
                     isAuth={this.props.isAuthenticated} 
                     onAddGoalClick={this.onNavigateGoalBuilder}
-                    onEditClick={this.props.onEditHandler}
+                    onEditClick={() => this.props.onEditHandler(!this.props.mode)}
                 />
                 <main className={cssObject.Content}>
                     {this.props.children}
@@ -45,13 +45,14 @@ class Layout extends Component {
  
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        mode: state.myGoals.editMode
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onEditHandler: () => dispatch(actions.editGoalsList())
+        onEditHandler: (mode) => dispatch(actions.editGoalsList(mode))
     };
 }
 

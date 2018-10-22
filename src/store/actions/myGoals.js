@@ -30,9 +30,10 @@ export const selectGoalById = (selectedGoalId) => {
 };
 
 
-export const editGoalsList = () => {
+export const editGoalsList = (mode) => {
 	return {
-		type: actionTypes.EDIT_GOALS_LIST
+		type: actionTypes.EDIT_GOALS_LIST,
+		mode: mode
 	};
 };
 
