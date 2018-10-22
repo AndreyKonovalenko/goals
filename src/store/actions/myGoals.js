@@ -29,6 +29,13 @@ export const selectGoalById = (selectedGoalId) => {
     };
 };
 
+
+export const editGoalsList = () => {
+	return {
+		type: actionTypes.EDIT_GOALS_LIST
+	};
+};
+
 export const fetchGoals = (token, userId) => {
     return dispatch  => {
         dispatch(fetchGoalsStart());

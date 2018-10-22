@@ -5,7 +5,8 @@ const initialSate = {
     goalsList: null,
     loading: false,
     selectedGoalId: '',
-    redirected: false
+    redirected: false,
+    editMode: true
 };
 
 const clearState = (state ) => {
