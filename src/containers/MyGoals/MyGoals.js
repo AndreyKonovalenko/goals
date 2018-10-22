@@ -27,14 +27,14 @@ class MyGoals extends Component {
     }
     
     
-    handleMouseDown = () => {
-        this.setState({open: !this.state.open});
-    };
+    // handleMouseDown = () => {
+    //     this.setState({open: !this.state.open});
+    // };
 
-    handleTouchStart = (e) => {
-        e.preventDefault();
-        this.handleMouseDown();
-    };
+    // handleTouchStart = (e) => {
+    //     e.preventDefault();
+    //     this.handleMouseDown();
+    // };
     
     redirectToGoalHandler = () => {
         this.props.history.push('/goalfield'); 
@@ -68,7 +68,7 @@ class MyGoals extends Component {
                     {listOfGoalsArrey.map(element => {
                         console.log(element.id);
                         return (
-                            <Motion style={{x: spring(this.state.open ? 200 : 0)}}  key={element.id} >
+                            <Motion style={{x: spring(this.props.editMode ? 200 : 0)}}  key={element.id} >
                                 { ({x}) => {
                                     console.log('motion fiered')
                                     return (
@@ -96,11 +96,6 @@ class MyGoals extends Component {
 
         return (
             <div>
-                <button
-                    onMouseDown={this.handleMouseDown}
-                    onTouchStart={this.handleTouchStart}>
-                    Toggle
-                </button>
                {list}
             </div>
         );
@@ -109,6 +104,7 @@ class MyGoals extends Component {
 
 const mapStateToProps = state => {
     return {
+        editMode: state.myGoals.editMode,
         userId: state.auth.userId,
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,

@@ -6,7 +6,7 @@ const initialSate = {
     loading: false,
     selectedGoalId: '',
     redirected: false,
-    editMode: true
+    editMode: false
 };
 
 const clearState = (state ) => {
@@ -16,6 +16,13 @@ const clearState = (state ) => {
         selectedGoalId: ''
     });
 };
+
+const editGoalsList = (state) => {
+    return updateObject(state, {
+        editMode: false
+    });
+};
+
 const fetchGoalsStart = (state, action) => {
     return updateObject(state, {loading: true});
 };
@@ -55,6 +62,7 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.FETCH_GOALS_FAIL: return fetchGoalsFail(state, action);
         case actionTypes.SELECT_GOAL_BY_ID: return selectGoalById(state, action);
         case actionTypes.AUTH_LOGOUT: return clearState(state);
+        case actionTypes.EDIT_GOALS_LIST: return editGoalsList(state, action);
         case actionTypes.DELETE_GOAL_START: return deleteGoalStart(state, action);
         case actionTypes.DELETE_GOAL_FAIL: return deleteGoalFail(state, action);
         case actionTypes.DELETE_GOAL_SUCCESS: return deleteGoalSuccess(state, action);

@@ -16,6 +16,7 @@ const toolbar = (props) => (
             <Controls 
                 isAuthenticated={props.isAuth} 
                 onAddGoal={props.onAddGoalClick}
+                onEditClick={props.onEditClick}
             />
             <nav>
                 <NavItems isAuthenticated={props.isAuth}/>
