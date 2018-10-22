@@ -68,7 +68,7 @@ class MyGoals extends Component {
                     {listOfGoalsArrey.map(element => {
                         console.log(element.id);
                         return (
-                            <Motion style={{x: spring(this.props.editMode ? 200 : 0)}}  key={element.id} >
+                            <Motion style={{x: spring(this.props.editMode ? 200 : 100)}}  key={element.id} >
                                 { ({x}) => {
                                     console.log('motion fiered')
                                     return (
@@ -82,6 +82,7 @@ class MyGoals extends Component {
                                                 title={element.value.title}
                                                 clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
                                                 delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
+                                                mode={this.props.editMode}
                                             />
                                         </div>
                                     </div>);

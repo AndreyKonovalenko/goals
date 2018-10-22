@@ -34,6 +34,7 @@ class Layout extends Component {
                     isAuth={this.props.isAuthenticated} 
                     onAddGoalClick={this.onNavigateGoalBuilder}
                     onEditClick={() => this.props.onEditHandler(!this.props.mode)}
+                    mode={this.props.mode}
                 />
                 <main className={cssObject.Content}>
                     {this.props.children}

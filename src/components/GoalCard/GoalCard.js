@@ -8,7 +8,7 @@ const goalCard = (props) => {
 
     return (
         <div className={cssObject.GoalCardFlex}>
-            <Button buttonType="Danger" clicked={props.delete}>Delete</Button>
+            {props.mode? <Button buttonType="Danger" clicked={props.delete}>Delete</Button>: null}
             <div className={cssObject.GoalCard} onClick={props.clicked}>
                 <h3>{props.title}</h3>
             </div>
