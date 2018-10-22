@@ -8,8 +8,7 @@ import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './MyGoals.css'
 
-// This is feature/animation branch 
-// test pull request to master
+
 class MyGoals extends Component {
     state = {
         open: false
@@ -86,8 +85,7 @@ class MyGoals extends Component {
                                             />
                                         </div>
                                     </div>);
-                                    
-                                }
+                                   }
                                 }
                             </Motion>
                         );
