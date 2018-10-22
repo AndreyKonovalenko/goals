@@ -5,7 +5,8 @@ import cssObject from './Controls.css';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 const controls = (props) => {
-    const controls =(
+
+    const controls = (
         <Auxiliary>
             <Button clicked={props.onAddGoal}>ADD</Button>
             <Button 
