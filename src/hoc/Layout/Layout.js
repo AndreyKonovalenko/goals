@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Auxiliary from '../Auxiliary/Auxiliary';
 import cssObject from './Layout.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
     // state = { 
@@ -32,6 +33,7 @@ class Layout extends Component {
                 <Toolbar
                     isAuth={this.props.isAuthenticated} 
                     onAddGoalClick={this.onNavigateGoalBuilder}
+                    onEditClick={this.props.onEditHandler}
                 />
                 <main className={cssObject.Content}>
                     {this.props.children}
@@ -47,4 +49,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Layout));
+const mapDispatchToProps = dispatch => {
+    return {
+        onEditHandler: () => dispatch(actions.editGoalsList())
+    };
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

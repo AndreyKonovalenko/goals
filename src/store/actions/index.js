@@ -21,5 +21,5 @@ export {
     fetchGoals,
     selectGoalById,
     deleteGoal,
-    editGoalsLlist
+    editGoalsList
 } from './myGoals';

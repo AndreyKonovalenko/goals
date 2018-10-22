@@ -19,7 +19,7 @@ const clearState = (state ) => {
 
 const editGoalsList = (state) => {
     return updateObject(state, {
-        editMode: false
+        editMode: !this.editMode
     });
 };
 
