@@ -10,11 +10,11 @@ import classes from './MyGoals.css'
 
 
 class MyGoals extends Component {
-    state = {
-        open: false
-    }
+
     componentDidMount() {
-        console.log(' My Goals component did mount', this.state.open);
+        console.log(' My Goals component did mount111');
+        console.log(`pathaname ${this.props.location.pathname}`);
+        this.props.getLocation(this.props.location.pathname);
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
@@ -27,14 +27,6 @@ class MyGoals extends Component {
     }
     
     
-    // handleMouseDown = () => {
-    //     this.setState({open: !this.state.open});
-    // };
-
-    // handleTouchStart = (e) => {
-    //     e.preventDefault();
-    //     this.handleMouseDown();
-    // };
     
     redirectToGoalHandler = () => {
         this.props.history.push('/goalfield'); 
@@ -94,7 +86,7 @@ class MyGoals extends Component {
                 </div>
             );
         }
-
+        console.log(this.props);
         return (
             <div>
                {list}
@@ -105,6 +97,7 @@ class MyGoals extends Component {
 
 const mapStateToProps = state => {
     return {
+        userLocation: state.location.userLocation,
         editMode: state.myGoals.editMode,
         userId: state.auth.userId,
         token: state.auth.token,
@@ -116,6 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        getLocation: (userLocation) => dispatch(actions.changeLocation(userLocation)),
         onFetchGoals: (token, userId) => dispatch(actions.fetchGoals(token, userId)),
         onGoalSelect: (selectedGoalId) => dispatch(actions.selectGoalById(selectedGoalId)),
         onDeleteGoal: (token, userId, goalId) => dispatch(actions.deleteGoal(token, userId, goalId))

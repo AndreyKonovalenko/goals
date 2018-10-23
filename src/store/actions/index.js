@@ -23,3 +23,7 @@ export {
     deleteGoal,
     editGoalsList
 } from './myGoals';
+
+export {
+    changeLocation
+} from './location';

@@ -28,6 +28,7 @@ class Layout extends Component {
     }
 
     render () {
+        
         return(
             <Auxiliary>
                 <Toolbar

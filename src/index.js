@@ -12,6 +12,7 @@ import goalFieldReducer from './store/reducers/goalField';
 import authReducer from './store/reducers/auth';
 import goalBuilderReducer from './store/reducers/goalBuilder';
 import myGoalsReducer from './store/reducers/myGoals';
+import locationReducer from './store/reducers/location';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     goalField: goalFieldReducer,
     auth: authReducer,
     goalBuilder: goalBuilderReducer,
-    myGoals: myGoalsReducer
+    myGoals: myGoalsReducer,
+    location: locationReducer
     
 });
 
