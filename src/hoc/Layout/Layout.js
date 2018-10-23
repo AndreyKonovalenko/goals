@@ -36,6 +36,7 @@ class Layout extends Component {
                     onAddGoalClick={this.onNavigateGoalBuilder}
                     onEditClick={() => this.props.onEditHandler(!this.props.mode)}
                     mode={this.props.mode}
+                    userLocation={this.props.userLocation}
                 />
                 <main className={cssObject.Content}>
                     {this.props.children}
@@ -48,7 +49,8 @@ class Layout extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
-        mode: state.myGoals.editMode
+        mode: state.myGoals.editMode,
+        userLocation: state.location.userLocation
     }
 }
 

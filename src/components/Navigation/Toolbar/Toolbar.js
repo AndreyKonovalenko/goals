@@ -18,6 +18,7 @@ const toolbar = (props) => (
                 onAddGoal={props.onAddGoalClick}
                 onEditClick={props.onEditClick}
                 mode={props.mode}
+                userLocation={props.userLocation}
             />
             <nav>
                 <NavItems isAuthenticated={props.isAuth}/>

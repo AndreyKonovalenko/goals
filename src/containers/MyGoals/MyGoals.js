@@ -13,7 +13,7 @@ class MyGoals extends Component {
 
     componentDidMount() {
         console.log(' My Goals component did mount111');
-        console.log(`pathaname ${this.props.location.pathname}`);
+        console.log(typeof this.props.location.pathname);
         this.props.getLocation(this.props.location.pathname);
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
@@ -86,7 +86,6 @@ class MyGoals extends Component {
                 </div>
             );
         }
-        console.log(this.props);
         return (
             <div>
                {list}
@@ -97,7 +96,6 @@ class MyGoals extends Component {
 
 const mapStateToProps = state => {
     return {
-        userLocation: state.location.userLocation,
         editMode: state.myGoals.editMode,
         userId: state.auth.userId,
         token: state.auth.token,

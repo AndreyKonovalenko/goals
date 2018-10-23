@@ -11,10 +11,9 @@ import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
 
 class GoalField extends Component {
-    
-   
-
+      
     componentDidMount() {
+        this.props.getLocation(this.props.location.pathname);
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
     }
 
@@ -104,6 +103,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onDayCheckUp: (updatedGoalConfig) => dispatch(actions.checkUpGoalDay(updatedGoalConfig)),
+        getLocation: (userLocation) => dispatch(actions.changeLocation(userLocation)),
         onFetchSelectedGoal: (token, userId, selectedGoalId) => dispatch(actions.fetchSelectedGoal(token, userId, selectedGoalId)),
         onSaveChangeHandler: (token, userId, selectedGoalId, goalConfigDaysArray) => dispatch(actions.updateGoal(token, userId, selectedGoalId, goalConfigDaysArray))
     };

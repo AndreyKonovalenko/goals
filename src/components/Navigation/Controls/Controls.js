@@ -9,11 +9,11 @@ const controls = (props) => {
     const controls = (
         <Auxiliary>
             <Button clicked={props.onAddGoal}>ADD</Button>
-            <Button 
+            { props.userLocation === '/' ? <Button 
                 clicked={props.onEditClick} 
                 style={{borderRight: '1px solid #dedede'}}>
                 {!props.mode ? 'EDIT' : 'DONE'}
-            </Button>
+            </Button>: null}
         </Auxiliary>
     );
     

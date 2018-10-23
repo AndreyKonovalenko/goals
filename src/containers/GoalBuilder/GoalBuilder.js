@@ -10,8 +10,6 @@ import * as  actions from  '../../store/actions/index';
 import {updateObject, checkValidity, daysArrayBuilder} from '../../shared/utility';
 //import axios from '../../axios-db';
 
-
-
 class GoalBuilder extends Component {
     state = {
         goalForm: {
@@ -57,6 +55,10 @@ class GoalBuilder extends Component {
             }
 
         }
+    }
+
+    componentDidMount() {
+        this.props.getLocation(this.props.location.pathname);
     }
     
     saveHandler = (event) => {
@@ -202,7 +204,7 @@ class GoalBuilder extends Component {
 }
 
 const mapStateToProps = state => {
-    return {        
+    return {    
         error: state.goalBuilder.error,
         token: state.auth.token,
         userId: state.auth.userId,
@@ -213,7 +215,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSetupGoal: (goalConfig, token, userId) => dispatch(actions.setupGoal(goalConfig, token, userId)),
-        onCancel: () => dispatch(actions.setupGoalCancel())
+        onCancel: () => dispatch(actions.setupGoalCancel()),
+        getLocation: (userLocation) => dispatch(actions.changeLocation(userLocation)),
     };
 }
 
