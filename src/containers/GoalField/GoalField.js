@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
+//import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import StatusBoard from '../../components/StatusBoard/StatusBoard';
 import Calendar from '../../components/Calendar/Calendar';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -9,6 +9,7 @@ import Button from '../../components/UI/Button/Button';
 
 import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
 import * as  actions from '../../store/actions/index';
+import classes from './GoalField.css';
 
 class GoalField extends Component {
     
@@ -51,7 +52,7 @@ class GoalField extends Component {
         
         if (!this.props.loading && this.props.goalConfig !== null) {
             goal =  (
-                <Auxiliary>
+                <div className={classes.GoalField}>
                     <h3>draft works</h3>
                     <StatusBoard
                         title={this.props.goalConfig.title}
@@ -78,7 +79,7 @@ class GoalField extends Component {
                             }
                         }
                     >SAVE</Button>
-                </Auxiliary>
+                </div>
             );
         }
         
