@@ -14,7 +14,8 @@ export {
 
 export {
     setupGoal,
-    setupGoalCancel
+    setupGoalCancel,
+    setupGoalComplete
 } from './goalBuilder';
 
 export {

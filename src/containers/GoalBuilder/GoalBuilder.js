@@ -60,7 +60,11 @@ class GoalBuilder extends Component {
     componentDidMount() {
         this.props.getLocation(this.props.location.pathname);
     }
-    
+
+    componentWillUnmount(){
+        this.props.onUnMount();
+    }
+
     saveHandler = (event) => {
         event.preventDefault();
         const goalInitConfig = {
@@ -208,7 +212,7 @@ const mapStateToProps = state => {
         error: state.goalBuilder.error,
         token: state.auth.token,
         userId: state.auth.userId,
-        goalCreated: state.goalBuilder.goalCreated
+        goalCreated: state.goalBuilder.goalCreated,
     };
 }
 
@@ -217,6 +221,7 @@ const mapDispatchToProps = dispatch => {
         onSetupGoal: (goalConfig, token, userId) => dispatch(actions.setupGoal(goalConfig, token, userId)),
         onCancel: () => dispatch(actions.setupGoalCancel()),
         getLocation: (userLocation) => dispatch(actions.changeLocation(userLocation)),
+        onUnMount: () => dispatch(actions.setupGoalComplete())
     };
 }
 

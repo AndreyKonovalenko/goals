@@ -20,6 +20,13 @@ const setupGoalSuccess = (state, action) => {
     });
 };
 
+const setupGoalComplete = (state, action) => {
+    return updateObject(state, {
+        goalCreated: false
+    })
+}
+
+
 const setupGoalFail = (state, action) => {
     return updateObject(state, {
         error: action.error,
@@ -39,6 +46,7 @@ const reducer = (state = initialSate, action) => {
         case actionTypes.SETUP_GOAL_SUCCESS: return setupGoalSuccess(state, action);
         case actionTypes.SETUP_GOAL_FAIL: return setupGoalFail(state, action);
         case actionTypes.SETUP_GOAL_CANCEL: return setupGoalCancel(state, action);
+        case actionTypes.SETUP_GOAL_COMPLETE: return setupGoalComplete(state, action);
         default: return state;
     }    
 };

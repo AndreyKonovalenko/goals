@@ -15,6 +15,12 @@ export const setupGoalFail = (error) => {
     };
 };
 
+export const setupGoalComplete =() => {
+    return {
+        type: actionTypes.SETUP_GOAL_COMPLETE
+    }
+}
+
 export const setupGoalStart = () => {
     return {
         type: actionTypes.SETUP_GOAL_START
