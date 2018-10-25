@@ -8,7 +8,9 @@ const controls = (props) => {
 
     const controls = (
         <Auxiliary>
-            <Button clicked={props.onAddGoal}>ADD</Button>
+            <Button 
+                clicked={props.onAddGoal} 
+                style={ props.userLocation !== '/'? {borderRight: '1px solid #dedede'} : null}>ADD</Button>
             { props.userLocation === '/' ? <Button 
                 clicked={props.onEditClick} 
                 style={{borderRight: '1px solid #dedede'}}>

@@ -52,7 +52,6 @@ class GoalField extends Component {
         if (!this.props.loading && this.props.goalConfig !== null) {
             goal =  (
                 <div className={classes.GoalField}>
-                    <h3>draft works</h3>
                     <StatusBoard
                         title={this.props.goalConfig.title}
                         limitation={this.props.goalConfig.limitation}

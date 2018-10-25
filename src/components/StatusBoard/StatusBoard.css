@@ -1,8 +1,11 @@
 .StatusBoard {
-    color: #fff;
+    color: #333;
     align-items: center;
-    background: #c2dbe8;
-    font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
+    background: #fbfbfb;
+   
+    border: 1px solid #dedede;
     min-height: 5vh;
-    text-align: left;
+    text-align: center;
+    width: 80%;
+    margin: auto;
 }
