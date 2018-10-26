@@ -72,7 +72,7 @@ class MyGoals extends Component {
                                         >
                                             <GoalCard 
                                                 title={element.value.title}
-                                                clicked={() => this.combinedHandler(element.id, this.props.selectedGoalId)}
+                                                clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
                                                 delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
                                                 mode={this.props.editMode}
                                             />
