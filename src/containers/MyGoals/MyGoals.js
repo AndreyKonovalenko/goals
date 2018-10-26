@@ -26,8 +26,6 @@ class MyGoals extends Component {
         }
     }
     
-    
-    
     redirectToGoalHandler = () => {
         this.props.history.push('/goalfield'); 
         //This is solution of redirection
@@ -58,7 +56,6 @@ class MyGoals extends Component {
             list = (
                 <div>
                     {listOfGoalsArrey.map(element => {
-                        console.log(element.id);
                         return (
                             <Motion style={{x: spring(this.props.editMode ? 200 : 100)}}  key={element.id} >
                                 { ({x}) => {
