@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 //import {Redirect} from 'react-router-dom';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
-import Animation from '../../hoc/Animation/Animation';
+//import Animation from '../../hoc/Animation/Animation';
+import DraggableList from '../../hoc/Animation/DraggableList';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 //import classes from './MyGoals.css'
@@ -54,22 +55,24 @@ class MyGoals extends Component {
             list = <h2>Here you will see list of your goals when login/singup</h2>;
         } else if (!this.props.loading && this.props.goalsList !== null){
             list = (
-                <Animation editMode={this.props.editMode}>
-                    {listOfGoalsArrey.map(element => {
+                    listOfGoalsArrey.map(element => {
                         return (
-                            <GoalCard 
-                                key={element.id}
-                                title={element.value.title}
-                                clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
-                                delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
-                                mode={this.props.editMode}
-                            />
+                             
+                                <GoalCard 
+                                    key={element.id}
+                                    title={element.value.title}
+                                    // // {clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
+                                    // // delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}}
+                                    // mode={this.props.editMode}
+                                />
                         );
-                    })}
-                 </Animation>
+                    })
             );
         }
-        return list;
+        console.log(list);
+        return (
+                 <DraggableList items={list}/>
+            );
     }
 }
 

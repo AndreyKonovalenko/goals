@@ -19,7 +19,7 @@ const animation = (props) => {
                     </div>);
                 }
             }
-        </Motion>);
-    }
-
+        </Motion>
+    );
+};
 export default animation;
