@@ -1,10 +1,10 @@
-.AnimationConteiner {
-    width: 80%;
-    border: 1px solid #dedede;
-}
-.AnimatedComponent {
-    border: 1px solid #dedede;
-    width: 50%;
-    -webkit-transition: all 0.02s linear;
-    transition: all 0.02s linear;
-}
+/*.AnimationConteiner {*/
+/*    width: 80%;*/
+/*    border: 1px solid #dedede;*/
+/*}*/
+/*.AnimatedComponent {*/
+/*    border: 1px solid #dedede;*/
+/*    width: 50%;*/
+/*    -webkit-transition: all 0.02s linear;*/
+/*    transition: all 0.02s linear;*/
+/*}*/
