@@ -25,6 +25,7 @@ function clamp(n, min, max) {
 }
 
 const springConfig = {stiffness: 300, damping: 50};
+const itemsCount = 4;
 
 
 export default class Demo extends React.Component {
@@ -35,7 +36,7 @@ export default class Demo extends React.Component {
       mouseY: 0,
       isPressed: false,
       originalPosOfLastPressed: 0,
-      order: [0,1,2,3],
+      order: range(itemsCount),
     };
   };
 
@@ -47,6 +48,7 @@ export default class Demo extends React.Component {
   };
 
   handleTouchStart = (key, pressLocation, e) => {
+    console.log('pressLocation', pressLocation);
     this.handleMouseDown(key, pressLocation, e.touches[0]);
   };
 
@@ -56,6 +58,7 @@ export default class Demo extends React.Component {
   };
 
   handleMouseDown = (pos, pressY, {pageY}) => {
+    console.log(pressY);
     this.setState({
       topDeltaY: pageY - pressY,
       mouseY: pressY,
@@ -69,7 +72,7 @@ export default class Demo extends React.Component {
 
     if (isPressed) {
       const mouseY = pageY - topDeltaY;
-      const currentRow = clamp(Math.round(mouseY / 100), 0, this.props.items.length - 1);
+      const currentRow = clamp(Math.round(mouseY / 100), 0, itemsCount - 1);
       let newOrder = order;
 
       if (currentRow !== order.indexOf(originalPosOfLastPressed)){
@@ -86,14 +89,11 @@ export default class Demo extends React.Component {
 
   render() {
     const {mouseY, isPressed, originalPosOfLastPressed, order} = this.state;
-    console.log(this.props.items);
-    
-    console.log(this.state.order);
-    console.log(range(this.props.items.length));
+
     return (
     <div className={classes.Outer}>
       <div className={classes.Main}>
-        {[...this.props.items].map(i => {
+        {[0,1,2,3].map(i => {
           const style = originalPosOfLastPressed === i && isPressed
             ? {
                 scale: spring(1.1, springConfig),
@@ -106,7 +106,7 @@ export default class Demo extends React.Component {
                 y: spring(order.indexOf(i) * 100, springConfig),
               };
           return (
-            <Motion style={style} key={i.key}>
+            <Motion style={style} key={i}>
               {({scale, shadow, y}) =>
                 <div
                   onMouseDown={this.handleMouseDown.bind(null, i, y)}

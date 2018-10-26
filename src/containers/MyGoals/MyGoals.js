@@ -8,7 +8,7 @@ import GoalCard from '../../components/GoalCard/GoalCard';
 import DraggableList from '../../hoc/Animation/DraggableList';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-//import classes from './MyGoals.css'
+//import classes from './MyGoals.css';
 
 
 class MyGoals extends Component {
@@ -61,17 +61,17 @@ class MyGoals extends Component {
                                 <GoalCard 
                                     key={element.id}
                                     title={element.value.title}
-                                    // // {clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
-                                    // // delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}}
-                                    // mode={this.props.editMode}
+                                    clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
+                                    delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
+                                    mode={this.props.editModes}
                                 />
                         );
                     })
             );
         }
-        console.log(list);
+
         return (
-                 <DraggableList items={list}/>
+                 <DraggableList list={list}/>
             );
     }
 }
