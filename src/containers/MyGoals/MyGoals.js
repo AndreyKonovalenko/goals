@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 //import Animation from '../../hoc/Animation/Animation';
-import DraggableList from '../../hoc/Animation/DraggableList';
+//import DraggableList from '../../hoc/Animation/DraggableList';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 //import classes from './MyGoals.css';
@@ -57,22 +57,19 @@ class MyGoals extends Component {
             list = (
                     listOfGoalsArrey.map(element => {
                         return (
-                             
                                 <GoalCard 
                                     key={element.id}
                                     title={element.value.title}
                                     clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
                                     delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
-                                    mode={this.props.editModes}
+                                    mode={this.props.editMode}
                                 />
                         );
                     })
             );
         }
 
-        return (
-                 <DraggableList list={list}/>
-            );
+        return list;
     }
 }
 
