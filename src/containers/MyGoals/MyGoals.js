@@ -8,6 +8,7 @@ import GoalCard from '../../components/GoalCard/GoalCard';
 //import DraggableList from '../../hoc/Animation/DraggableList';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import DraggableList from '../../components/DraggableList/DraggableList';
 //import classes from './MyGoals.css';
 
 
@@ -69,7 +70,7 @@ class MyGoals extends Component {
             );
         }
 
-        return list;
+        return <DraggableList/>;
     }
 }
 
