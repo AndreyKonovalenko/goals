@@ -11,7 +11,7 @@ const goalCard = (props) => {
         <div 
             className={cssObject.GoalCardFlex} 
             draggable={props.mode ? true: false} 
-            onDragStart={props.onDranStart}
+            onDragStart={props.onDragStart}
         >
             {props.mode ? <Button buttonType="Danger" clicked={props.delete}>Delete</Button>: null}
             <div 

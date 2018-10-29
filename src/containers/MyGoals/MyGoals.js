@@ -44,9 +44,9 @@ class MyGoals extends Component {
         event.preventDefault();
     }
     
-    onDropStart = (event, id) => {
-        console.log('dragstart: '`${id}`);
-        event.dataTransfer.setDate('text/plain', id);
+    onDragStart = (event, id) => {
+        console.log(`dragstart :${id}`);
+        event.dataTransfer.setData("text/plain", id);
     }
     
     render() {
