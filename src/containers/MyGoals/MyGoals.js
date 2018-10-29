@@ -5,11 +5,10 @@ import {connect} from 'react-redux';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 //import Animation from '../../hoc/Animation/Animation';
-//import DraggableList from '../../hoc/Animation/DraggableList';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import DraggableList from '../../components/DraggableList/DraggableList';
-//import classes from './MyGoals.css';
+//import DraggableList from '../../components/DraggableList/DraggableList';
+import classes from './MyGoals.css';
 
 
 class MyGoals extends Component {
@@ -40,7 +39,16 @@ class MyGoals extends Component {
         this.redirectToGoalHandler();
         console.log("second");  
     } 
-
+    
+    onDragOver = (event) => {
+        event.preventDefault();
+    }
+    
+    onDropStart = (event, id) => {
+        console.log('dragstart: '`${id}`);
+        event.dataTransfer.setDate('text/plain', id);
+    }
+    
     render() {
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
@@ -64,13 +72,21 @@ class MyGoals extends Component {
                                     clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
                                     delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
                                     mode={this.props.editMode}
+                                    onDragStart={(event) => this.onDragStart(event, element.id)}
                                 />
                         );
                     })
             );
         }
 
-        return <DraggableList/>;
+        return (
+            <div 
+                className={classes.DropContainer} 
+                onDragOver={this.props.editMede ? (event) => this.onDragOver(event): null}
+            >
+                {list}
+            </div>
+        );
     }
 }
 

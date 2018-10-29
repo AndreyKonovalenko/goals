@@ -8,3 +8,9 @@
 /*    -webkit-transition: all 0.02s linear;*/
 /*    transition: all 0.02s linear;*/
 /*}*/
+
+.DropContainer {
+    width: 90%;
+    margin:auto;
+    background-color: #fbfbfb;
+}

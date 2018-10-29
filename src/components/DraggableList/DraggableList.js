@@ -39,6 +39,7 @@ class List extends Component {
     var listItems = this.state.colors.map((item, i) => {
       return (
         <li 
+          className={classes.Item}    
           data-id={i}
           key={i}
           draggable='true'
@@ -46,8 +47,9 @@ class List extends Component {
           onDragStart={this.dragStart}>{item}</li>
       )
      });
+        console.log(this.over);
 		return (
-			<ul onDragOver={this.dragOver}>
+			<ul className={classes.Conteiner} onDragOver={this.dragOver}>
                 {listItems}
             </ul>
 		);

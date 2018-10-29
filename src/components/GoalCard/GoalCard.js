@@ -8,9 +8,16 @@ const goalCard = (props) => {
     console.log(props.mode);
 
     return (
-        <div className={cssObject.GoalCardFlex}>
+        <div 
+            className={cssObject.GoalCardFlex} 
+            draggable={props.mode ? true: false} 
+            onDragStart={props.onDranStart}
+        >
             {props.mode ? <Button buttonType="Danger" clicked={props.delete}>Delete</Button>: null}
-            <div className={!props.mode ? cssObject.GoalCard: cssObject.GoalCardDisabled} onClick={props.clicked}>
+            <div 
+                className={!props.mode ? cssObject.GoalCard: cssObject.GoalCardDisabled} 
+                onClick={props.clicked}
+            >
                 <h3>{props.title}</h3>
             </div>
         </div>
