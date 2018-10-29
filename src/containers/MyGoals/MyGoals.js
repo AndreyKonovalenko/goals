@@ -20,6 +20,7 @@ class MyGoals extends Component {
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
+
     }
     
     componentDidUpdate(nextProps) {
@@ -46,10 +47,16 @@ class MyGoals extends Component {
     
     onDragStart = (event, id) => {
         console.log(`dragstart :${id}`);
+        event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.setData("text/plain", id);
     }
     
+    onDragEnd = (event) => {
+        
+    }
+    
     render() {
+        
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
             let listElement = {
@@ -66,14 +73,14 @@ class MyGoals extends Component {
             list = (
                     listOfGoalsArrey.map(element => {
                         return (
-                                <GoalCard 
-                                    key={element.id}
-                                    title={element.value.title}
-                                    clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
-                                    delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
-                                    mode={this.props.editMode}
-                                    onDragStart={(event) => this.onDragStart(event, element.id)}
-                                />
+                            <GoalCard 
+                                key={element.id}
+                                title={element.value.title}
+                                clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
+                                delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
+                                mode={this.props.editMode}
+                                onDragStart={(event) => this.onDragStart(event, element.id)}
+                            />
                         );
                     })
             );
