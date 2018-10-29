@@ -10,8 +10,11 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 //import DraggableList from '../../components/DraggableList/DraggableList';
 import classes from './MyGoals.css';
 
-
 class MyGoals extends Component {
+    
+    state = {
+        order: null
+    }
 
     componentDidMount() {
         console.log(' My Goals component did mount111');
@@ -20,13 +23,13 @@ class MyGoals extends Component {
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
-
     }
     
     componentDidUpdate(nextProps) {
         if(this.props.token !== nextProps.token && this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
+
     }
     
     redirectToGoalHandler = () => {
@@ -48,15 +51,16 @@ class MyGoals extends Component {
     onDragStart = (event, id) => {
         console.log(`dragstart :${id}`);
         event.dataTransfer.effectAllowed = 'move';
-        event.dataTransfer.setData("text/plain", id);
+        event.dataTransfer.setData("id", id);
     }
     
-    onDragEnd = (event) => {
-        
+    onDrop = (event) => {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("id");
+        event.target.appendChild(document.getElementById(data));
     }
     
     render() {
-        
         let listOfGoalsArrey = [];
         for (let key in this.props.goalsList) {
             let listElement = {
@@ -85,7 +89,8 @@ class MyGoals extends Component {
                     })
             );
         }
-
+        
+        console.log(this.state.order);
         return (
             <div 
                 className={classes.DropContainer} 

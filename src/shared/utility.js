@@ -99,3 +99,18 @@ export const setupInd = (daysArray) => {
     return {left: left,succeeded: succeeded,failed: failed};
 };
 
+// this function only for testing draggble animation antill I figure out how to it currect
+export const listOfGoalsHelper = (goalsList) => {
+    console.log(goalsList);
+    let listOfGoalsArrey = [];
+        for (let key in goalsList) {
+            let listElement = {
+                value: goalsList[key],
+                id: key
+            };
+            listOfGoalsArrey.push(listElement);
+        }
+    console.log('listOfGoalsArrey done');
+    return listOfGoalsArrey;
+};
+        
