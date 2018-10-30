@@ -6,7 +6,8 @@ const initialSate = {
     loading: false,
     selectedGoalId: '',
     redirected: false,
-    editMode: false
+    editMode: false,
+    order: null
 };
 
 const clearState = (state ) => {
@@ -30,7 +31,8 @@ const fetchGoalsStart = (state, action) => {
 const fetchGoalsSuccess = (state, action) => {
     return updateObject(state, {
         goalsList: action.goalsList,
-        loading: false 
+        loading: false,
+        order: action.order
     });
 };
 

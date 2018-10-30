@@ -11,6 +11,9 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 //import classes from './MyGoals.css';
 
 class MyGoals extends Component {
+    state = {
+        loacalOrder: null 
+    }
 
     componentDidMount() {
         console.log(' My Goals component did mount111');
@@ -25,7 +28,6 @@ class MyGoals extends Component {
         if(this.props.token !== nextProps.token && this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
-
     }
     
     redirectToGoalHandler = () => {
@@ -40,24 +42,26 @@ class MyGoals extends Component {
         console.log("second");  
     } 
     
-
-    
     render() {
-        let listOfGoalsArrey = [];
-        for (let key in this.props.goalsList) {
-            let listElement = {
-                value: this.props.goalsList[key],
-                id: key
-            };
-            listOfGoalsArrey.push(listElement);
-        }
+        
+        // this.setState({localOreder: 5});
 
         let list = <Spinner />;
         if (!this.props.loading && this.props.goalsList === null) {
             list = <h2>Here you will see list of your goals when login/singup</h2>;
-        } else if (!this.props.loading && this.props.goalsList !== null){
+        } else if (!this.props.loading && this.props.goalsList !== null) {
+            
+            let listOfGoalsArray = [];
+            for (let key in this.props.goalsList) {
+                let listElement = {
+                    value: this.props.goalsList[key],
+                    id: key
+                };
+                listOfGoalsArray.push(listElement);
+            }
+            
             list = (
-                    listOfGoalsArrey.map(element => {
+                    listOfGoalsArray.map(element => {
                         return (
                             <GoalCard 
                                 key={element.id}
@@ -70,7 +74,16 @@ class MyGoals extends Component {
                     })
             );
         }
+        
 
+        // if (this.props.order !== null) {
+        //     console.log(this.props.order);
+        //     let initialOrder = [];
+        //     initialOrder = [...this.props.order];
+        //     console.log(initialOrder);
+        // };
+        console.log(this.state.loacalOrder);
+        
         return list;
     }
 }
@@ -82,7 +95,8 @@ const mapStateToProps = state => {
         token: state.auth.token,
         goalsList: state.myGoals.goalsList,
         selectedGoalId: state.myGoals.selectedGoalId,
-        loading: state.myGoals.loading
+        loading: state.myGoals.loading,
+        order: state.myGoals.order
     };
 };
 

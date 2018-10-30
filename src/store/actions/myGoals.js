@@ -2,10 +2,11 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-db';
 
 
-export const fetchGoalsSuccess = (goalsList) => {
+export const fetchGoalsSuccess = (goalsList, order) => {
     return {
         type: actionTypes.FETCH_GOALS_SUCCESS,
-        goalsList: goalsList
+        goalsList: goalsList,
+        order: order
     };
 };
 
@@ -44,7 +45,11 @@ export const fetchGoals = (token, userId) => {
         const url = '/users/'+ userId + '/goals.json';
         axios.get(url + queryParams)
             .then(response => {
-                dispatch(fetchGoalsSuccess(response.data))})
+            	let order = []; 
+            	for (let key in response.data) {
+                	order.push(key);
+            	}
+                dispatch(fetchGoalsSuccess(response.data, order))})
             .catch(error => dispatch(fetchGoalsFail(error))
         );
     };
