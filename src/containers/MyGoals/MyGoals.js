@@ -8,13 +8,9 @@ import GoalCard from '../../components/GoalCard/GoalCard';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 //import DraggableList from '../../components/DraggableList/DraggableList';
-import classes from './MyGoals.css';
+//import classes from './MyGoals.css';
 
 class MyGoals extends Component {
-    
-    state = {
-        order: null
-    }
 
     componentDidMount() {
         console.log(' My Goals component did mount111');
@@ -44,21 +40,7 @@ class MyGoals extends Component {
         console.log("second");  
     } 
     
-    onDragOver = (event) => {
-        event.preventDefault();
-    }
-    
-    onDragStart = (event, id) => {
-        console.log(`dragstart :${id}`);
-        event.dataTransfer.effectAllowed = 'move';
-        event.dataTransfer.setData("id", id);
-    }
-    
-    onDrop = (event) => {
-        event.preventDefault();
-        let data = event.dataTransfer.getData("id");
-        event.target.appendChild(document.getElementById(data));
-    }
+
     
     render() {
         let listOfGoalsArrey = [];
@@ -83,22 +65,13 @@ class MyGoals extends Component {
                                 clicked={!this.props.editMode ? () => this.combinedHandler(element.id, this.props.selectedGoalId): null}
                                 delete={() => this.props.onDeleteGoal(this.props.token, this.props.userId, element.id)}
                                 mode={this.props.editMode}
-                                onDragStart={(event) => this.onDragStart(event, element.id)}
                             />
                         );
                     })
             );
         }
-        
-        console.log(this.state.order);
-        return (
-            <div 
-                className={classes.DropContainer} 
-                onDragOver={this.props.editMede ? (event) => this.onDragOver(event): null}
-            >
-                {list}
-            </div>
-        );
+
+        return list;
     }
 }
 
