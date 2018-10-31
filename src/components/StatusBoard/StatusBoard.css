@@ -9,3 +9,10 @@
     width: 80%;
     margin: auto;
 }
+
+.Succeeded {
+    width: 30px;
+    height: 15px;
+    background: green;
+
+}
