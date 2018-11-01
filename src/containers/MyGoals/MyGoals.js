@@ -15,6 +15,7 @@ class MyGoals extends Component {
         if (this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
+        console.log(this.props.children);
     }
     
     componentDidUpdate(nextProps) {
@@ -65,7 +66,7 @@ class MyGoals extends Component {
                 })
             );
         }
-
+        console.log(this.props.children);
         return list;
     }
 }
