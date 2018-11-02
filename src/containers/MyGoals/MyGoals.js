@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-//import {Motion, spring} from 'react-motion';
-//import {Redirect} from 'react-router-dom';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 //import Animation from '../../hoc/Animation/Animation';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-//import DraggableList from '../../components/DraggableList/DraggableList';
 //import classes from './MyGoals.css';
 
 class MyGoals extends Component {
-    state = {
-        loacalOrder: null 
-    }
 
     componentDidMount() {
         console.log(' My Goals component did mount111');
@@ -23,7 +17,7 @@ class MyGoals extends Component {
             this.props.onFetchGoals(this.props.token, this.props.userId);
         }
     }
-    
+
     componentDidUpdate(nextProps) {
         if(this.props.token !== nextProps.token && this.props.token !== null) {
             this.props.onFetchGoals(this.props.token, this.props.userId);
@@ -74,16 +68,6 @@ class MyGoals extends Component {
                     })
             );
         }
-        
-
-        // if (this.props.order !== null) {
-        //     console.log(this.props.order);
-        //     let initialOrder = [];
-        //     initialOrder = [...this.props.order];
-        //     console.log(initialOrder);
-        // };
-        console.log(this.state.loacalOrder);
-        
         return list;
     }
 }

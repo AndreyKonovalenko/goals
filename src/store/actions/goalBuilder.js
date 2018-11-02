@@ -36,11 +36,23 @@ export const setupGoalCancel = () => {
 export const setupGoal = (goalConfig, token, userId ) => {
     return dispatch => {
         dispatch(setupGoalStart());
-        const url = 'users/' + userId +'/goals.json?auth=' + token; 
+        const url = 'users/' + userId +'/goals.json?auth=' + token;
+        const url2 ='users/' + userId +'/position.json?auth=' + token;
         axios.post(url, goalConfig)
             .then( response => {
-                console.log(response.data.name);
-                dispatch(setupGoalSuccess());
+                console.log(typeof response.data.name);
+                const id = response.data.name;
+                const title = response;
+                console.log(title);
+                axios.post(url2, [id,title])
+                    .then(response => {
+                        dispatch(setupGoalSuccess());
+                    })
+                    .catch(error => {
+                        dispatch(setupGoalFail(error));
+                    }
+                );
+    
             })
             .catch(error => {
                 dispatch(setupGoalFail(error));
