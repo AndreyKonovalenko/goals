@@ -67,14 +67,14 @@ class  Days extends Component  {
         } else {
             for (let i = 0 ; i <= daysRange; i++) {
                 let currentDay = dateFns.addDays(startDate, i);
-                let inLineStyle = {};
+                let inLineStyle = {cursor: 'pointer' };
                 // offMonth day styling
                 if (currentDay < monthStart || currentDay > monthEnd) {
-                    inLineStyle = {...{ backgroundColor: '#fff' }};
+                    inLineStyle = {...{ backgroundColor: '#fff', cursor: 'pointer'  }};
                 }
                 //Current day styling
                 if (dateFns.isToday(currentDay)) {
-                    inLineStyle = {...{ fontWeight: 'bold', border: "1px solid #2b2929" }};
+                    inLineStyle = {...{ fontWeight: 'bold', border: "1px solid #2b2929"  }};
                 }
                 days.push(
                     <li 
