@@ -52,6 +52,7 @@ class MyGoals extends Component {
                 };
             listOfGoalsArrey.push(listElement);
         }
+        console.log(listOfGoalsArrey);
             list = (
                listOfGoalsArrey.map(element => {
                     return (
