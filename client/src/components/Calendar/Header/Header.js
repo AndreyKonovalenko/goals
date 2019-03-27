@@ -4,7 +4,6 @@ import dateFns from 'date-fns';
 import cssObject from './Header.css';
 
 const header = (props) => {
-
     const dateFormat = "MMMM YYYY";
     return (
         <div className={cssObject.Header}>
@@ -16,7 +15,7 @@ const header = (props) => {
             </div>
             <div className={cssObject.ChevronRight} onClick={props.nextMonth}></div>
         </div>
-    ); 
+    );
 };
-      
+
 export default header;

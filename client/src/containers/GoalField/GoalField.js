@@ -7,12 +7,12 @@ import Calendar from '../../components/Calendar/Calendar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 
-import {updateObject, checkDaysArrayForUpdate} from '../../shared/utility';
-import * as  actions from '../../store/actions/index';
+import { updateObject, checkDaysArrayForUpdate } from '../../shared/utility';
+import * as actions from '../../store/actions/index';
 import classes from './GoalField.css';
 
 class GoalField extends Component {
-      
+
     componentDidMount() {
         this.props.getLocation(this.props.location.pathname);
         this.props.onFetchSelectedGoal(this.props.token, this.props.userId, this.props.selectedGoalId);
@@ -26,12 +26,13 @@ class GoalField extends Component {
             const updatedElement = updateObject(this.props.goalConfig.daysArray[position], {
                 success: !this.props.goalConfig.daysArray[position].success,
                 touched: true
-            }); 
+            });
             const updatedDaysArray = this.props.goalConfig.daysArray.map(element => {
                 let newElement = null;
-                if (this.props.goalConfig.daysArray.indexOf(element) === position){
+                if (this.props.goalConfig.daysArray.indexOf(element) === position) {
                     newElement = updatedElement;
-                } else {
+                }
+                else {
                     newElement = element;
                 }
                 return newElement;
@@ -40,17 +41,18 @@ class GoalField extends Component {
                 daysArray: updatedDaysArray
             });
             this.props.onDayCheckUp(updatedGoalConfig);
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
         }
     }
-    
-    
-    render () {
+
+
+    render() {
         let goal = <Spinner />;
-        
+
         if (!this.props.loading && this.props.goalConfig !== null) {
-            goal =  (
+            goal = (
                 <div className={classes.GoalField}>
                     <StatusBoard
                         title={this.props.goalConfig.title}
@@ -60,33 +62,33 @@ class GoalField extends Component {
                         succeeded={this.props.indicators.succeeded}
                         failed={this.props.indicators.failed}
                     />
-                    <Calendar 
+                    <Calendar
                         onDayClick={(event) =>this.checkDayHandler(event)}
                         addStyleRules={true}
                     />
-                    <Button 
+                    <Button
                         buttonType='Success'
                         clicked={() => {
                             console.log('Funcion will execute now');
                             return (this.props.onSaveChangeHandler(
-                                this.props.token, 
+                                this.props.token,
                                 this.props.userId,
                                 this.props.selectedGoalId,
                                 this.props.goalConfig.daysArray)
-                                );                           
+                                );
                             }
                         }
                     >SAVE</Button>
                 </div>
             );
         }
-        
+
         return (
             <div>
                 {goal}
             </div>
         );
-    } 
+    }
 }
 
 const mapStateToProps = state => {
